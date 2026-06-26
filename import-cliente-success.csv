@@ -1,0 +1,3 @@
+OperationType,Nome,Cognome,Email,DataNascita,Sesso,CodiceFiscale,Stato,Età,OraRegistrazione
+UPSERT,Mario,Rossi,mario.rossi@example.com,1985-04-12,M,RSSMRA85D12H501U,ATTIVO,41,09:30:00
+UPSERT,Anna,Bianchi,anna.bianchi@example.com,1990-09-25,F,BNCNNA90P65F205X,ATTIVO,35,10:15:00
