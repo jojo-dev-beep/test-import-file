@@ -1,0 +1,22 @@
+CONFIGURAZIONE WIDZARD:
+{
+  "rootPath": "$.response.orders",
+  "nodeSelector": "$[*]",
+  "arraySelector": null,
+  "propertyMapping": {
+    "CustomerId": "$.customerId",
+    "CustomerName": "$.customerName",
+    "OrderId": "$.orderId",
+    "Amount": "$.amount"
+  }
+}
+
+
+OUTPUT:
+
+| CustomerId | CustomerName  | OrderId | Amount |
+| ---------: | ------------- | ------- | -----: |
+|          1 | Mario Rossi   | A1      |    100 |
+|          1 | Mario Rossi   | A2      |     50 |
+|          2 | Luigi Bianchi | B1      |    200 |
+

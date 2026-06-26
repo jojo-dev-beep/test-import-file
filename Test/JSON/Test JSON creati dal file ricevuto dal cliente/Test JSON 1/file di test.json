@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "versione": "1.0",
+    "esportato": "2025-06-15T09:00:00",
+    "tags": ["hr", "presenze", "2025"]
+  },
+  "dipendenti": [
+    {
+      "matricola": "EMP001",
+      "nominativo": "Marco Rossi",
+      "dataAssunzione": "2019-03-01",
+      "attivo": true,
+      "contratto": {
+        "tipo": "Indeterminato",
+        "livello": "3A",
+        "oreMensili": 168,
+        "retribuzione": 2400.00
+      },
+      "sede": {
+        "citta": "Milano",
+        "provincia": "MI",
+        "reparto": "Produzione"      }
+    },
+    {
+      "matricola": "EMP002",
+      "nominativo": "Laura Bianchi",
+      "dataAssunzione": "2021-06-15",
+      "attivo": true,
+      "contratto": {
+        "tipo": "Determinato",
+        "livello": "2B",
+        "oreMensili": 120,
+        "retribuzione": 1600.00
+      },
+      "sede": {
+        "citta": "Roma",
+        "provincia": "RM",
+        "reparto": "Amministrazione"      }
+    },
+    {
+      "matricola": "EMP003",
+      "nominativo": "Giovanni Verdi",
+      "dataAssunzione": "2018-01-10",
+      "attivo": false,
+      "contratto": {
+        "tipo": "Indeterminato",
+        "livello": "4A",
+        "oreMensili": 168,
+        "retribuzione": 3100.00
+      },
+      "sede": {
+        "citta": "Milano",
+        "provincia": "MI",
+        "reparto": "R&D"      }
+    },
+    {
+      "matricola": "EMP004",
+      "nominativo": "Silvia Ferrari",
+      "dataAssunzione": "2022-09-01",
+      "attivo": true,
+      "contratto": {
+        "tipo": "Determinato",
+        "livello": "2A",
+        "oreMensili": 80,
+        "retribuzione": 1050.00
+      },
+      "sede": {
+        "citta": "Torino",
+        "provincia": "TO",
+        "reparto": "Logistica"      }
+    },
+    {
+      "matricola": "EMP005",
+      "nominativo": "Luca Esposito",
+      "dataAssunzione": "2020-04-20",
+      "attivo": true,
+      "contratto": {
+        "tipo": "Indeterminato",
+        "livello": "5B",
+        "oreMensili": 168,
+        "retribuzione": 3800.00
+      },
+      "sede": {
+        "citta": "Milano",
+        "provincia": "MI",
+        "reparto": "IT"      }
+    },
+    {
+      "matricola": "EMP006",
+      "nominativo": "Anna Ricci",
+      "dataAssunzione": "2023-02-01",
+      "attivo": true,
+      "contratto": {
+        "tipo": "Determinato",
+        "livello": "3B",
+        "oreMensili": 84,
+        "retribuzione": 1320.00
+      },
+      "sede": {
+        "citta": "Bologna",
+        "provincia": "BO",
+        "reparto": "HR"      }
+    }
+  ],
+  "reparti": [
+    { "codice": "PROD", "nome": "Produzione", "responsabile": "EMP003", "budget": 150000 },
+    { "codice": "IT", "nome": "Information Technology", "responsabile": "EMP005", "budget": 95000 },
+    { "codice": "AMM", "nome": "Amministrazione", "responsabile": "EMP002", "budget": 60000 }
+  ],
+  "categorie": ["Operaio", "Impiegato", "Quadro", "Dirigente"],
+  "livelli_retributivi": [1800, 2100, 2400, 3000, 3800]
+}

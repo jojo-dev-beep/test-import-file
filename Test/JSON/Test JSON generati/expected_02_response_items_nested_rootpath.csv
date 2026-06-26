@@ -1,0 +1,3 @@
+employee_id,first_name,last_name,email,department,city,country,salary,hire_date,active,source_system
+E003,Ana,García,ana.garcia@example.com,HR,Madrid,ES,45000.00,2024-03-01,true,HRIS
+E004,John,O'Connor,john.oconnor@example.com,IT,London,UK,52000.75,2022-12-20,false,HRIS

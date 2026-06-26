@@ -1,0 +1,1000 @@
+{
+  "task": "Wizard configurazione TXT posizionale / fixed-width, con casi dati e casi con header row",
+  "recordLengthInCharacters": 92,
+  "indexing": "0-based, startIndex e length sono calcolati in caratteri, non in byte",
+  "defaultColumnOrder": [
+    "customer_id",
+    "first_name",
+    "last_name",
+    "amount",
+    "signup_at",
+    "active",
+    "account_code",
+    "region_code",
+    "note"
+  ],
+  "columns": [
+    {
+      "name": "customer_id",
+      "startIndex": 0,
+      "length": 6,
+      "datatype": "Int",
+      "paddingChar": "0",
+      "alignment": "right",
+      "trimOnRead": true,
+      "description": "ID cliente numerico, zero-padding a sinistra"
+    },
+    {
+      "name": "first_name",
+      "startIndex": 6,
+      "length": 12,
+      "datatype": "String",
+      "paddingChar": " ",
+      "alignment": "left",
+      "trimOnRead": true,
+      "description": "Nome, padding con spazi a destra"
+    },
+    {
+      "name": "last_name",
+      "startIndex": 18,
+      "length": 15,
+      "datatype": "String",
+      "paddingChar": " ",
+      "alignment": "left",
+      "trimOnRead": true,
+      "description": "Cognome, padding con spazi a destra"
+    },
+    {
+      "name": "amount",
+      "startIndex": 33,
+      "length": 10,
+      "datatype": "Decimal",
+      "paddingChar": "0",
+      "alignment": "right",
+      "trimOnRead": true,
+      "decimalSeparator": ".",
+      "description": "Importo decimale con punto e 2 decimali, zero-padding a sinistra"
+    },
+    {
+      "name": "signup_at",
+      "startIndex": 43,
+      "length": 10,
+      "datatype": "DateTime",
+      "paddingChar": " ",
+      "alignment": "left",
+      "trimOnRead": true,
+      "dateFormat": "yyyy-MM-dd",
+      "description": "Data in formato ISO yyyy-MM-dd"
+    },
+    {
+      "name": "active",
+      "startIndex": 53,
+      "length": 1,
+      "datatype": "Boolean",
+      "paddingChar": " ",
+      "alignment": "left",
+      "trimOnRead": true,
+      "trueValues": [
+        "1"
+      ],
+      "falseValues": [
+        "0"
+      ],
+      "description": "Flag booleano: 1=true, 0=false"
+    },
+    {
+      "name": "account_code",
+      "startIndex": 54,
+      "length": 8,
+      "datatype": "String",
+      "paddingChar": "0",
+      "alignment": "right",
+      "trimOnRead": false,
+      "description": "Codice alfanumerico con zero-padding a sinistra da preservare: trimOnRead=false"
+    },
+    {
+      "name": "region_code",
+      "startIndex": 62,
+      "length": 5,
+      "datatype": "String",
+      "paddingChar": " ",
+      "alignment": "right",
+      "trimOnRead": true,
+      "description": "Codice regione allineato a destra con spazi a sinistra"
+    },
+    {
+      "name": "note",
+      "startIndex": 67,
+      "length": 25,
+      "datatype": "String",
+      "paddingChar": " ",
+      "alignment": "left",
+      "trimOnRead": true,
+      "description": "Nota testuale, padding con spazi a destra"
+    }
+  ],
+  "files": [
+    {
+      "filename": "01_utf8_lf_char_offsets.txt",
+      "trackParameters": {
+        "encoding": "UTF-8",
+        "lineTerminator": "LF"
+      },
+      "columnParameters": [
+        {
+          "name": "customer_id",
+          "startIndex": 0,
+          "length": 6,
+          "datatype": "Int",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true,
+          "description": "ID cliente numerico, zero-padding a sinistra"
+        },
+        {
+          "name": "first_name",
+          "startIndex": 6,
+          "length": 12,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Nome, padding con spazi a destra"
+        },
+        {
+          "name": "last_name",
+          "startIndex": 18,
+          "length": 15,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Cognome, padding con spazi a destra"
+        },
+        {
+          "name": "amount",
+          "startIndex": 33,
+          "length": 10,
+          "datatype": "Decimal",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true,
+          "decimalSeparator": ".",
+          "description": "Importo decimale con punto e 2 decimali, zero-padding a sinistra"
+        },
+        {
+          "name": "signup_at",
+          "startIndex": 43,
+          "length": 10,
+          "datatype": "DateTime",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "dateFormat": "yyyy-MM-dd",
+          "description": "Data in formato ISO yyyy-MM-dd"
+        },
+        {
+          "name": "active",
+          "startIndex": 53,
+          "length": 1,
+          "datatype": "Boolean",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "trueValues": [
+            "1"
+          ],
+          "falseValues": [
+            "0"
+          ],
+          "description": "Flag booleano: 1=true, 0=false"
+        },
+        {
+          "name": "account_code",
+          "startIndex": 54,
+          "length": 8,
+          "datatype": "String",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": false,
+          "description": "Codice alfanumerico con zero-padding a sinistra da preservare: trimOnRead=false"
+        },
+        {
+          "name": "region_code",
+          "startIndex": 62,
+          "length": 5,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "right",
+          "trimOnRead": true,
+          "description": "Codice regione allineato a destra con spazi a sinistra"
+        },
+        {
+          "name": "note",
+          "startIndex": 67,
+          "length": 25,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Nota testuale, padding con spazi a destra"
+        }
+      ],
+      "records": 3,
+      "purpose": "Verifica UTF-8 + LF e offset in caratteri, non in byte. Contiene accenti/emoji prima di campi successivi."
+    },
+    {
+      "filename": "02_latin1_crlf_accents.txt",
+      "trackParameters": {
+        "encoding": "Latin1",
+        "lineTerminator": "CRLF"
+      },
+      "columnParameters": [
+        {
+          "name": "customer_id",
+          "startIndex": 0,
+          "length": 6,
+          "datatype": "Int",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true,
+          "description": "ID cliente numerico, zero-padding a sinistra"
+        },
+        {
+          "name": "first_name",
+          "startIndex": 6,
+          "length": 12,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Nome, padding con spazi a destra"
+        },
+        {
+          "name": "last_name",
+          "startIndex": 18,
+          "length": 15,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Cognome, padding con spazi a destra"
+        },
+        {
+          "name": "amount",
+          "startIndex": 33,
+          "length": 10,
+          "datatype": "Decimal",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true,
+          "decimalSeparator": ".",
+          "description": "Importo decimale con punto e 2 decimali, zero-padding a sinistra"
+        },
+        {
+          "name": "signup_at",
+          "startIndex": 43,
+          "length": 10,
+          "datatype": "DateTime",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "dateFormat": "yyyy-MM-dd",
+          "description": "Data in formato ISO yyyy-MM-dd"
+        },
+        {
+          "name": "active",
+          "startIndex": 53,
+          "length": 1,
+          "datatype": "Boolean",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "trueValues": [
+            "1"
+          ],
+          "falseValues": [
+            "0"
+          ],
+          "description": "Flag booleano: 1=true, 0=false"
+        },
+        {
+          "name": "account_code",
+          "startIndex": 54,
+          "length": 8,
+          "datatype": "String",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": false,
+          "description": "Codice alfanumerico con zero-padding a sinistra da preservare: trimOnRead=false"
+        },
+        {
+          "name": "region_code",
+          "startIndex": 62,
+          "length": 5,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "right",
+          "trimOnRead": true,
+          "description": "Codice regione allineato a destra con spazi a sinistra"
+        },
+        {
+          "name": "note",
+          "startIndex": 67,
+          "length": 25,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Nota testuale, padding con spazi a destra"
+        }
+      ],
+      "records": 2,
+      "purpose": "Verifica Latin1/ISO-8859-1 + CRLF. Contiene accenti supportati da Latin1, ma non caratteri Windows-only come €."
+    },
+    {
+      "filename": "03_windows1252_crlf_euro_quotes.txt",
+      "trackParameters": {
+        "encoding": "Windows-1252",
+        "lineTerminator": "CRLF"
+      },
+      "columnParameters": [
+        {
+          "name": "customer_id",
+          "startIndex": 0,
+          "length": 6,
+          "datatype": "Int",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true,
+          "description": "ID cliente numerico, zero-padding a sinistra"
+        },
+        {
+          "name": "first_name",
+          "startIndex": 6,
+          "length": 12,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Nome, padding con spazi a destra"
+        },
+        {
+          "name": "last_name",
+          "startIndex": 18,
+          "length": 15,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Cognome, padding con spazi a destra"
+        },
+        {
+          "name": "amount",
+          "startIndex": 33,
+          "length": 10,
+          "datatype": "Decimal",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true,
+          "decimalSeparator": ".",
+          "description": "Importo decimale con punto e 2 decimali, zero-padding a sinistra"
+        },
+        {
+          "name": "signup_at",
+          "startIndex": 43,
+          "length": 10,
+          "datatype": "DateTime",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "dateFormat": "yyyy-MM-dd",
+          "description": "Data in formato ISO yyyy-MM-dd"
+        },
+        {
+          "name": "active",
+          "startIndex": 53,
+          "length": 1,
+          "datatype": "Boolean",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "trueValues": [
+            "1"
+          ],
+          "falseValues": [
+            "0"
+          ],
+          "description": "Flag booleano: 1=true, 0=false"
+        },
+        {
+          "name": "account_code",
+          "startIndex": 54,
+          "length": 8,
+          "datatype": "String",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": false,
+          "description": "Codice alfanumerico con zero-padding a sinistra da preservare: trimOnRead=false"
+        },
+        {
+          "name": "region_code",
+          "startIndex": 62,
+          "length": 5,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "right",
+          "trimOnRead": true,
+          "description": "Codice regione allineato a destra con spazi a sinistra"
+        },
+        {
+          "name": "note",
+          "startIndex": 67,
+          "length": 25,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Nota testuale, padding con spazi a destra"
+        }
+      ],
+      "records": 2,
+      "purpose": "Verifica Windows-1252 + CRLF. Contiene simbolo € e trattino tipografico, validi in Windows-1252 ma problematici se letti come Latin1/UTF-8."
+    },
+    {
+      "filename": "04_utf8_crlf_padding_trim.txt",
+      "trackParameters": {
+        "encoding": "UTF-8",
+        "lineTerminator": "CRLF"
+      },
+      "columnParameters": [
+        {
+          "name": "customer_id",
+          "startIndex": 0,
+          "length": 6,
+          "datatype": "Int",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true,
+          "description": "ID cliente numerico, zero-padding a sinistra"
+        },
+        {
+          "name": "first_name",
+          "startIndex": 6,
+          "length": 12,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Nome, padding con spazi a destra"
+        },
+        {
+          "name": "last_name",
+          "startIndex": 18,
+          "length": 15,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Cognome, padding con spazi a destra"
+        },
+        {
+          "name": "amount",
+          "startIndex": 33,
+          "length": 10,
+          "datatype": "Decimal",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true,
+          "decimalSeparator": ".",
+          "description": "Importo decimale con punto e 2 decimali, zero-padding a sinistra"
+        },
+        {
+          "name": "signup_at",
+          "startIndex": 43,
+          "length": 10,
+          "datatype": "DateTime",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "dateFormat": "yyyy-MM-dd",
+          "description": "Data in formato ISO yyyy-MM-dd"
+        },
+        {
+          "name": "active",
+          "startIndex": 53,
+          "length": 1,
+          "datatype": "Boolean",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "trueValues": [
+            "1"
+          ],
+          "falseValues": [
+            "0"
+          ],
+          "description": "Flag booleano: 1=true, 0=false"
+        },
+        {
+          "name": "account_code",
+          "startIndex": 54,
+          "length": 8,
+          "datatype": "String",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": false,
+          "description": "Codice alfanumerico con zero-padding a sinistra da preservare: trimOnRead=false"
+        },
+        {
+          "name": "region_code",
+          "startIndex": 62,
+          "length": 5,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "right",
+          "trimOnRead": true,
+          "description": "Codice regione allineato a destra con spazi a sinistra"
+        },
+        {
+          "name": "note",
+          "startIndex": 67,
+          "length": 25,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Nota testuale, padding con spazi a destra"
+        }
+      ],
+      "records": 2,
+      "purpose": "Verifica UTF-8 + CRLF, padding a zero/spazio, allineamento right/left e trimOnRead=false su account_code."
+    },
+    {
+      "filename": "05_utf8_lf_with_header.txt",
+      "trackParameters": {
+        "encoding": "UTF-8",
+        "lineTerminator": "LF",
+        "headerPresence": true,
+        "skipRows": 1,
+        "headerUsage": "La prima riga contiene i nomi/label delle colonne in formato fixed-width. Va saltata come record dati; il mapping resta basato su startIndex e length."
+      },
+      "columnParameters": [
+        {
+          "name": "customer_id",
+          "startIndex": 0,
+          "length": 6,
+          "datatype": "Int",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true,
+          "description": "ID cliente numerico, zero-padding a sinistra"
+        },
+        {
+          "name": "first_name",
+          "startIndex": 6,
+          "length": 12,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Nome, padding con spazi a destra"
+        },
+        {
+          "name": "last_name",
+          "startIndex": 18,
+          "length": 15,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Cognome, padding con spazi a destra"
+        },
+        {
+          "name": "amount",
+          "startIndex": 33,
+          "length": 10,
+          "datatype": "Decimal",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true,
+          "decimalSeparator": ".",
+          "description": "Importo decimale con punto e 2 decimali, zero-padding a sinistra"
+        },
+        {
+          "name": "signup_at",
+          "startIndex": 43,
+          "length": 10,
+          "datatype": "DateTime",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "dateFormat": "yyyy-MM-dd",
+          "description": "Data in formato ISO yyyy-MM-dd"
+        },
+        {
+          "name": "active",
+          "startIndex": 53,
+          "length": 1,
+          "datatype": "Boolean",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "trueValues": [
+            "1"
+          ],
+          "falseValues": [
+            "0"
+          ],
+          "description": "Flag booleano: 1=true, 0=false"
+        },
+        {
+          "name": "account_code",
+          "startIndex": 54,
+          "length": 8,
+          "datatype": "String",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": false,
+          "description": "Codice alfanumerico con zero-padding a sinistra da preservare: trimOnRead=false"
+        },
+        {
+          "name": "region_code",
+          "startIndex": 62,
+          "length": 5,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "right",
+          "trimOnRead": true,
+          "description": "Codice regione allineato a destra con spazi a sinistra"
+        },
+        {
+          "name": "note",
+          "startIndex": 67,
+          "length": 25,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Nota testuale, padding con spazi a destra"
+        }
+      ],
+      "expectedRecords": [
+        {
+          "customer_id": 501,
+          "first_name": "Renée",
+          "last_name": "Fontana",
+          "amount": 15.75,
+          "signup_at": "2025-06-01",
+          "active": true,
+          "account_code": "H501",
+          "region_code": "IT",
+          "note": "header UTF-8 🧪"
+        },
+        {
+          "customer_id": 502,
+          "first_name": "Nino",
+          "last_name": "Kovač",
+          "amount": 2500.0,
+          "signup_at": "2025-06-02",
+          "active": false,
+          "account_code": "H502",
+          "region_code": "HR",
+          "note": "accento su c"
+        }
+      ],
+      "expectedBehavior": [
+        "Il parser deve leggere e mostrare la riga header come intestazione/preview, ma non deve convertirla in record dati.",
+        "Il mapping delle colonne dati deve rimanere quello fixed-width tramite startIndex e length.",
+        "L’output atteso deve includere solo le righe successive all’header."
+      ]
+    },
+    {
+      "filename": "06_latin1_crlf_with_header.txt",
+      "trackParameters": {
+        "encoding": "Latin1",
+        "lineTerminator": "CRLF",
+        "headerPresence": true,
+        "skipRows": 1,
+        "headerUsage": "La prima riga contiene i nomi/label delle colonne in formato fixed-width. Va saltata come record dati; il mapping resta basato su startIndex e length."
+      },
+      "columnParameters": [
+        {
+          "name": "customer_id",
+          "startIndex": 0,
+          "length": 6,
+          "datatype": "Int",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true,
+          "description": "ID cliente numerico, zero-padding a sinistra"
+        },
+        {
+          "name": "first_name",
+          "startIndex": 6,
+          "length": 12,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Nome, padding con spazi a destra"
+        },
+        {
+          "name": "last_name",
+          "startIndex": 18,
+          "length": 15,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Cognome, padding con spazi a destra"
+        },
+        {
+          "name": "amount",
+          "startIndex": 33,
+          "length": 10,
+          "datatype": "Decimal",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true,
+          "decimalSeparator": ".",
+          "description": "Importo decimale con punto e 2 decimali, zero-padding a sinistra"
+        },
+        {
+          "name": "signup_at",
+          "startIndex": 43,
+          "length": 10,
+          "datatype": "DateTime",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "dateFormat": "yyyy-MM-dd",
+          "description": "Data in formato ISO yyyy-MM-dd"
+        },
+        {
+          "name": "active",
+          "startIndex": 53,
+          "length": 1,
+          "datatype": "Boolean",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "trueValues": [
+            "1"
+          ],
+          "falseValues": [
+            "0"
+          ],
+          "description": "Flag booleano: 1=true, 0=false"
+        },
+        {
+          "name": "account_code",
+          "startIndex": 54,
+          "length": 8,
+          "datatype": "String",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": false,
+          "description": "Codice alfanumerico con zero-padding a sinistra da preservare: trimOnRead=false"
+        },
+        {
+          "name": "region_code",
+          "startIndex": 62,
+          "length": 5,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "right",
+          "trimOnRead": true,
+          "description": "Codice regione allineato a destra con spazi a sinistra"
+        },
+        {
+          "name": "note",
+          "startIndex": 67,
+          "length": 25,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Nota testuale, padding con spazi a destra"
+        }
+      ],
+      "expectedRecords": [
+        {
+          "customer_id": 601,
+          "first_name": "Beyoncé",
+          "last_name": "Martin",
+          "amount": 89.1,
+          "signup_at": "2025-07-10",
+          "active": true,
+          "account_code": "L601",
+          "region_code": "FR",
+          "note": "test latin1 éèà"
+        },
+        {
+          "customer_id": 602,
+          "first_name": "João",
+          "last_name": "Nuñez",
+          "amount": 123.45,
+          "signup_at": "2025-07-11",
+          "active": false,
+          "account_code": "L602",
+          "region_code": "PT",
+          "note": "São Paulo"
+        }
+      ],
+      "expectedBehavior": [
+        "Il parser deve leggere e mostrare la riga header come intestazione/preview, ma non deve convertirla in record dati.",
+        "Il mapping delle colonne dati deve rimanere quello fixed-width tramite startIndex e length.",
+        "L’output atteso deve includere solo le righe successive all’header."
+      ]
+    },
+    {
+      "filename": "07_windows1252_crlf_with_header.txt",
+      "trackParameters": {
+        "encoding": "Windows-1252",
+        "lineTerminator": "CRLF",
+        "headerPresence": true,
+        "skipRows": 1,
+        "headerUsage": "La prima riga contiene i nomi/label delle colonne in formato fixed-width. Va saltata come record dati; il mapping resta basato su startIndex e length."
+      },
+      "columnParameters": [
+        {
+          "name": "customer_id",
+          "startIndex": 0,
+          "length": 6,
+          "datatype": "Int",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true,
+          "description": "ID cliente numerico, zero-padding a sinistra"
+        },
+        {
+          "name": "first_name",
+          "startIndex": 6,
+          "length": 12,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Nome, padding con spazi a destra"
+        },
+        {
+          "name": "last_name",
+          "startIndex": 18,
+          "length": 15,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Cognome, padding con spazi a destra"
+        },
+        {
+          "name": "amount",
+          "startIndex": 33,
+          "length": 10,
+          "datatype": "Decimal",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true,
+          "decimalSeparator": ".",
+          "description": "Importo decimale con punto e 2 decimali, zero-padding a sinistra"
+        },
+        {
+          "name": "signup_at",
+          "startIndex": 43,
+          "length": 10,
+          "datatype": "DateTime",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "dateFormat": "yyyy-MM-dd",
+          "description": "Data in formato ISO yyyy-MM-dd"
+        },
+        {
+          "name": "active",
+          "startIndex": 53,
+          "length": 1,
+          "datatype": "Boolean",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "trueValues": [
+            "1"
+          ],
+          "falseValues": [
+            "0"
+          ],
+          "description": "Flag booleano: 1=true, 0=false"
+        },
+        {
+          "name": "account_code",
+          "startIndex": 54,
+          "length": 8,
+          "datatype": "String",
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": false,
+          "description": "Codice alfanumerico con zero-padding a sinistra da preservare: trimOnRead=false"
+        },
+        {
+          "name": "region_code",
+          "startIndex": 62,
+          "length": 5,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "right",
+          "trimOnRead": true,
+          "description": "Codice regione allineato a destra con spazi a sinistra"
+        },
+        {
+          "name": "note",
+          "startIndex": 67,
+          "length": 25,
+          "datatype": "String",
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true,
+          "description": "Nota testuale, padding con spazi a destra"
+        }
+      ],
+      "expectedRecords": [
+        {
+          "customer_id": 701,
+          "first_name": "Elena",
+          "last_name": "D’Angelo",
+          "amount": 20.0,
+          "signup_at": "2025-08-20",
+          "active": true,
+          "account_code": "W701",
+          "region_code": "IT",
+          "note": "saldo 20€ ok"
+        },
+        {
+          "customer_id": 702,
+          "first_name": "Paolo",
+          "last_name": "Riva",
+          "amount": 300.99,
+          "signup_at": "2025-08-21",
+          "active": true,
+          "account_code": "W702",
+          "region_code": "IT",
+          "note": "nota “header”"
+        }
+      ],
+      "expectedBehavior": [
+        "Il parser deve leggere e mostrare la riga header come intestazione/preview, ma non deve convertirla in record dati.",
+        "Il mapping delle colonne dati deve rimanere quello fixed-width tramite startIndex e length.",
+        "L’output atteso deve includere solo le righe successive all’header."
+      ]
+    }
+  ],
+  "expectedOutput": {
+    "totalRecords": 9,
+    "file": "expected_output_normalized_utf8.csv",
+    "columns": [
+      "source_file",
+      "customer_id",
+      "first_name",
+      "last_name",
+      "amount",
+      "signup_at",
+      "active",
+      "account_code",
+      "region_code",
+      "note"
+    ]
+  },
+  "notes": [
+    "Il campo account_code deve conservare gli zeri iniziali perché trimOnRead=false.",
+    "I campi customer_id e amount hanno paddingChar=0, alignment=right, trimOnRead=true: gli zeri di padding vanno rimossi prima della conversione Int/Decimal.",
+    "I campi first_name, last_name, note hanno paddingChar=spazio, alignment=left, trimOnRead=true: gli spazi finali vanno rimossi.",
+    "Il campo region_code ha paddingChar=spazio, alignment=right, trimOnRead=true: gli spazi iniziali vanno rimossi.",
+    "active usa 1=true e 0=false.",
+    "signup_at usa formato yyyy-MM-dd. Se il wizard non supporta ancora il formato data esplicito, usare questo file per verificare almeno l'estrazione fixed-width e la conversione DateTime standard ISO."
+  ],
+  "headerHandlingNotes": {
+    "headerPresence": "Parametro aggiuntivo consigliato per testare file fixed-width con intestazione colonne.",
+    "skipRows": "Equivalente più flessibile: skipRows=1 per saltare una riga header prima del parsing dati.",
+    "important": "Nel fixed-width l’header NON determina gli offset: startIndex e length restano la fonte del mapping."
+  }
+}

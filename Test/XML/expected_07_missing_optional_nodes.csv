@@ -1,0 +1,3 @@
+employee_id,first_name,last_name,email,department,country,salary,hire_date,active
+E013,Nina,Kovač,,QA,HR,39000.00,2023-10-10,true
+E014,Omar,Hassan,,Data,,61000.00,2024-09-09,true

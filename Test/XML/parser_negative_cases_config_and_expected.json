@@ -1,0 +1,494 @@
+{
+  "package": "xml_parser_pipeline_test_pack",
+  "createdFor": "Parser XML pipeline di import: XPath selector, namespace support, mapping elementi/attributi, ParseError[]",
+  "notes": [
+    "I casi positivi sono gli stessi del pacchetto wizard XML.",
+    "I casi negativi riusano i file XML positivi ma cambiano la TraceDefinition/TraceColumnDefinition per produrre errori controllati.",
+    "L'input applicativo va passato come MemoryStream dei byte del file XML indicato.",
+    "Gli expectedErrors non impongono nomi esatti di enum: indicano categoria, scope e dettagli minimi da validare.",
+    "Per nodeMapping/attributeMapping mancanti, la raccomandazione è estrarre comunque la riga valorizzando la colonna con stringa vuota/null e aggiungere ParseError per il campo mancante. Se la vostra pipeline è fail-fast, adeguate l'asserzione, ma il caso resta necessario."
+  ],
+  "recommendedParseErrorShape": {
+    "type": "InvalidXPath | NamespaceNotResolved | NodeNotFound | AttributeNotFound",
+    "scope": "xPathSelector | nodeMapping | attributeMapping",
+    "rowIndex": "0-based rispetto al nodeset selezionato, se applicabile",
+    "columnName": "nome colonna, se applicabile",
+    "path": "XPath o attributo che ha generato l'errore",
+    "message": "testo diagnostico utile"
+  },
+  "negativeTestCases": [
+    {
+      "id": "ERR01_INVALID_XPATH_SELECTOR",
+      "description": "xPathSelector sintatticamente non valido: il parser deve restituire ParseError e non estrarre righe.",
+      "fileName": "01_no_namespace_elements_and_attributes.xml",
+      "input": {
+        "type": "MemoryStream",
+        "sourceFile": "01_no_namespace_elements_and_attributes.xml"
+      },
+      "traceDefinitionParsingParameters": {
+        "xPathSelector": "//*[",
+        "namespaceSupport": false,
+        "namespaceMap": {}
+      },
+      "traceColumnDefinitions": [
+        {
+          "columnName": "employee_id",
+          "attributeMapping": "id"
+        },
+        {
+          "columnName": "first_name",
+          "nodeMapping": "FirstName"
+        },
+        {
+          "columnName": "last_name",
+          "nodeMapping": "LastName"
+        },
+        {
+          "columnName": "email",
+          "nodeMapping": "Email"
+        },
+        {
+          "columnName": "department",
+          "nodeMapping": "Department"
+        },
+        {
+          "columnName": "country",
+          "nodeMapping": "Country"
+        },
+        {
+          "columnName": "salary",
+          "nodeMapping": "Salary"
+        },
+        {
+          "columnName": "hire_date",
+          "nodeMapping": "HireDate"
+        },
+        {
+          "columnName": "active",
+          "attributeMapping": "active"
+        }
+      ],
+      "expectedRows": [],
+      "expectedErrors": [
+        {
+          "type": "InvalidXPath",
+          "scope": "xPathSelector",
+          "path": "//*[",
+          "messageContains": [
+            "XPath",
+            "invalid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ERR02_UNRESOLVED_NAMESPACE_PREFIX_IN_SELECTOR",
+      "description": "XPath usa prefisso hr ma namespaceMap non lo dichiara.",
+      "fileName": "03_prefixed_namespace.xml",
+      "input": {
+        "type": "MemoryStream",
+        "sourceFile": "03_prefixed_namespace.xml"
+      },
+      "traceDefinitionParsingParameters": {
+        "xPathSelector": "//hr:Employees/hr:Employee",
+        "namespaceSupport": true,
+        "namespaceMap": {}
+      },
+      "traceColumnDefinitions": [
+        {
+          "columnName": "employee_id",
+          "attributeMapping": "id"
+        },
+        {
+          "columnName": "first_name",
+          "nodeMapping": "hr:FirstName"
+        }
+      ],
+      "expectedRows": [],
+      "expectedErrors": [
+        {
+          "type": "NamespaceNotResolved",
+          "scope": "xPathSelector",
+          "path": "//hr:Employees/hr:Employee",
+          "prefix": "hr",
+          "messageContains": [
+            "hr",
+            "namespace"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ERR03_SELECTOR_VALID_BUT_NO_NODES",
+      "description": "XPath valido ma non trova nodi da iterare.",
+      "fileName": "01_no_namespace_elements_and_attributes.xml",
+      "input": {
+        "type": "MemoryStream",
+        "sourceFile": "01_no_namespace_elements_and_attributes.xml"
+      },
+      "traceDefinitionParsingParameters": {
+        "xPathSelector": "/Employees/Contractor",
+        "namespaceSupport": false,
+        "namespaceMap": {}
+      },
+      "traceColumnDefinitions": [
+        {
+          "columnName": "employee_id",
+          "attributeMapping": "id"
+        },
+        {
+          "columnName": "first_name",
+          "nodeMapping": "FirstName"
+        },
+        {
+          "columnName": "last_name",
+          "nodeMapping": "LastName"
+        },
+        {
+          "columnName": "email",
+          "nodeMapping": "Email"
+        },
+        {
+          "columnName": "department",
+          "nodeMapping": "Department"
+        },
+        {
+          "columnName": "country",
+          "nodeMapping": "Country"
+        },
+        {
+          "columnName": "salary",
+          "nodeMapping": "Salary"
+        },
+        {
+          "columnName": "hire_date",
+          "nodeMapping": "HireDate"
+        },
+        {
+          "columnName": "active",
+          "attributeMapping": "active"
+        }
+      ],
+      "expectedRows": [],
+      "expectedErrors": [
+        {
+          "type": "NodeNotFound",
+          "scope": "xPathSelector",
+          "path": "/Employees/Contractor",
+          "messageContains": [
+            "node",
+            "not found"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ERR04_MISSING_CHILD_NODE_MAPPING",
+      "description": "nodeMapping relativo valido ma il nodo Phone non esiste sui record selezionati.",
+      "fileName": "01_no_namespace_elements_and_attributes.xml",
+      "input": {
+        "type": "MemoryStream",
+        "sourceFile": "01_no_namespace_elements_and_attributes.xml"
+      },
+      "traceDefinitionParsingParameters": {
+        "xPathSelector": "/Employees/Employee",
+        "namespaceSupport": false,
+        "namespaceMap": {}
+      },
+      "traceColumnDefinitions": [
+        {
+          "columnName": "employee_id",
+          "attributeMapping": "id"
+        },
+        {
+          "columnName": "first_name",
+          "nodeMapping": "FirstName"
+        },
+        {
+          "columnName": "last_name",
+          "nodeMapping": "LastName"
+        },
+        {
+          "columnName": "phone",
+          "nodeMapping": "Phone"
+        },
+        {
+          "columnName": "email",
+          "nodeMapping": "Email"
+        },
+        {
+          "columnName": "department",
+          "nodeMapping": "Department"
+        },
+        {
+          "columnName": "country",
+          "nodeMapping": "Country"
+        },
+        {
+          "columnName": "salary",
+          "nodeMapping": "Salary"
+        },
+        {
+          "columnName": "hire_date",
+          "nodeMapping": "HireDate"
+        },
+        {
+          "columnName": "active",
+          "attributeMapping": "active"
+        }
+      ],
+      "expectedRows": [
+        {
+          "employee_id": "EMP001",
+          "first_name": "Mario",
+          "last_name": "Rossi",
+          "phone": "",
+          "email": "mario.rossi@example.com",
+          "department": "Engineering",
+          "country": "IT",
+          "salary": "45000.50",
+          "hire_date": "2022-01-15",
+          "active": "true"
+        },
+        {
+          "employee_id": "EMP002",
+          "first_name": "Laura",
+          "last_name": "Bianchi",
+          "phone": "",
+          "email": "laura.bianchi@example.com",
+          "department": "HR",
+          "country": "IT",
+          "salary": "39000.00",
+          "hire_date": "2021-06-01",
+          "active": "false"
+        }
+      ],
+      "expectedErrors": [
+        {
+          "type": "NodeNotFound",
+          "scope": "nodeMapping",
+          "rowIndex": 0,
+          "columnName": "phone",
+          "path": "Phone"
+        },
+        {
+          "type": "NodeNotFound",
+          "scope": "nodeMapping",
+          "rowIndex": 1,
+          "columnName": "phone",
+          "path": "Phone"
+        }
+      ]
+    },
+    {
+      "id": "ERR05_MISSING_ATTRIBUTE_MAPPING",
+      "description": "attributeMapping valido come nome attributo ma l'attributo legacyCode non esiste.",
+      "fileName": "01_no_namespace_elements_and_attributes.xml",
+      "input": {
+        "type": "MemoryStream",
+        "sourceFile": "01_no_namespace_elements_and_attributes.xml"
+      },
+      "traceDefinitionParsingParameters": {
+        "xPathSelector": "/Employees/Employee",
+        "namespaceSupport": false,
+        "namespaceMap": {}
+      },
+      "traceColumnDefinitions": [
+        {
+          "columnName": "employee_id",
+          "attributeMapping": "id"
+        },
+        {
+          "columnName": "legacy_code",
+          "attributeMapping": "legacyCode"
+        },
+        {
+          "columnName": "first_name",
+          "nodeMapping": "FirstName"
+        },
+        {
+          "columnName": "last_name",
+          "nodeMapping": "LastName"
+        },
+        {
+          "columnName": "email",
+          "nodeMapping": "Email"
+        },
+        {
+          "columnName": "department",
+          "nodeMapping": "Department"
+        },
+        {
+          "columnName": "country",
+          "nodeMapping": "Country"
+        },
+        {
+          "columnName": "salary",
+          "nodeMapping": "Salary"
+        },
+        {
+          "columnName": "hire_date",
+          "nodeMapping": "HireDate"
+        },
+        {
+          "columnName": "active",
+          "attributeMapping": "active"
+        }
+      ],
+      "expectedRows": [
+        {
+          "employee_id": "EMP001",
+          "legacy_code": "",
+          "first_name": "Mario",
+          "last_name": "Rossi",
+          "email": "mario.rossi@example.com",
+          "department": "Engineering",
+          "country": "IT",
+          "salary": "45000.50",
+          "hire_date": "2022-01-15",
+          "active": "true"
+        },
+        {
+          "employee_id": "EMP002",
+          "legacy_code": "",
+          "first_name": "Laura",
+          "last_name": "Bianchi",
+          "email": "laura.bianchi@example.com",
+          "department": "HR",
+          "country": "IT",
+          "salary": "39000.00",
+          "hire_date": "2021-06-01",
+          "active": "false"
+        }
+      ],
+      "expectedErrors": [
+        {
+          "type": "AttributeNotFound",
+          "scope": "attributeMapping",
+          "rowIndex": 0,
+          "columnName": "legacy_code",
+          "attribute": "legacyCode"
+        },
+        {
+          "type": "AttributeNotFound",
+          "scope": "attributeMapping",
+          "rowIndex": 1,
+          "columnName": "legacy_code",
+          "attribute": "legacyCode"
+        }
+      ]
+    },
+    {
+      "id": "ERR06_INVALID_RELATIVE_NODE_MAPPING_XPATH",
+      "description": "nodeMapping relativo sintatticamente non valido.",
+      "fileName": "02_nested_relative_xpath_and_attributes.xml",
+      "input": {
+        "type": "MemoryStream",
+        "sourceFile": "02_nested_relative_xpath_and_attributes.xml"
+      },
+      "traceDefinitionParsingParameters": {
+        "xPathSelector": "/Employees/Employee",
+        "namespaceSupport": false,
+        "namespaceMap": {}
+      },
+      "traceColumnDefinitions": [
+        {
+          "columnName": "employee_id",
+          "attributeMapping": "id"
+        },
+        {
+          "columnName": "email",
+          "nodeMapping": "Contact/[Email"
+        }
+      ],
+      "expectedRows": [],
+      "expectedErrors": [
+        {
+          "type": "InvalidXPath",
+          "scope": "nodeMapping",
+          "columnName": "email",
+          "path": "Contact/[Email",
+          "messageContains": [
+            "XPath",
+            "invalid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ERR07_NAMESPACE_SUPPORT_FALSE_WITH_PREFIXED_XPATH",
+      "description": "XPath prefissato usato con namespaceSupport=false: il prefisso non deve essere risolto implicitamente.",
+      "fileName": "03_prefixed_namespace.xml",
+      "input": {
+        "type": "MemoryStream",
+        "sourceFile": "03_prefixed_namespace.xml"
+      },
+      "traceDefinitionParsingParameters": {
+        "xPathSelector": "//hr:Employees/hr:Employee",
+        "namespaceSupport": false,
+        "namespaceMap": {}
+      },
+      "traceColumnDefinitions": [
+        {
+          "columnName": "employee_id",
+          "attributeMapping": "id"
+        },
+        {
+          "columnName": "first_name",
+          "nodeMapping": "hr:FirstName"
+        }
+      ],
+      "expectedRows": [],
+      "expectedErrors": [
+        {
+          "type": "NamespaceNotResolved",
+          "scope": "xPathSelector",
+          "path": "//hr:Employees/hr:Employee",
+          "prefix": "hr",
+          "messageContains": [
+            "hr",
+            "namespaceSupport"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ERR08_WRONG_NAMESPACE_URI_RETURNS_NO_NODES",
+      "description": "Prefisso dichiarato, ma URI namespace errato: XPath risolto tecnicamente, ma nessun nodo selezionato.",
+      "fileName": "03_prefixed_namespace.xml",
+      "input": {
+        "type": "MemoryStream",
+        "sourceFile": "03_prefixed_namespace.xml"
+      },
+      "traceDefinitionParsingParameters": {
+        "xPathSelector": "//hr:Employees/hr:Employee",
+        "namespaceSupport": true,
+        "namespaceMap": {
+          "hr": "http://schemas.example.com/wrong"
+        }
+      },
+      "traceColumnDefinitions": [
+        {
+          "columnName": "employee_id",
+          "attributeMapping": "id"
+        },
+        {
+          "columnName": "first_name",
+          "nodeMapping": "hr:FirstName"
+        }
+      ],
+      "expectedRows": [],
+      "expectedErrors": [
+        {
+          "type": "NodeNotFound",
+          "scope": "xPathSelector",
+          "path": "//hr:Employees/hr:Employee",
+          "messageContains": [
+            "0",
+            "nodes"
+          ]
+        }
+      ]
+    }
+  ]
+}

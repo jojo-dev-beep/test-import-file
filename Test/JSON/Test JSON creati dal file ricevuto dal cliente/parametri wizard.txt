@@ -1,0 +1,12 @@
+rootPath:
+  seleziona il contesto iniziale.
+
+nodeSelector:
+  seleziona i record da iterare.
+  Deve preferibilmente restituire una lista di oggetti.
+
+arraySelector:
+  opzionale, serve se ogni nodo selezionato contiene a sua volta un array da esplodere.
+
+propertyMapping:
+  viene applicato al singolo record finale, non al JSON intero.

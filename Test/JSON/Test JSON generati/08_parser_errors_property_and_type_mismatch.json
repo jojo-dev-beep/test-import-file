@@ -1,0 +1,92 @@
+{
+  "data": [
+    {
+      "id": "E901",
+      "name": {
+        "first": "Valid",
+        "last": "Employee"
+      },
+      "contact": {
+        "email": "valid.employee@example.com"
+      },
+      "department": "QA",
+      "address": {
+        "city": "Milan",
+        "country": "IT"
+      },
+      "compensation": {
+        "salary": 1000.5
+      },
+      "hireDate": "2024-01-01",
+      "active": true,
+      "sourceSystem": "ERRTEST"
+    },
+    {
+      "id": "E902",
+      "name": {
+        "first": "Missing",
+        "last": "Email"
+      },
+      "contact": {},
+      "department": "QA",
+      "address": {
+        "city": "Rome",
+        "country": "IT"
+      },
+      "compensation": {
+        "salary": 1200.0
+      },
+      "hireDate": "2024-02-02",
+      "active": false,
+      "sourceSystem": "ERRTEST"
+    },
+    {
+      "id": "E903",
+      "name": {
+        "first": "Object",
+        "last": "Salary"
+      },
+      "contact": {
+        "email": "object.salary@example.com"
+      },
+      "department": "QA",
+      "address": {
+        "city": "Turin",
+        "country": "IT"
+      },
+      "compensation": {
+        "salary": {
+          "amount": 1300.25,
+          "currency": "EUR"
+        }
+      },
+      "hireDate": "2024-03-03",
+      "active": true,
+      "sourceSystem": "ERRTEST"
+    },
+    {
+      "id": "E904",
+      "name": {
+        "first": "Array",
+        "last": "Email"
+      },
+      "contact": {
+        "email": [
+          "array.email@example.com",
+          "secondary@example.com"
+        ]
+      },
+      "department": "QA",
+      "address": {
+        "city": "Naples",
+        "country": "IT"
+      },
+      "compensation": {
+        "salary": 1400.75
+      },
+      "hireDate": "2024-04-04",
+      "active": true,
+      "sourceSystem": "ERRTEST"
+    }
+  ]
+}

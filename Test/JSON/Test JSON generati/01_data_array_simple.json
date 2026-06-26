@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "source": "unit-test"
+  },
+  "data": [
+    {
+      "id": "E001",
+      "name": {
+        "first": "Mario",
+        "last": "Rossi"
+      },
+      "contact": {
+        "email": "mario.rossi@example.com"
+      },
+      "department": "Sales",
+      "address": {
+        "city": "Milan",
+        "country": "IT"
+      },
+      "compensation": {
+        "salary": 52000.5
+      },
+      "hireDate": "2024-01-15",
+      "active": true,
+      "sourceSystem": "HRIS"
+    },
+    {
+      "id": "E002",
+      "name": {
+        "first": "Laura",
+        "last": "Bianchi"
+      },
+      "contact": {
+        "email": "laura.bianchi@example.com"
+      },
+      "department": "Finance",
+      "address": {
+        "city": "Rome",
+        "country": "IT"
+      },
+      "compensation": {
+        "salary": 48000.0
+      },
+      "hireDate": "2023-09-10",
+      "active": false,
+      "sourceSystem": "HRIS"
+    }
+  ]
+}

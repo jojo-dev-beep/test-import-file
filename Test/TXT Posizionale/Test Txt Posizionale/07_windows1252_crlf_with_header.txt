@@ -1,0 +1,3 @@
+CUSTIDFIRST_NAME  LAST_NAME      AMOUNT    SIGNUP_DT AACCTCODEREG  NOTE                     
+000701Elena       D’Angelo       0000020.002025-08-2010000W701   ITsaldo 20€ ok             
+000702Paolo       Riva           0000300.992025-08-2110000W702   ITnota “header”            

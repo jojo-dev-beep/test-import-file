@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Employees xmlns="http://schemas.example.com/employees">
+  <Employee id="E007" active="true" department="Marketing" country="IT">
+    <FirstName>Sofia</FirstName>
+    <LastName>Russo</LastName>
+    <Email>sofia.russo@example.com</Email>
+    <Compensation>
+      <Salary>45500.00</Salary>
+    </Compensation>
+    <HireDate>2023-02-01</HireDate>
+  </Employee>
+  <Employee id="E008" active="true" department="Support" country="PT">
+    <FirstName>João</FirstName>
+    <LastName>Silva</LastName>
+    <Email>joao.silva@example.com</Email>
+    <Compensation>
+      <Salary>33000.10</Salary>
+    </Compensation>
+    <HireDate>2024-04-18</HireDate>
+  </Employee>
+</Employees>

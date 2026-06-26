@@ -1,0 +1,51 @@
+{
+  "response": {
+    "page": 1,
+    "total": 2,
+    "items": [
+      {
+        "id": "E003",
+        "name": {
+          "first": "Ana",
+          "last": "García"
+        },
+        "contact": {
+          "email": "ana.garcia@example.com"
+        },
+        "department": "HR",
+        "address": {
+          "city": "Madrid",
+          "country": "ES"
+        },
+        "compensation": {
+          "salary": 45000.0
+        },
+        "hireDate": "2024-03-01",
+        "active": true,
+        "sourceSystem": "HRIS"
+      },
+      {
+        "id": "E004",
+        "name": {
+          "first": "John",
+          "last": "O'Connor"
+        },
+        "contact": {
+          "email": "john.oconnor@example.com"
+        },
+        "department": "IT",
+        "address": {
+          "city": "London",
+          "country": "UK"
+        },
+        "compensation": {
+          "salary": 52000.75
+        },
+        "hireDate": "2022-12-20",
+        "active": false,
+        "sourceSystem": "HRIS"
+      }
+    ]
+  },
+  "status": "ok"
+}

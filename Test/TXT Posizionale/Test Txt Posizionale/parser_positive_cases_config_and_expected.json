@@ -1,0 +1,539 @@
+{
+  "task": "Parser TXT_POSITIONAL pipeline - casi positivi",
+  "input": "File TXT come MemoryStream",
+  "output": "List<Dictionary<string,string>> con valori raw estratti e trim applicato secondo trimOnRead",
+  "recordLengthInCharacters": 92,
+  "indexing": "0-based in caratteri, non byte",
+  "columnDefinitions": [
+    {
+      "name": "customer_id",
+      "startIndex": 0,
+      "length": 6,
+      "paddingChar": "0",
+      "alignment": "right",
+      "trimOnRead": true
+    },
+    {
+      "name": "first_name",
+      "startIndex": 6,
+      "length": 12,
+      "paddingChar": " ",
+      "alignment": "left",
+      "trimOnRead": true
+    },
+    {
+      "name": "last_name",
+      "startIndex": 18,
+      "length": 15,
+      "paddingChar": " ",
+      "alignment": "left",
+      "trimOnRead": true
+    },
+    {
+      "name": "amount",
+      "startIndex": 33,
+      "length": 10,
+      "paddingChar": "0",
+      "alignment": "right",
+      "trimOnRead": true
+    },
+    {
+      "name": "signup_at",
+      "startIndex": 43,
+      "length": 10,
+      "paddingChar": " ",
+      "alignment": "left",
+      "trimOnRead": true
+    },
+    {
+      "name": "active",
+      "startIndex": 53,
+      "length": 1,
+      "paddingChar": " ",
+      "alignment": "left",
+      "trimOnRead": true
+    },
+    {
+      "name": "account_code",
+      "startIndex": 54,
+      "length": 8,
+      "paddingChar": "0",
+      "alignment": "right",
+      "trimOnRead": false
+    },
+    {
+      "name": "region_code",
+      "startIndex": 62,
+      "length": 5,
+      "paddingChar": " ",
+      "alignment": "right",
+      "trimOnRead": true
+    },
+    {
+      "name": "note",
+      "startIndex": 67,
+      "length": 25,
+      "paddingChar": " ",
+      "alignment": "left",
+      "trimOnRead": true
+    }
+  ],
+  "cases": [
+    {
+      "caseId": "01_utf8_lf_char_offsets",
+      "filename": "01_utf8_lf_char_offsets.txt",
+      "parsingParameters": {
+        "type": "TXT_POSITIONAL",
+        "encoding": "UTF-8",
+        "lineTerminator": "LF"
+      },
+      "traceColumnDefinitions": [
+        {
+          "name": "customer_id",
+          "startIndex": 0,
+          "length": 6,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "first_name",
+          "startIndex": 6,
+          "length": 12,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "last_name",
+          "startIndex": 18,
+          "length": 15,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "amount",
+          "startIndex": 33,
+          "length": 10,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "signup_at",
+          "startIndex": 43,
+          "length": 10,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "active",
+          "startIndex": 53,
+          "length": 1,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "account_code",
+          "startIndex": 54,
+          "length": 8,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": false
+        },
+        {
+          "name": "region_code",
+          "startIndex": 62,
+          "length": 5,
+          "paddingChar": " ",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "note",
+          "startIndex": 67,
+          "length": 25,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        }
+      ],
+      "expectedRowsCount": 3,
+      "expectedParseErrorsCount": 0,
+      "expectedRows": [
+        {
+          "rowNumber": 1,
+          "customer_id": "101",
+          "first_name": "Zoë",
+          "last_name": "Müller",
+          "amount": "1200.50",
+          "signup_at": "2025-01-15",
+          "active": "1",
+          "account_code": "0000A123",
+          "region_code": "IT",
+          "note": "cliente VIP 🟢"
+        },
+        {
+          "rowNumber": 2,
+          "customer_id": "102",
+          "first_name": "José",
+          "last_name": "Rossi",
+          "amount": "75.00",
+          "signup_at": "2025-02-20",
+          "active": "0",
+          "account_code": "00000B77",
+          "region_code": "ES",
+          "note": "accenti: èéà"
+        },
+        {
+          "rowNumber": 3,
+          "customer_id": "103",
+          "first_name": "Anaïs",
+          "last_name": "López",
+          "amount": "9999.99",
+          "signup_at": "2025-03-05",
+          "active": "1",
+          "account_code": "000000X9",
+          "region_code": "FR",
+          "note": "utf8 char test"
+        }
+      ]
+    },
+    {
+      "caseId": "02_latin1_crlf_accents",
+      "filename": "02_latin1_crlf_accents.txt",
+      "parsingParameters": {
+        "type": "TXT_POSITIONAL",
+        "encoding": "Latin1",
+        "lineTerminator": "CRLF"
+      },
+      "traceColumnDefinitions": [
+        {
+          "name": "customer_id",
+          "startIndex": 0,
+          "length": 6,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "first_name",
+          "startIndex": 6,
+          "length": 12,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "last_name",
+          "startIndex": 18,
+          "length": 15,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "amount",
+          "startIndex": 33,
+          "length": 10,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "signup_at",
+          "startIndex": 43,
+          "length": 10,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "active",
+          "startIndex": 53,
+          "length": 1,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "account_code",
+          "startIndex": 54,
+          "length": 8,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": false
+        },
+        {
+          "name": "region_code",
+          "startIndex": 62,
+          "length": 5,
+          "paddingChar": " ",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "note",
+          "startIndex": 67,
+          "length": 25,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        }
+      ],
+      "expectedRowsCount": 2,
+      "expectedParseErrorsCount": 0,
+      "expectedRows": [
+        {
+          "rowNumber": 1,
+          "customer_id": "201",
+          "first_name": "François",
+          "last_name": "Bianchi",
+          "amount": "10.25",
+          "signup_at": "2024-12-01",
+          "active": "1",
+          "account_code": "000000L1",
+          "region_code": "CH",
+          "note": "caffè e città"
+        },
+        {
+          "rowNumber": 2,
+          "customer_id": "202",
+          "first_name": "André",
+          "last_name": "García",
+          "amount": "300.00",
+          "signup_at": "2024-12-31",
+          "active": "0",
+          "account_code": "000000L2",
+          "region_code": "PT",
+          "note": "façade déjà vu"
+        }
+      ]
+    },
+    {
+      "caseId": "03_windows1252_crlf_euro_quotes",
+      "filename": "03_windows1252_crlf_euro_quotes.txt",
+      "parsingParameters": {
+        "type": "TXT_POSITIONAL",
+        "encoding": "Windows-1252",
+        "lineTerminator": "CRLF"
+      },
+      "traceColumnDefinitions": [
+        {
+          "name": "customer_id",
+          "startIndex": 0,
+          "length": 6,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "first_name",
+          "startIndex": 6,
+          "length": 12,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "last_name",
+          "startIndex": 18,
+          "length": 15,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "amount",
+          "startIndex": 33,
+          "length": 10,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "signup_at",
+          "startIndex": 43,
+          "length": 10,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "active",
+          "startIndex": 53,
+          "length": 1,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "account_code",
+          "startIndex": 54,
+          "length": 8,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": false
+        },
+        {
+          "name": "region_code",
+          "startIndex": 62,
+          "length": 5,
+          "paddingChar": " ",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "note",
+          "startIndex": 67,
+          "length": 25,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        }
+      ],
+      "expectedRowsCount": 2,
+      "expectedParseErrorsCount": 0,
+      "expectedRows": [
+        {
+          "rowNumber": 1,
+          "customer_id": "301",
+          "first_name": "Giulia",
+          "last_name": "Neri",
+          "amount": "50.00",
+          "signup_at": "2025-04-10",
+          "active": "1",
+          "account_code": "000000W1",
+          "region_code": "IT",
+          "note": "pagato 50€ - ok"
+        },
+        {
+          "rowNumber": 2,
+          "customer_id": "302",
+          "first_name": "Marco",
+          "last_name": "D’Amico",
+          "amount": "875.40",
+          "signup_at": "2025-04-11",
+          "active": "1",
+          "account_code": "00000W22",
+          "region_code": "IT",
+          "note": "note “smart”"
+        }
+      ]
+    },
+    {
+      "caseId": "04_utf8_crlf_padding_trim",
+      "filename": "04_utf8_crlf_padding_trim.txt",
+      "parsingParameters": {
+        "type": "TXT_POSITIONAL",
+        "encoding": "UTF-8",
+        "lineTerminator": "CRLF"
+      },
+      "traceColumnDefinitions": [
+        {
+          "name": "customer_id",
+          "startIndex": 0,
+          "length": 6,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "first_name",
+          "startIndex": 6,
+          "length": 12,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "last_name",
+          "startIndex": 18,
+          "length": 15,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "amount",
+          "startIndex": 33,
+          "length": 10,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "signup_at",
+          "startIndex": 43,
+          "length": 10,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "active",
+          "startIndex": 53,
+          "length": 1,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "account_code",
+          "startIndex": 54,
+          "length": 8,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": false
+        },
+        {
+          "name": "region_code",
+          "startIndex": 62,
+          "length": 5,
+          "paddingChar": " ",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "note",
+          "startIndex": 67,
+          "length": 25,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        }
+      ],
+      "expectedRowsCount": 2,
+      "expectedParseErrorsCount": 0,
+      "expectedRows": [
+        {
+          "rowNumber": 1,
+          "customer_id": "401",
+          "first_name": "Luca",
+          "last_name": "Verdi",
+          "amount": ".00",
+          "signup_at": "2025-05-01",
+          "active": "0",
+          "account_code": "00000PAD",
+          "region_code": "NA",
+          "note": "amount zero"
+        },
+        {
+          "rowNumber": 2,
+          "customer_id": "402",
+          "first_name": "Marta",
+          "last_name": "Blu",
+          "amount": "1.20",
+          "signup_at": "2025-05-02",
+          "active": "1",
+          "account_code": "00000RAW",
+          "region_code": "TO",
+          "note": "trim test"
+        }
+      ]
+    }
+  ]
+}

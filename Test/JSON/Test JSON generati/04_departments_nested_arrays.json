@@ -1,0 +1,79 @@
+{
+  "departments": [
+    {
+      "code": "IT",
+      "description": "Information Technology",
+      "employees": [
+        {
+          "id": "E007",
+          "name": {
+            "first": "Sofia",
+            "last": "Verdi"
+          },
+          "contact": {
+            "email": "sofia.verdi@example.com"
+          },
+          "department": "IT",
+          "address": {
+            "city": "Milan",
+            "country": "IT"
+          },
+          "compensation": {
+            "salary": 47000.0
+          },
+          "hireDate": "2024-05-01",
+          "active": true,
+          "sourceSystem": "LEGACY"
+        },
+        {
+          "id": "E008",
+          "name": {
+            "first": "Luca",
+            "last": "Conti"
+          },
+          "contact": {
+            "email": "luca.conti@example.com"
+          },
+          "department": "IT",
+          "address": {
+            "city": "Rome",
+            "country": "IT"
+          },
+          "compensation": {
+            "salary": 43000.25
+          },
+          "hireDate": "2023-08-18",
+          "active": false,
+          "sourceSystem": "LEGACY"
+        }
+      ]
+    },
+    {
+      "code": "FIN",
+      "description": "Finance Department",
+      "employees": [
+        {
+          "id": "E009",
+          "name": {
+            "first": "Emma",
+            "last": "Stone"
+          },
+          "contact": {
+            "email": "emma.stone@example.com"
+          },
+          "department": "Finance",
+          "address": {
+            "city": "Boston",
+            "country": "US"
+          },
+          "compensation": {
+            "salary": 72000.0
+          },
+          "hireDate": "2019-04-12",
+          "active": true,
+          "sourceSystem": "LEGACY"
+        }
+      ]
+    }
+  ]
+}

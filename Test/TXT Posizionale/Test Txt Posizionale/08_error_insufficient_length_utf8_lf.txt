@@ -1,0 +1,3 @@
+000801Short       Ok             0000012.302026-01-0110000S801   ITvalid row before error   
+000802TooShort    Line           0000045.002026-01-0200000S8
+000803Note        Trunc          0000099.902026-01-0310000S803   FRnote tru

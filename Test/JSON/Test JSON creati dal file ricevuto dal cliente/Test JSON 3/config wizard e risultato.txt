@@ -1,0 +1,52 @@
+CONFIGURAZIONE WIDZARD:
+{
+  "rootPath": "$.response.customers",
+  "nodeSelector": "$[*]",
+  "arraySelector": "$.orders",
+  "propertyMapping": {
+    "OrderId": "$.orderId",
+    "Amount": "$.amount"
+  }
+}
+
+
+OUTPUT:
+
+| OrderId | Amount |
+| ------- | -----: |
+| A1      |    100 |
+| A2      |     50 |
+| B1      |    200 |
+
+
+
+
+CONFIGURAZIONE WIDZARD:
+{
+  "rootPath": "$.response.customers[1].orders",
+  "nodeSelector": "$[*]",
+  "arraySelector": null,
+  "propertyMapping": {
+    "OrderId": "$.orderId",
+    "Amount": "$.amount"
+  }
+}
+
+oppure:
+
+{
+  "rootPath": "$.response.customers",
+  "nodeSelector": "$[1]",
+  "arraySelector": "$.orders",
+  "propertyMapping": {
+    "OrderId": "$.orderId",
+    "Amount": "$.amount"
+  }
+}
+
+
+OUTPUT:
+
+| OrderId | Amount |
+| ------- | -----: |
+| B1      |    200 |

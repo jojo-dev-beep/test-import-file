@@ -1,0 +1,16 @@
+Fixed-width layout: recordLengthInCharacters = 92
+startIndex è 0-based e length è in caratteri.
+
+Tens: 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899
+Ones: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
+Map : |-----|-----------|--------------|---------|---------||-------|----|------------------------
+
+customer_id: startIndex=0, length=6, datatype=Int, paddingChar='0', alignment=right, trimOnRead=True
+first_name: startIndex=6, length=12, datatype=String, paddingChar=' ', alignment=left, trimOnRead=True
+last_name: startIndex=18, length=15, datatype=String, paddingChar=' ', alignment=left, trimOnRead=True
+amount: startIndex=33, length=10, datatype=Decimal, paddingChar='0', alignment=right, trimOnRead=True
+signup_at: startIndex=43, length=10, datatype=DateTime, paddingChar=' ', alignment=left, trimOnRead=True
+active: startIndex=53, length=1, datatype=Boolean, paddingChar=' ', alignment=left, trimOnRead=True
+account_code: startIndex=54, length=8, datatype=String, paddingChar='0', alignment=right, trimOnRead=False
+region_code: startIndex=62, length=5, datatype=String, paddingChar=' ', alignment=right, trimOnRead=True
+note: startIndex=67, length=25, datatype=String, paddingChar=' ', alignment=left, trimOnRead=True

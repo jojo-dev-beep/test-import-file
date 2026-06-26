@@ -1,0 +1,67 @@
+{
+  "employees": [
+    {
+      "id": "E010",
+      "name": {
+        "first": "Pablo",
+        "last": "Ruiz"
+      },
+      "contact": {
+        "email": "pablo.ruiz@example.com"
+      },
+      "department": "Support",
+      "address": {
+        "city": "Barcelona",
+        "country": "ES"
+      },
+      "compensation": {
+        "salary": 39000.0
+      },
+      "hireDate": "2025-01-10",
+      "active": true,
+      "sourceSystem": "CRM"
+    },
+    {
+      "id": "IGNORED001",
+      "name": {
+        "first": "Inactive",
+        "last": "User"
+      },
+      "contact": {
+        "email": "inactive.user@example.com"
+      },
+      "department": "Support",
+      "address": {
+        "city": "Valencia",
+        "country": "ES"
+      },
+      "compensation": {
+        "salary": 10000.0
+      },
+      "hireDate": "2020-01-01",
+      "active": false,
+      "sourceSystem": "CRM"
+    },
+    {
+      "id": "E011",
+      "name": {
+        "first": "Marie",
+        "last": "Curie"
+      },
+      "contact": {
+        "email": "marie.curie@example.com"
+      },
+      "department": "Research",
+      "address": {
+        "city": "Warsaw",
+        "country": "PL"
+      },
+      "compensation": {
+        "salary": 65000.5
+      },
+      "hireDate": "2022-07-14",
+      "active": true,
+      "sourceSystem": "CRM"
+    }
+  ]
+}

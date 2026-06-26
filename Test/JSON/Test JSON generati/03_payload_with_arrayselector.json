@@ -1,0 +1,52 @@
+{
+  "payload": {
+    "batchId": "BATCH-2026-001",
+    "employees": [
+      {
+        "id": "E005",
+        "name": {
+          "first": "Claire",
+          "last": "Dubois"
+        },
+        "contact": {
+          "email": "claire.dubois@example.com"
+        },
+        "department": "Marketing",
+        "address": {
+          "city": "Paris",
+          "country": "FR"
+        },
+        "compensation": {
+          "salary": 61000.1
+        },
+        "hireDate": "2021-06-05",
+        "active": true,
+        "sourceSystem": "SAP"
+      },
+      {
+        "id": "E006",
+        "name": {
+          "first": "Hans",
+          "last": "Müller"
+        },
+        "contact": {
+          "email": "hans.mueller@example.com"
+        },
+        "department": "Operations",
+        "address": {
+          "city": "Berlin",
+          "country": "DE"
+        },
+        "compensation": {
+          "salary": 58000.0
+        },
+        "hireDate": "2020-02-28",
+        "active": true,
+        "sourceSystem": "SAP"
+      }
+    ]
+  },
+  "audit": {
+    "createdBy": "json-wizard-test"
+  }
+}

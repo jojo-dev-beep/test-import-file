@@ -1,0 +1,22 @@
+{
+  "response": {
+    "items": [
+      {
+        "code": "A001",
+        "description": "Prodotto A",
+        "price": 10.5,
+        "category": {
+          "name": "Hardware"
+        }
+      },
+      {
+        "code": "B002",
+        "description": "Prodotto B",
+        "price": 20,
+        "category": {
+          "name": "Software"
+        }
+      }
+    ]
+  }
+}

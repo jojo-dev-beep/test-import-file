@@ -1,0 +1,4 @@
+customer_id,first_name,last_name,email,country,amount,note
+22,Quote,Escaped,quote.escaped@example.com,IT,100.00,"cliente ""VIP"" confermato"
+23,Multi,Line,multi.line@example.com,IT,110.00,"nota su due righe
+seconda riga della nota"

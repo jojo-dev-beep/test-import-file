@@ -1,0 +1,464 @@
+{
+  "packageName": "json_parser_pipeline_test_pack",
+  "purpose": "Casi negativi per parser JSON pipeline e ParseError[].",
+  "errorSemanticsAssumption": {
+    "propertyNotFound": "propertyMapping non trova la proprietà richiesta sul record corrente. Il parser può continuare e valorizzare la cella come stringa vuota/null, ma deve produrre ParseError con rowIndex e fieldName.",
+    "unexpectedType": "rootPath/nodeSelector/arraySelector/propertyMapping restituisce un tipo non previsto. Per i record si attende object; per gli array si attende array; per le colonne si attende un valore scalare o null, non object/array.",
+    "invalidRootPath": "rootPath sintatticamente non valido oppure rootPath valido che non trova il dataset. Se rootPath restituisce un tipo non iterabile, classificabile come UnexpectedType o RootPathNotArray in base alla tassonomia del progetto.",
+    "rowIndex": "0-based sull'output logico dei record iterati, non sulle linee fisiche del file JSON. Se il parser usa 1-based, adattare mantenendo fieldName/path chiari."
+  },
+  "negativeCases": [
+    {
+      "caseId": "NEG01_PROPERTY_NOT_FOUND",
+      "fileName": "08_parser_errors_property_and_type_mismatch.json",
+      "parsingParameters": {
+        "rootPath": "$.data",
+        "nodeSelector": "$[*]",
+        "arraySelector": null
+      },
+      "traceColumnDefinition": [
+        {
+          "columnName": "employee_id",
+          "propertyMapping": "$.id"
+        },
+        {
+          "columnName": "first_name",
+          "propertyMapping": "$.name.first"
+        },
+        {
+          "columnName": "last_name",
+          "propertyMapping": "$.name.last"
+        },
+        {
+          "columnName": "email",
+          "propertyMapping": "$.contact.email"
+        },
+        {
+          "columnName": "department",
+          "propertyMapping": "$.department"
+        },
+        {
+          "columnName": "city",
+          "propertyMapping": "$.address.city"
+        },
+        {
+          "columnName": "country",
+          "propertyMapping": "$.address.country"
+        },
+        {
+          "columnName": "salary",
+          "propertyMapping": "$.compensation.salary"
+        },
+        {
+          "columnName": "hire_date",
+          "propertyMapping": "$.hireDate"
+        },
+        {
+          "columnName": "active",
+          "propertyMapping": "$.active"
+        },
+        {
+          "columnName": "source_system",
+          "propertyMapping": "$.sourceSystem"
+        }
+      ],
+      "expectedValidRowsPolicy": "Il parser può restituire comunque le righe estraibili, ma deve popolare ParseError[].",
+      "expectedParseErrors": [
+        {
+          "errorType": "PropertyNotFound",
+          "rowIndex": 1,
+          "fieldName": "email",
+          "propertyMapping": "$.contact.email",
+          "messageContains": "contact.email"
+        }
+      ]
+    },
+    {
+      "caseId": "NEG02_PROPERTY_MAPPING_RETURNS_OBJECT",
+      "fileName": "08_parser_errors_property_and_type_mismatch.json",
+      "parsingParameters": {
+        "rootPath": "$.data",
+        "nodeSelector": "$[*]",
+        "arraySelector": null
+      },
+      "traceColumnDefinition": [
+        {
+          "columnName": "employee_id",
+          "propertyMapping": "$.id",
+          "expectedValueKind": "scalarOrNull"
+        },
+        {
+          "columnName": "salary",
+          "propertyMapping": "$.compensation.salary",
+          "expectedValueKind": "scalarOrNull"
+        }
+      ],
+      "expectedParseErrors": [
+        {
+          "errorType": "UnexpectedType",
+          "rowIndex": 2,
+          "fieldName": "salary",
+          "propertyMapping": "$.compensation.salary",
+          "actualType": "object"
+        }
+      ]
+    },
+    {
+      "caseId": "NEG03_PROPERTY_MAPPING_RETURNS_ARRAY",
+      "fileName": "08_parser_errors_property_and_type_mismatch.json",
+      "parsingParameters": {
+        "rootPath": "$.data",
+        "nodeSelector": "$[*]",
+        "arraySelector": null
+      },
+      "traceColumnDefinition": [
+        {
+          "columnName": "employee_id",
+          "propertyMapping": "$.id",
+          "expectedValueKind": "scalarOrNull"
+        },
+        {
+          "columnName": "email",
+          "propertyMapping": "$.contact.email",
+          "expectedValueKind": "scalarOrNull"
+        }
+      ],
+      "expectedParseErrors": [
+        {
+          "errorType": "UnexpectedType",
+          "rowIndex": 3,
+          "fieldName": "email",
+          "propertyMapping": "$.contact.email",
+          "actualType": "array"
+        }
+      ]
+    },
+    {
+      "caseId": "NEG04_ROOTPATH_SYNTAX_INVALID",
+      "fileName": "01_data_array_simple.json",
+      "parsingParameters": {
+        "rootPath": "$.data[",
+        "nodeSelector": "$[*]",
+        "arraySelector": null
+      },
+      "traceColumnDefinition": [
+        {
+          "columnName": "employee_id",
+          "propertyMapping": "$.id"
+        },
+        {
+          "columnName": "first_name",
+          "propertyMapping": "$.name.first"
+        },
+        {
+          "columnName": "last_name",
+          "propertyMapping": "$.name.last"
+        },
+        {
+          "columnName": "email",
+          "propertyMapping": "$.contact.email"
+        },
+        {
+          "columnName": "department",
+          "propertyMapping": "$.department"
+        },
+        {
+          "columnName": "city",
+          "propertyMapping": "$.address.city"
+        },
+        {
+          "columnName": "country",
+          "propertyMapping": "$.address.country"
+        },
+        {
+          "columnName": "salary",
+          "propertyMapping": "$.compensation.salary"
+        },
+        {
+          "columnName": "hire_date",
+          "propertyMapping": "$.hireDate"
+        },
+        {
+          "columnName": "active",
+          "propertyMapping": "$.active"
+        },
+        {
+          "columnName": "source_system",
+          "propertyMapping": "$.sourceSystem"
+        }
+      ],
+      "expectedRows": [],
+      "expectedParseErrors": [
+        {
+          "errorType": "InvalidRootPath",
+          "fieldName": null,
+          "path": "$.data[",
+          "messageContains": "invalid JSONPath"
+        }
+      ]
+    },
+    {
+      "caseId": "NEG05_ROOTPATH_NOT_FOUND",
+      "fileName": "01_data_array_simple.json",
+      "parsingParameters": {
+        "rootPath": "$.missingDataset",
+        "nodeSelector": "$[*]",
+        "arraySelector": null
+      },
+      "traceColumnDefinition": [
+        {
+          "columnName": "employee_id",
+          "propertyMapping": "$.id"
+        },
+        {
+          "columnName": "first_name",
+          "propertyMapping": "$.name.first"
+        },
+        {
+          "columnName": "last_name",
+          "propertyMapping": "$.name.last"
+        },
+        {
+          "columnName": "email",
+          "propertyMapping": "$.contact.email"
+        },
+        {
+          "columnName": "department",
+          "propertyMapping": "$.department"
+        },
+        {
+          "columnName": "city",
+          "propertyMapping": "$.address.city"
+        },
+        {
+          "columnName": "country",
+          "propertyMapping": "$.address.country"
+        },
+        {
+          "columnName": "salary",
+          "propertyMapping": "$.compensation.salary"
+        },
+        {
+          "columnName": "hire_date",
+          "propertyMapping": "$.hireDate"
+        },
+        {
+          "columnName": "active",
+          "propertyMapping": "$.active"
+        },
+        {
+          "columnName": "source_system",
+          "propertyMapping": "$.sourceSystem"
+        }
+      ],
+      "expectedRows": [],
+      "expectedParseErrors": [
+        {
+          "errorType": "RootPathNotFound",
+          "fieldName": null,
+          "path": "$.missingDataset"
+        }
+      ]
+    },
+    {
+      "caseId": "NEG06_ROOTPATH_NOT_ARRAY_FOR_ARRAY_ITERATION",
+      "fileName": "09_parser_errors_root_and_selector_type_mismatch.json",
+      "parsingParameters": {
+        "rootPath": "$.data",
+        "nodeSelector": "$[*]",
+        "arraySelector": null
+      },
+      "traceColumnDefinition": [
+        {
+          "columnName": "employee_id",
+          "propertyMapping": "$.id"
+        },
+        {
+          "columnName": "first_name",
+          "propertyMapping": "$.name.first"
+        },
+        {
+          "columnName": "last_name",
+          "propertyMapping": "$.name.last"
+        },
+        {
+          "columnName": "email",
+          "propertyMapping": "$.contact.email"
+        },
+        {
+          "columnName": "department",
+          "propertyMapping": "$.department"
+        },
+        {
+          "columnName": "city",
+          "propertyMapping": "$.address.city"
+        },
+        {
+          "columnName": "country",
+          "propertyMapping": "$.address.country"
+        },
+        {
+          "columnName": "salary",
+          "propertyMapping": "$.compensation.salary"
+        },
+        {
+          "columnName": "hire_date",
+          "propertyMapping": "$.hireDate"
+        },
+        {
+          "columnName": "active",
+          "propertyMapping": "$.active"
+        },
+        {
+          "columnName": "source_system",
+          "propertyMapping": "$.sourceSystem"
+        }
+      ],
+      "expectedRows": [],
+      "expectedParseErrors": [
+        {
+          "errorType": "UnexpectedType",
+          "fieldName": null,
+          "path": "$.data",
+          "expectedType": "array or iterable nodeset",
+          "actualType": "object"
+        }
+      ]
+    },
+    {
+      "caseId": "NEG07_ARRAYSELECTOR_NOT_ARRAY_OR_MISSING",
+      "fileName": "10_parser_errors_arrayselector_not_array.json",
+      "parsingParameters": {
+        "rootPath": "$.departments",
+        "nodeSelector": "$[*]",
+        "arraySelector": "$.employees"
+      },
+      "traceColumnDefinition": [
+        {
+          "columnName": "employee_id",
+          "propertyMapping": "$.id"
+        },
+        {
+          "columnName": "first_name",
+          "propertyMapping": "$.name.first"
+        },
+        {
+          "columnName": "last_name",
+          "propertyMapping": "$.name.last"
+        },
+        {
+          "columnName": "email",
+          "propertyMapping": "$.contact.email"
+        },
+        {
+          "columnName": "department",
+          "propertyMapping": "$.department"
+        },
+        {
+          "columnName": "city",
+          "propertyMapping": "$.address.city"
+        },
+        {
+          "columnName": "country",
+          "propertyMapping": "$.address.country"
+        },
+        {
+          "columnName": "salary",
+          "propertyMapping": "$.compensation.salary"
+        },
+        {
+          "columnName": "hire_date",
+          "propertyMapping": "$.hireDate"
+        },
+        {
+          "columnName": "active",
+          "propertyMapping": "$.active"
+        },
+        {
+          "columnName": "source_system",
+          "propertyMapping": "$.sourceSystem"
+        }
+      ],
+      "expectedParseErrors": [
+        {
+          "errorType": "UnexpectedType",
+          "rowIndex": 1,
+          "fieldName": null,
+          "path": "$.employees",
+          "expectedType": "array",
+          "actualType": "object"
+        },
+        {
+          "errorType": "PropertyNotFound",
+          "rowIndex": 2,
+          "fieldName": null,
+          "path": "$.employees"
+        }
+      ]
+    },
+    {
+      "caseId": "NEG08_MALFORMED_JSON_OPTIONAL_EXTRA",
+      "fileName": "11_parser_errors_malformed_json.json",
+      "parsingParameters": {
+        "rootPath": "$.data",
+        "nodeSelector": "$[*]",
+        "arraySelector": null
+      },
+      "traceColumnDefinition": [
+        {
+          "columnName": "employee_id",
+          "propertyMapping": "$.id"
+        },
+        {
+          "columnName": "first_name",
+          "propertyMapping": "$.name.first"
+        },
+        {
+          "columnName": "last_name",
+          "propertyMapping": "$.name.last"
+        },
+        {
+          "columnName": "email",
+          "propertyMapping": "$.contact.email"
+        },
+        {
+          "columnName": "department",
+          "propertyMapping": "$.department"
+        },
+        {
+          "columnName": "city",
+          "propertyMapping": "$.address.city"
+        },
+        {
+          "columnName": "country",
+          "propertyMapping": "$.address.country"
+        },
+        {
+          "columnName": "salary",
+          "propertyMapping": "$.compensation.salary"
+        },
+        {
+          "columnName": "hire_date",
+          "propertyMapping": "$.hireDate"
+        },
+        {
+          "columnName": "active",
+          "propertyMapping": "$.active"
+        },
+        {
+          "columnName": "source_system",
+          "propertyMapping": "$.sourceSystem"
+        }
+      ],
+      "expectedRows": [],
+      "expectedParseErrors": [
+        {
+          "errorType": "InvalidJson",
+          "fieldName": null,
+          "messageContains": "parse"
+        }
+      ],
+      "note": "Non richiesto esplicitamente dal criterio, ma utile per robustezza del parser da MemoryStream."
+    }
+  ]
+}

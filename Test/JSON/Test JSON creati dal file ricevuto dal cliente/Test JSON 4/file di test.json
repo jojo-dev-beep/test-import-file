@@ -1,0 +1,25 @@
+{
+  "response": {
+    "orders": [
+      {
+        "customerId": 1,
+        "customerName": "Mario Rossi",
+        "orderId": "A1",
+        "amount": 100
+      },
+      {
+        "customerId": 1,
+        "customerName": "Mario Rossi",
+        "orderId": "A2",
+        "amount": 50
+      },
+      {
+        "customerId": 2,
+        "customerName": "Luigi Bianchi",
+        "orderId": "B1",
+        "amount": 200
+      }
+    ]
+  }
+}
+ 

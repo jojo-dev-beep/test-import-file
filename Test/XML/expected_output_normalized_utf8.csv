@@ -1,0 +1,15 @@
+source_file,employee_id,first_name,last_name,email,department,country,salary,hire_date,active
+01_no_namespace_elements_and_attributes.xml,E001,Mario,Rossi,mario.rossi@example.com,IT,IT,35000.50,2020-01-15,true
+01_no_namespace_elements_and_attributes.xml,E002,Laura,Bianchi,laura.bianchi@example.com,HR,IT,42000.00,2019-09-01,false
+02_nested_relative_xpath_and_attributes.xml,E003,Giulia,Verdi,giulia.verdi@example.com,Finance,IT,51000.75,2021-03-10,1
+02_nested_relative_xpath_and_attributes.xml,E004,Carlos,García,carlos.garcia@example.com,Sales,ES,38750.20,2022-07-22,0
+03_prefixed_namespace.xml,E005,Anna,Müller,anna.mueller@example.com,Operations,DE,60000.00,2018-11-05,true
+03_prefixed_namespace.xml,E006,Élodie,Martin,elodie.martin@example.com,Legal,FR,58000.40,2020-06-30,false
+04_default_namespace_requires_prefix_in_xpath.xml,E007,Sofia,Russo,sofia.russo@example.com,Marketing,IT,45500.00,2023-02-01,true
+04_default_namespace_requires_prefix_in_xpath.xml,E008,João,Silva,joao.silva@example.com,Support,PT,33000.10,2024-04-18,true
+05_multiple_namespaces.xml,E009,Noah,de Vries,noah.devries@example.com,Engineering,NL,72000.00,2017-05-12,true
+05_multiple_namespaces.xml,E010,Linnea,Andersson,linnea.andersson@example.com,Engineering,SE,69000.99,2016-08-25,false
+06_xpath_selector_with_predicate.xml,E011,Paolo,Ferrari,paolo.ferrari@example.com,IT,IT,47500.00,2022-01-20,true
+06_xpath_selector_with_predicate.xml,E012,Eva,Novak,eva.novak@example.com,IT,CZ,44000.30,2021-12-02,false
+07_missing_optional_nodes.xml,E013,Nina,Kovač,,QA,HR,39000.00,2023-10-10,true
+07_missing_optional_nodes.xml,E014,Omar,Hassan,,Data,,61000.00,2024-09-09,true

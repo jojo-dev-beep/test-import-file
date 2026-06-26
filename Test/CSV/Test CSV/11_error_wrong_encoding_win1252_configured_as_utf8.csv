@@ -1,0 +1,2 @@
+customer_id;first_name;last_name;email;country;amount;note
+20;Enc;Wrong;enc.wrong@example.com;IT;80.00;'nota con euro € e virgolette “smart”'

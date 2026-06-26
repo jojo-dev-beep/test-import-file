@@ -1,0 +1,10 @@
+{
+  "metadata": {
+    "source": "ERRTEST"
+  },
+  "data": {
+    "id": "NOT_AN_ARRAY",
+    "message": "rootPath $.data points to an object, not to an array."
+  },
+  "items": "this-is-not-an-array"
+}

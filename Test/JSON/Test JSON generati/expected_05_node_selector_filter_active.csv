@@ -1,0 +1,3 @@
+employee_id,first_name,last_name,email,department,city,country,salary,hire_date,active,source_system
+E010,Pablo,Ruiz,pablo.ruiz@example.com,Support,Barcelona,ES,39000.00,2025-01-10,true,CRM
+E011,Marie,Curie,marie.curie@example.com,Research,Warsaw,PL,65000.50,2022-07-14,true,CRM

@@ -1,0 +1,479 @@
+{
+  "task": "Parser TXT_POSITIONAL pipeline - casi negativi / ParseError",
+  "note": "Gli errori attesi assumono un parser strict. Se il parser decide di scartare righe vuote senza errore o di non validare padding/alignment, usare quei casi come test opzionali o adeguare le aspettative.",
+  "recordLengthInCharacters": 92,
+  "indexing": "0-based in caratteri, non byte",
+  "columnDefinitions": [
+    {
+      "name": "customer_id",
+      "startIndex": 0,
+      "length": 6,
+      "paddingChar": "0",
+      "alignment": "right",
+      "trimOnRead": true
+    },
+    {
+      "name": "first_name",
+      "startIndex": 6,
+      "length": 12,
+      "paddingChar": " ",
+      "alignment": "left",
+      "trimOnRead": true
+    },
+    {
+      "name": "last_name",
+      "startIndex": 18,
+      "length": 15,
+      "paddingChar": " ",
+      "alignment": "left",
+      "trimOnRead": true
+    },
+    {
+      "name": "amount",
+      "startIndex": 33,
+      "length": 10,
+      "paddingChar": "0",
+      "alignment": "right",
+      "trimOnRead": true
+    },
+    {
+      "name": "signup_at",
+      "startIndex": 43,
+      "length": 10,
+      "paddingChar": " ",
+      "alignment": "left",
+      "trimOnRead": true
+    },
+    {
+      "name": "active",
+      "startIndex": 53,
+      "length": 1,
+      "paddingChar": " ",
+      "alignment": "left",
+      "trimOnRead": true
+    },
+    {
+      "name": "account_code",
+      "startIndex": 54,
+      "length": 8,
+      "paddingChar": "0",
+      "alignment": "right",
+      "trimOnRead": false
+    },
+    {
+      "name": "region_code",
+      "startIndex": 62,
+      "length": 5,
+      "paddingChar": " ",
+      "alignment": "right",
+      "trimOnRead": true
+    },
+    {
+      "name": "note",
+      "startIndex": 67,
+      "length": 25,
+      "paddingChar": " ",
+      "alignment": "left",
+      "trimOnRead": true
+    }
+  ],
+  "cases": [
+    {
+      "caseId": "NEG_01_INSUFFICIENT_LENGTH",
+      "filename": "08_error_insufficient_length_utf8_lf.txt",
+      "parsingParameters": {
+        "type": "TXT_POSITIONAL",
+        "encoding": "UTF-8",
+        "lineTerminator": "LF"
+      },
+      "traceColumnDefinitions": [
+        {
+          "name": "customer_id",
+          "startIndex": 0,
+          "length": 6,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "first_name",
+          "startIndex": 6,
+          "length": 12,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "last_name",
+          "startIndex": 18,
+          "length": 15,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "amount",
+          "startIndex": 33,
+          "length": 10,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "signup_at",
+          "startIndex": 43,
+          "length": 10,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "active",
+          "startIndex": 53,
+          "length": 1,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "account_code",
+          "startIndex": 54,
+          "length": 8,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": false
+        },
+        {
+          "name": "region_code",
+          "startIndex": 62,
+          "length": 5,
+          "paddingChar": " ",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "note",
+          "startIndex": 67,
+          "length": 25,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        }
+      ],
+      "expectedValidRowsCount": 1,
+      "expectedParseErrors": [
+        {
+          "rowNumber": 2,
+          "fieldName": "account_code",
+          "errorCode": "ROW_LENGTH_INSUFFICIENT",
+          "message": "Line length is shorter than startIndex + length for field account_code.",
+          "actualLength": 60,
+          "requiredLength": 62
+        },
+        {
+          "rowNumber": 3,
+          "fieldName": "note",
+          "errorCode": "ROW_LENGTH_INSUFFICIENT",
+          "message": "Line length is shorter than startIndex + length for field note.",
+          "actualLength": 75,
+          "requiredLength": 92
+        }
+      ]
+    },
+    {
+      "caseId": "NEG_02_EMPTY_ROW_AND_CONTROL_CHARACTER",
+      "filename": "09_error_blank_and_control_chars_utf8_crlf.txt",
+      "parsingParameters": {
+        "type": "TXT_POSITIONAL",
+        "encoding": "UTF-8",
+        "lineTerminator": "CRLF"
+      },
+      "traceColumnDefinitions": [
+        {
+          "name": "customer_id",
+          "startIndex": 0,
+          "length": 6,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "first_name",
+          "startIndex": 6,
+          "length": 12,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "last_name",
+          "startIndex": 18,
+          "length": 15,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "amount",
+          "startIndex": 33,
+          "length": 10,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "signup_at",
+          "startIndex": 43,
+          "length": 10,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "active",
+          "startIndex": 53,
+          "length": 1,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "account_code",
+          "startIndex": 54,
+          "length": 8,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": false
+        },
+        {
+          "name": "region_code",
+          "startIndex": 62,
+          "length": 5,
+          "paddingChar": " ",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "note",
+          "startIndex": 67,
+          "length": 25,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        }
+      ],
+      "expectedValidRowsCount": 1,
+      "expectedParseErrors": [
+        {
+          "rowNumber": 2,
+          "fieldName": null,
+          "errorCode": "EMPTY_ROW",
+          "message": "Physical row is empty."
+        },
+        {
+          "rowNumber": 3,
+          "fieldName": null,
+          "errorCode": "INVALID_FORMAT_EMPTY_FIXED_WIDTH_RECORD",
+          "message": "Fixed-width row has the expected length but contains only padding/spaces."
+        },
+        {
+          "rowNumber": 4,
+          "fieldName": "first_name",
+          "errorCode": "INVALID_FORMAT_CONTROL_CHARACTER",
+          "message": "Row contains a non-printable NUL/control character inside a field."
+        }
+      ]
+    },
+    {
+      "caseId": "NEG_03_LINE_TERMINATOR_MISMATCH",
+      "filename": "10_error_wrong_line_terminator_expected_crlf_but_lf.txt",
+      "parsingParameters": {
+        "type": "TXT_POSITIONAL",
+        "encoding": "UTF-8",
+        "lineTerminator": "CRLF"
+      },
+      "traceColumnDefinitions": [
+        {
+          "name": "customer_id",
+          "startIndex": 0,
+          "length": 6,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "first_name",
+          "startIndex": 6,
+          "length": 12,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "last_name",
+          "startIndex": 18,
+          "length": 15,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "amount",
+          "startIndex": 33,
+          "length": 10,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "signup_at",
+          "startIndex": 43,
+          "length": 10,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "active",
+          "startIndex": 53,
+          "length": 1,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "account_code",
+          "startIndex": 54,
+          "length": 8,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": false
+        },
+        {
+          "name": "region_code",
+          "startIndex": 62,
+          "length": 5,
+          "paddingChar": " ",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "note",
+          "startIndex": 67,
+          "length": 25,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        }
+      ],
+      "expectedValidRowsCount": 0,
+      "expectedParseErrors": [
+        {
+          "rowNumber": null,
+          "fieldName": null,
+          "errorCode": "LINE_TERMINATOR_MISMATCH",
+          "message": "Configuration expects CRLF but the file contains LF-only row terminators."
+        }
+      ]
+    },
+    {
+      "caseId": "NEG_04_INVALID_PADDING_ALIGNMENT_OPTIONAL_STRICT_MODE",
+      "filename": "11_error_invalid_padding_alignment_utf8_lf.txt",
+      "parsingParameters": {
+        "type": "TXT_POSITIONAL",
+        "encoding": "UTF-8",
+        "lineTerminator": "LF"
+      },
+      "traceColumnDefinitions": [
+        {
+          "name": "customer_id",
+          "startIndex": 0,
+          "length": 6,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "first_name",
+          "startIndex": 6,
+          "length": 12,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "last_name",
+          "startIndex": 18,
+          "length": 15,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "amount",
+          "startIndex": 33,
+          "length": 10,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "signup_at",
+          "startIndex": 43,
+          "length": 10,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "active",
+          "startIndex": 53,
+          "length": 1,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        },
+        {
+          "name": "account_code",
+          "startIndex": 54,
+          "length": 8,
+          "paddingChar": "0",
+          "alignment": "right",
+          "trimOnRead": false
+        },
+        {
+          "name": "region_code",
+          "startIndex": 62,
+          "length": 5,
+          "paddingChar": " ",
+          "alignment": "right",
+          "trimOnRead": true
+        },
+        {
+          "name": "note",
+          "startIndex": 67,
+          "length": 25,
+          "paddingChar": " ",
+          "alignment": "left",
+          "trimOnRead": true
+        }
+      ],
+      "expectedValidRowsCount": 1,
+      "expectedParseErrors": [
+        {
+          "rowNumber": 2,
+          "fieldName": "customer_id",
+          "errorCode": "INVALID_PADDING_ALIGNMENT",
+          "message": "Field customer_id is configured as right-aligned with zero padding, but the value is not padded according to the definition."
+        },
+        {
+          "rowNumber": 2,
+          "fieldName": "region_code",
+          "errorCode": "INVALID_PADDING_ALIGNMENT",
+          "message": "Field region_code is configured as right-aligned with space padding, but the value is not padded according to the definition."
+        }
+      ],
+      "strictModeNote": "Questo caso è utile solo se il parser valida anche paddingChar/alignment; se il parser estrae soltanto slice raw, può essere considerato non applicabile."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+CONFIGURAZIONE WIDZARD:
+{
+  "rootPath": "$.response.items",
+  "nodeSelector": "$[*]",
+  "propertyMapping": {
+    "Codice": "$.code",
+    "Descrizione": "$.description",
+    "Prezzo": "$.price",
+    "Categoria": "$.category.name"
+  }
+}
+
+oppure:
+
+{
+  "rootPath": "$.response",
+  "nodeSelector": "$.items[*]",
+  "arraySelector": null,
+  "propertyMapping": {
+    "Codice": "$.code",
+    "Descrizione": "$.description",
+    "Prezzo": "$.price",
+    "Categoria": "$.category.name"
+  }
+}
+
+
+
+OUTPUT:
+
+| Codice | Descrizione | Prezzo | Categoria |
+| ------ | ----------- | ------ | --------- |
+| A001   | Prodotto A  | 10.5   | Hardware  |
+| B002   | Prodotto B  | 20     | Software  |
+

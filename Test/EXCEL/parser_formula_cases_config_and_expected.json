@@ -1,0 +1,193 @@
+{
+  "purpose": "Casi aggiuntivi per verificare il criterio di accettazione: celle formula risolte correttamente.",
+  "expectedBehavior": [
+    "Il parser deve restituire il valore calcolato/cached della cella formula, non la stringa della formula.",
+    "Esempio: =100+25.5 deve produrre amount=125.50, non '=100+25.5'.",
+    "Esempio: =LOWER(...) deve produrre l'email calcolata.",
+    "Il comportamento va verificato sia in range semplice sia dentro ListObject."
+  ],
+  "canonicalOutputColumns": [
+    "customer_id",
+    "first_name",
+    "last_name",
+    "email",
+    "country",
+    "amount",
+    "signup_date",
+    "active"
+  ],
+  "formulaTestCases": [
+    {
+      "id": "F01_formula_range_cells_resolved",
+      "fileName": "09_formula_cells_resolved.xlsx",
+      "description": "Range semplice da A1 con header. Alcune celle dati sono formule.",
+      "config": {
+        "sheetName": "FormulaRange",
+        "listObjectName": null,
+        "headerPresence": true,
+        "startRow": null
+      },
+      "traceColumns": [
+        {
+          "columnName": "customer_id",
+          "sourceColumn": "customer_id",
+          "datatype": "Int"
+        },
+        {
+          "columnName": "first_name",
+          "sourceColumn": "first_name",
+          "datatype": "String"
+        },
+        {
+          "columnName": "last_name",
+          "sourceColumn": "last_name",
+          "datatype": "String"
+        },
+        {
+          "columnName": "email",
+          "sourceColumn": "email",
+          "datatype": "String"
+        },
+        {
+          "columnName": "country",
+          "sourceColumn": "country",
+          "datatype": "String"
+        },
+        {
+          "columnName": "amount",
+          "sourceColumn": "amount",
+          "datatype": "Decimal"
+        },
+        {
+          "columnName": "signup_date",
+          "sourceColumn": "signup_date",
+          "datatype": "DateTime"
+        },
+        {
+          "columnName": "active",
+          "sourceColumn": "active",
+          "datatype": "Boolean"
+        }
+      ],
+      "expectedRecordCount": 2,
+      "expectedRows": [
+        {
+          "test_case": "F01_formula_range_cells_resolved",
+          "source_file": "09_formula_cells_resolved.xlsx",
+          "customer_id": "501",
+          "first_name": "Formula",
+          "last_name": "RangeOne",
+          "email": "formula.rangeone@example.com",
+          "country": "IT",
+          "amount": "125.50",
+          "signup_date": "2026-09-01",
+          "active": "true"
+        },
+        {
+          "test_case": "F01_formula_range_cells_resolved",
+          "source_file": "09_formula_cells_resolved.xlsx",
+          "customer_id": "502",
+          "first_name": "Formula",
+          "last_name": "RangeTwo",
+          "email": "formula.rangetwo@example.com",
+          "country": "FR",
+          "amount": "2.50",
+          "signup_date": "2026-09-02",
+          "active": "false"
+        }
+      ],
+      "assertions": [
+        "email deve essere letto come valore calcolato da formula LOWER/concatenazione.",
+        "amount deve essere letto come valore numerico calcolato.",
+        "signup_date deve essere letto come valore calcolato della formula TEXT(DATE(...)).",
+        "active deve essere letto come boolean calcolato TRUE()/FALSE()."
+      ]
+    },
+    {
+      "id": "F02_formula_listobject_cells_resolved",
+      "fileName": "09_formula_cells_resolved.xlsx",
+      "description": "ListObject con celle formula nel data body. Il parser deve usare i bounds della tabella e ignorare celle fuori tabella.",
+      "config": {
+        "sheetName": "FormulaListObject",
+        "listObjectName": "FormulaCustomersTable",
+        "headerPresence": true,
+        "startRow": null
+      },
+      "traceColumns": [
+        {
+          "columnName": "customer_id",
+          "sourceColumn": "customer_id",
+          "datatype": "Int"
+        },
+        {
+          "columnName": "first_name",
+          "sourceColumn": "first_name",
+          "datatype": "String"
+        },
+        {
+          "columnName": "last_name",
+          "sourceColumn": "last_name",
+          "datatype": "String"
+        },
+        {
+          "columnName": "email",
+          "sourceColumn": "email",
+          "datatype": "String"
+        },
+        {
+          "columnName": "country",
+          "sourceColumn": "country",
+          "datatype": "String"
+        },
+        {
+          "columnName": "amount",
+          "sourceColumn": "amount",
+          "datatype": "Decimal"
+        },
+        {
+          "columnName": "signup_date",
+          "sourceColumn": "signup_date",
+          "datatype": "DateTime"
+        },
+        {
+          "columnName": "active",
+          "sourceColumn": "active",
+          "datatype": "Boolean"
+        }
+      ],
+      "expectedRecordCount": 2,
+      "expectedRows": [
+        {
+          "test_case": "F02_formula_listobject_cells_resolved",
+          "source_file": "09_formula_cells_resolved.xlsx",
+          "customer_id": "503",
+          "first_name": "Sofia",
+          "last_name": "FormulaList",
+          "email": "sofia.formulalist@example.com",
+          "country": "ES",
+          "amount": "300.00",
+          "signup_date": "2026-09-03",
+          "active": "true"
+        },
+        {
+          "test_case": "F02_formula_listobject_cells_resolved",
+          "source_file": "09_formula_cells_resolved.xlsx",
+          "customer_id": "504",
+          "first_name": "Theo",
+          "last_name": "FormulaList",
+          "email": "theo.formulalist@example.com",
+          "country": "DE",
+          "amount": "125.25",
+          "signup_date": "2026-09-04",
+          "active": "false"
+        }
+      ],
+      "assertions": [
+        "Il parser deve leggere solo FormulaCustomersTable, non le celle di rumore fuori tabella.",
+        "Le formule nel ListObject devono essere risolte come valori.",
+        "La formula =250*1.2 deve produrre amount=300.00.",
+        "La formula =SUM(50,75.25) deve produrre amount=125.25."
+      ]
+    }
+  ]
+}

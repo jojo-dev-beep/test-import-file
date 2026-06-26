@@ -1,0 +1,2 @@
+000401Luca        Verdi          0000000.002025-05-01000000PAD   NAamount zero              
+000402Marta       Blu            0000001.202025-05-02100000RAW   TOtrim test                

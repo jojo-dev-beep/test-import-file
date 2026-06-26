@@ -1,0 +1,295 @@
+{
+  "purpose": "Test wizard configurazione tracciati Excel .xlsx con supporto a range semplici e listObject (tabelle strutturate Excel).",
+  "startRowConvention": "1-based, come numero di riga Excel. Se assente e listObjectName è null, leggere da A1.",
+  "precedenceRules": [
+    "Se listObjectName è valorizzato, usare i bounds del listObject indicato dentro lo sheetName.",
+    "Se listObjectName è valorizzato, startRow va ignorato/non richiesto.",
+    "Se listObjectName è null, leggere da A{startRow}; se startRow è null, leggere da A1.",
+    "Con headerPresence=true, usare la prima riga del range/listObject per mapping automatico da header.",
+    "Con headerPresence=false, non usare la prima riga come header del tracciato: usare mapping manuale/columnOrder.",
+    "Per listObject con headerPresence=false, considerare il data body della tabella e mappare le colonne in ordine secondo columnOrder; la header row Excel resta tecnica."
+  ],
+  "canonicalOutputColumns": [
+    "customer_id",
+    "first_name",
+    "last_name",
+    "email",
+    "country",
+    "amount",
+    "signup_date",
+    "active"
+  ],
+  "totalExpectedRecords": 12,
+  "testCases": [
+    {
+      "id": "01_range_a1_header",
+      "fileName": "01_range_a1_header.xlsx",
+      "description": "Range semplice da A1 con header canonico. Deve usare sheetName e ignorare gli altri fogli.",
+      "config": {
+        "sheetName": "Customers",
+        "listObjectName": null,
+        "headerPresence": true,
+        "startRow": null
+      },
+      "expectedRecordCount": 2,
+      "expectedRows": [
+        {
+          "test_case": "01_range_a1_header",
+          "source_file": "01_range_a1_header.xlsx",
+          "customer_id": 201,
+          "first_name": "Alice",
+          "last_name": "Verdi",
+          "email": "alice.verdi@example.com",
+          "country": "IT",
+          "amount": "1200.50",
+          "signup_date": "2026-01-15",
+          "active": "true"
+        },
+        {
+          "test_case": "01_range_a1_header",
+          "source_file": "01_range_a1_header.xlsx",
+          "customer_id": 202,
+          "first_name": "Bruno",
+          "last_name": "Neri",
+          "email": "bruno.neri@example.com",
+          "country": "IT",
+          "amount": "99.90",
+          "signup_date": "2026-01-16",
+          "active": "false"
+        }
+      ],
+      "notes": [
+        "Se listObjectName è assente e startRow è assente, leggere da A1."
+      ]
+    },
+    {
+      "id": "02_range_startrow_header",
+      "fileName": "02_range_startrow_header.xlsx",
+      "description": "Range non-table con righe descrittive sopra. La lettura deve iniziare dalla riga 4.",
+      "config": {
+        "sheetName": "Import_2026",
+        "listObjectName": null,
+        "headerPresence": true,
+        "startRow": 4
+      },
+      "expectedRecordCount": 2,
+      "expectedRows": [
+        {
+          "test_case": "02_range_startrow_header",
+          "source_file": "02_range_startrow_header.xlsx",
+          "customer_id": 203,
+          "first_name": "Clara",
+          "last_name": "Bianchi",
+          "email": "clara.bianchi@example.com",
+          "country": "FR",
+          "amount": "45.00",
+          "signup_date": "2026-02-01",
+          "active": "true"
+        },
+        {
+          "test_case": "02_range_startrow_header",
+          "source_file": "02_range_startrow_header.xlsx",
+          "customer_id": 204,
+          "first_name": "Diego",
+          "last_name": "Rossi",
+          "email": "diego.rossi@example.com",
+          "country": "ES",
+          "amount": "300.75",
+          "signup_date": "2026-02-02",
+          "active": "false"
+        }
+      ],
+      "notes": [
+        "startRow è inteso come numero di riga Excel 1-based."
+      ]
+    },
+    {
+      "id": "03_range_startrow_noheader_manual",
+      "fileName": "03_range_startrow_noheader_manual.xlsx",
+      "description": "Range con startRow e senza header. Deve usare mapping manuale per posizione colonna.",
+      "config": {
+        "sheetName": "ManualMap",
+        "listObjectName": null,
+        "headerPresence": false,
+        "startRow": 3,
+        "columnOrder": [
+          "email",
+          "customer_id",
+          "first_name",
+          "last_name",
+          "amount",
+          "country",
+          "active",
+          "signup_date"
+        ]
+      },
+      "expectedRecordCount": 2,
+      "expectedRows": [
+        {
+          "test_case": "03_range_startrow_noheader_manual",
+          "source_file": "03_range_startrow_noheader_manual.xlsx",
+          "customer_id": 205,
+          "first_name": "Elena",
+          "last_name": "Gialli",
+          "email": "elena.gialli@example.com",
+          "country": "DE",
+          "amount": "10.25",
+          "signup_date": "2026-03-10",
+          "active": "true"
+        },
+        {
+          "test_case": "03_range_startrow_noheader_manual",
+          "source_file": "03_range_startrow_noheader_manual.xlsx",
+          "customer_id": 206,
+          "first_name": "Fabio",
+          "last_name": "Blu",
+          "email": "fabio.blu@example.com",
+          "country": "IT",
+          "amount": "500.00",
+          "signup_date": "2026-03-11",
+          "active": "false"
+        }
+      ],
+      "notes": [
+        "La riga 3 è già una riga dati, non un header."
+      ]
+    },
+    {
+      "id": "04_listobject_header_with_noise",
+      "fileName": "04_listobject_header_with_noise.xlsx",
+      "description": "ListObject con header canonici e celle di rumore fuori dalla tabella. Deve usare i bounds della tabella.",
+      "config": {
+        "sheetName": "Tables",
+        "listObjectName": "CustomersTable",
+        "headerPresence": true,
+        "startRow": null
+      },
+      "tableBounds": "D5:K7",
+      "expectedRecordCount": 2,
+      "expectedRows": [
+        {
+          "test_case": "04_listobject_header_with_noise",
+          "source_file": "04_listobject_header_with_noise.xlsx",
+          "customer_id": 207,
+          "first_name": "Giulia",
+          "last_name": "Fontana",
+          "email": "giulia.fontana@example.com",
+          "country": "IT",
+          "amount": "88.80",
+          "signup_date": "2026-04-05",
+          "active": "true"
+        },
+        {
+          "test_case": "04_listobject_header_with_noise",
+          "source_file": "04_listobject_header_with_noise.xlsx",
+          "customer_id": 208,
+          "first_name": "Hans",
+          "last_name": "Müller",
+          "email": "hans.mueller@example.com",
+          "country": "DE",
+          "amount": "175.30",
+          "signup_date": "2026-04-06",
+          "active": "true"
+        }
+      ],
+      "notes": [
+        "Quando listObjectName è valorizzato, startRow non serve e il parser deve usare i bounds del listObject."
+      ]
+    },
+    {
+      "id": "05_listobject_manual_mapping_generic_headers",
+      "fileName": "05_listobject_manual_mapping_generic_headers.xlsx",
+      "description": "ListObject con header tecnici e mapping manuale. Deve usare i bounds del listObject ma non mappare per nome header.",
+      "config": {
+        "sheetName": "ListObjectManual",
+        "listObjectName": "ManualCustomersTable",
+        "headerPresence": false,
+        "startRow": null,
+        "columnOrder": [
+          "email",
+          "customer_id",
+          "active",
+          "amount",
+          "signup_date",
+          "last_name",
+          "first_name",
+          "country"
+        ]
+      },
+      "tableBounds": "B4:I6",
+      "expectedRecordCount": 2,
+      "expectedRows": [
+        {
+          "test_case": "05_listobject_manual_mapping_generic_headers",
+          "source_file": "05_listobject_manual_mapping_generic_headers.xlsx",
+          "customer_id": 209,
+          "first_name": "Irene",
+          "last_name": "Moretti",
+          "email": "irene.moretti@example.com",
+          "country": "IT",
+          "amount": "42.42",
+          "signup_date": "2026-05-09",
+          "active": "true"
+        },
+        {
+          "test_case": "05_listobject_manual_mapping_generic_headers",
+          "source_file": "05_listobject_manual_mapping_generic_headers.xlsx",
+          "customer_id": 210,
+          "first_name": "John",
+          "last_name": "Doe",
+          "email": "john.doe@example.com",
+          "country": "US",
+          "amount": "1000.01",
+          "signup_date": "2026-05-10",
+          "active": "false"
+        }
+      ],
+      "notes": [
+        "Il listObject Excel contiene comunque una header row tecnica.",
+        "Con headerPresence=false, usare il data body del listObject e mappare le colonne in ordine secondo columnOrder."
+      ]
+    },
+    {
+      "id": "06_listobject_two_tables_pick_specific",
+      "fileName": "06_listobject_two_tables_pick_specific.xlsx",
+      "description": "Due listObject nello stesso sheet. Deve selezionare TargetCustomers e ignorare DecoyTable.",
+      "config": {
+        "sheetName": "MultipleTables",
+        "listObjectName": "TargetCustomers",
+        "headerPresence": true,
+        "startRow": null
+      },
+      "tableBounds": "F3:M5",
+      "expectedRecordCount": 2,
+      "expectedRows": [
+        {
+          "test_case": "06_listobject_two_tables_pick_specific",
+          "source_file": "06_listobject_two_tables_pick_specific.xlsx",
+          "customer_id": 211,
+          "first_name": "Karen",
+          "last_name": "Smith",
+          "email": "karen.smith@example.com",
+          "country": "UK",
+          "amount": "250.00",
+          "signup_date": "2026-06-01",
+          "active": "true"
+        },
+        {
+          "test_case": "06_listobject_two_tables_pick_specific",
+          "source_file": "06_listobject_two_tables_pick_specific.xlsx",
+          "customer_id": 212,
+          "first_name": "Luca",
+          "last_name": "Romano",
+          "email": "luca.romano@example.com",
+          "country": "IT",
+          "amount": "75.50",
+          "signup_date": "2026-06-02",
+          "active": "false"
+        }
+      ],
+      "notes": [
+        "Verifica che listObjectName sia rispettato in presenza di più tabelle strutturate."
+      ]
+    }
+  ]
+}

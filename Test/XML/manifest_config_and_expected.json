@@ -1,0 +1,538 @@
+{
+  "package": "xml_wizard_examples",
+  "createdFor": "Wizard configurazione tracciati XML con XPath, namespace e mapping elementi/attributi",
+  "canonicalColumns": [
+    "employee_id",
+    "first_name",
+    "last_name",
+    "email",
+    "department",
+    "country",
+    "salary",
+    "hire_date",
+    "active"
+  ],
+  "generalExpectations": [
+    "Il parser seleziona il nodeset usando xPathSelector.",
+    "Per ogni nodo selezionato, nodeMapping è un XPath relativo al nodo corrente e restituisce il testo dell’elemento selezionato.",
+    "attributeMapping legge un attributo XML del nodo corrente selezionato.",
+    "Se namespaceSupport=true, XPath selector e nodeMapping devono usare i prefissi dichiarati in namespaceMap.",
+    "Nel caso di default namespace, XPath deve comunque usare un prefisso artificiale dichiarato in namespaceMap.",
+    "I nodi non selezionati da xPathSelector non devono comparire nell’output.",
+    "Campi mancanti o vuoti sono rappresentati come valore vuoto nell’expected CSV."
+  ],
+  "files": [
+    {
+      "fileName": "01_no_namespace_elements_and_attributes.xml",
+      "description": "XML semplice senza namespace: selector diretto, mapping misto da attributi del nodo Employee e da elementi figli/annidati.",
+      "parameters": {
+        "xPathSelector": "/Employees/Employee",
+        "namespaceSupport": false,
+        "namespaceMap": {},
+        "columns": [
+          {
+            "columnName": "employee_id",
+            "attributeMapping": "id"
+          },
+          {
+            "columnName": "first_name",
+            "nodeMapping": "FirstName"
+          },
+          {
+            "columnName": "last_name",
+            "nodeMapping": "LastName"
+          },
+          {
+            "columnName": "email",
+            "nodeMapping": "Email"
+          },
+          {
+            "columnName": "department",
+            "nodeMapping": "Department"
+          },
+          {
+            "columnName": "country",
+            "nodeMapping": "Country"
+          },
+          {
+            "columnName": "salary",
+            "nodeMapping": "Compensation/Salary"
+          },
+          {
+            "columnName": "hire_date",
+            "nodeMapping": "HireDate"
+          },
+          {
+            "columnName": "active",
+            "attributeMapping": "active"
+          }
+        ]
+      },
+      "expectedRecordCount": 2,
+      "expectedRecords": [
+        {
+          "employee_id": "E001",
+          "first_name": "Mario",
+          "last_name": "Rossi",
+          "email": "mario.rossi@example.com",
+          "department": "IT",
+          "country": "IT",
+          "salary": "35000.50",
+          "hire_date": "2020-01-15",
+          "active": "true"
+        },
+        {
+          "employee_id": "E002",
+          "first_name": "Laura",
+          "last_name": "Bianchi",
+          "email": "laura.bianchi@example.com",
+          "department": "HR",
+          "country": "IT",
+          "salary": "42000.00",
+          "hire_date": "2019-09-01",
+          "active": "false"
+        }
+      ]
+    },
+    {
+      "fileName": "02_nested_relative_xpath_and_attributes.xml",
+      "description": "XML senza namespace con elementi annidati: test dei nodeMapping XPath relativi tipo Name/First e Contact/Email.",
+      "parameters": {
+        "xPathSelector": "//Company/Employees/Employee",
+        "namespaceSupport": false,
+        "namespaceMap": {},
+        "columns": [
+          {
+            "columnName": "employee_id",
+            "attributeMapping": "id"
+          },
+          {
+            "columnName": "first_name",
+            "nodeMapping": "Name/First"
+          },
+          {
+            "columnName": "last_name",
+            "nodeMapping": "Name/Last"
+          },
+          {
+            "columnName": "email",
+            "nodeMapping": "Contact/Email"
+          },
+          {
+            "columnName": "department",
+            "attributeMapping": "department"
+          },
+          {
+            "columnName": "country",
+            "attributeMapping": "country"
+          },
+          {
+            "columnName": "salary",
+            "nodeMapping": "Payroll/GrossSalary"
+          },
+          {
+            "columnName": "hire_date",
+            "nodeMapping": "Dates/HireDate"
+          },
+          {
+            "columnName": "active",
+            "attributeMapping": "active"
+          }
+        ]
+      },
+      "expectedRecordCount": 2,
+      "expectedRecords": [
+        {
+          "employee_id": "E003",
+          "first_name": "Giulia",
+          "last_name": "Verdi",
+          "email": "giulia.verdi@example.com",
+          "department": "Finance",
+          "country": "IT",
+          "salary": "51000.75",
+          "hire_date": "2021-03-10",
+          "active": "1"
+        },
+        {
+          "employee_id": "E004",
+          "first_name": "Carlos",
+          "last_name": "García",
+          "email": "carlos.garcia@example.com",
+          "department": "Sales",
+          "country": "ES",
+          "salary": "38750.20",
+          "hire_date": "2022-07-22",
+          "active": "0"
+        }
+      ]
+    },
+    {
+      "fileName": "03_prefixed_namespace.xml",
+      "description": "XML con namespace prefissato hr: namespaceSupport=true e namespaceMap obbligatorio per XPath selector e nodeMapping.",
+      "parameters": {
+        "xPathSelector": "//hr:Employees/hr:Employee",
+        "namespaceSupport": true,
+        "namespaceMap": {
+          "hr": "http://schemas.example.com/hr"
+        },
+        "columns": [
+          {
+            "columnName": "employee_id",
+            "attributeMapping": "id"
+          },
+          {
+            "columnName": "first_name",
+            "nodeMapping": "hr:FirstName"
+          },
+          {
+            "columnName": "last_name",
+            "nodeMapping": "hr:LastName"
+          },
+          {
+            "columnName": "email",
+            "nodeMapping": "hr:Email"
+          },
+          {
+            "columnName": "department",
+            "attributeMapping": "department"
+          },
+          {
+            "columnName": "country",
+            "attributeMapping": "country"
+          },
+          {
+            "columnName": "salary",
+            "nodeMapping": "hr:Compensation/hr:Salary"
+          },
+          {
+            "columnName": "hire_date",
+            "nodeMapping": "hr:HireDate"
+          },
+          {
+            "columnName": "active",
+            "attributeMapping": "active"
+          }
+        ]
+      },
+      "expectedRecordCount": 2,
+      "expectedRecords": [
+        {
+          "employee_id": "E005",
+          "first_name": "Anna",
+          "last_name": "Müller",
+          "email": "anna.mueller@example.com",
+          "department": "Operations",
+          "country": "DE",
+          "salary": "60000.00",
+          "hire_date": "2018-11-05",
+          "active": "true"
+        },
+        {
+          "employee_id": "E006",
+          "first_name": "Élodie",
+          "last_name": "Martin",
+          "email": "elodie.martin@example.com",
+          "department": "Legal",
+          "country": "FR",
+          "salary": "58000.40",
+          "hire_date": "2020-06-30",
+          "active": "false"
+        }
+      ]
+    },
+    {
+      "fileName": "04_default_namespace_requires_prefix_in_xpath.xml",
+      "description": "XML con default namespace: nel file non c’è prefisso, ma l’XPath deve usare un prefisso dichiarato nel namespaceMap.",
+      "parameters": {
+        "xPathSelector": "//emp:Employees/emp:Employee",
+        "namespaceSupport": true,
+        "namespaceMap": {
+          "emp": "http://schemas.example.com/employees"
+        },
+        "columns": [
+          {
+            "columnName": "employee_id",
+            "attributeMapping": "id"
+          },
+          {
+            "columnName": "first_name",
+            "nodeMapping": "emp:FirstName"
+          },
+          {
+            "columnName": "last_name",
+            "nodeMapping": "emp:LastName"
+          },
+          {
+            "columnName": "email",
+            "nodeMapping": "emp:Email"
+          },
+          {
+            "columnName": "department",
+            "attributeMapping": "department"
+          },
+          {
+            "columnName": "country",
+            "attributeMapping": "country"
+          },
+          {
+            "columnName": "salary",
+            "nodeMapping": "emp:Compensation/emp:Salary"
+          },
+          {
+            "columnName": "hire_date",
+            "nodeMapping": "emp:HireDate"
+          },
+          {
+            "columnName": "active",
+            "attributeMapping": "active"
+          }
+        ]
+      },
+      "expectedRecordCount": 2,
+      "expectedRecords": [
+        {
+          "employee_id": "E007",
+          "first_name": "Sofia",
+          "last_name": "Russo",
+          "email": "sofia.russo@example.com",
+          "department": "Marketing",
+          "country": "IT",
+          "salary": "45500.00",
+          "hire_date": "2023-02-01",
+          "active": "true"
+        },
+        {
+          "employee_id": "E008",
+          "first_name": "João",
+          "last_name": "Silva",
+          "email": "joao.silva@example.com",
+          "department": "Support",
+          "country": "PT",
+          "salary": "33000.10",
+          "hire_date": "2024-04-18",
+          "active": "true"
+        }
+      ]
+    },
+    {
+      "fileName": "05_multiple_namespaces.xml",
+      "description": "XML con due namespace: dati HR in hr: e data assunzione in meta:. Test namespaceMap multiplo e nodeMapping cross-namespace.",
+      "parameters": {
+        "xPathSelector": "//hr:Employee",
+        "namespaceSupport": true,
+        "namespaceMap": {
+          "hr": "http://schemas.example.com/hr",
+          "meta": "http://schemas.example.com/meta"
+        },
+        "columns": [
+          {
+            "columnName": "employee_id",
+            "attributeMapping": "id"
+          },
+          {
+            "columnName": "first_name",
+            "nodeMapping": "hr:Name/hr:First"
+          },
+          {
+            "columnName": "last_name",
+            "nodeMapping": "hr:Name/hr:Last"
+          },
+          {
+            "columnName": "email",
+            "nodeMapping": "hr:Contacts/hr:Email"
+          },
+          {
+            "columnName": "department",
+            "attributeMapping": "department"
+          },
+          {
+            "columnName": "country",
+            "attributeMapping": "country"
+          },
+          {
+            "columnName": "salary",
+            "nodeMapping": "hr:Compensation/hr:Salary"
+          },
+          {
+            "columnName": "hire_date",
+            "nodeMapping": "meta:Audit/meta:HireDate"
+          },
+          {
+            "columnName": "active",
+            "attributeMapping": "active"
+          }
+        ]
+      },
+      "expectedRecordCount": 2,
+      "expectedRecords": [
+        {
+          "employee_id": "E009",
+          "first_name": "Noah",
+          "last_name": "de Vries",
+          "email": "noah.devries@example.com",
+          "department": "Engineering",
+          "country": "NL",
+          "salary": "72000.00",
+          "hire_date": "2017-05-12",
+          "active": "true"
+        },
+        {
+          "employee_id": "E010",
+          "first_name": "Linnea",
+          "last_name": "Andersson",
+          "email": "linnea.andersson@example.com",
+          "department": "Engineering",
+          "country": "SE",
+          "salary": "69000.99",
+          "hire_date": "2016-08-25",
+          "active": "false"
+        }
+      ]
+    },
+    {
+      "fileName": "06_xpath_selector_with_predicate.xml",
+      "description": "XML senza namespace con XPath selector che filtra il nodeset usando un predicato: deve leggere solo Department[@code=\"IT\"].",
+      "parameters": {
+        "xPathSelector": "//Department[@code=\"IT\"]/Employee",
+        "namespaceSupport": false,
+        "namespaceMap": {},
+        "columns": [
+          {
+            "columnName": "employee_id",
+            "attributeMapping": "id"
+          },
+          {
+            "columnName": "first_name",
+            "nodeMapping": "FirstName"
+          },
+          {
+            "columnName": "last_name",
+            "nodeMapping": "LastName"
+          },
+          {
+            "columnName": "email",
+            "nodeMapping": "Email"
+          },
+          {
+            "columnName": "department",
+            "nodeMapping": "Department"
+          },
+          {
+            "columnName": "country",
+            "nodeMapping": "Country"
+          },
+          {
+            "columnName": "salary",
+            "nodeMapping": "Compensation/Salary"
+          },
+          {
+            "columnName": "hire_date",
+            "nodeMapping": "HireDate"
+          },
+          {
+            "columnName": "active",
+            "attributeMapping": "active"
+          }
+        ]
+      },
+      "expectedRecordCount": 2,
+      "expectedRecords": [
+        {
+          "employee_id": "E011",
+          "first_name": "Paolo",
+          "last_name": "Ferrari",
+          "email": "paolo.ferrari@example.com",
+          "department": "IT",
+          "country": "IT",
+          "salary": "47500.00",
+          "hire_date": "2022-01-20",
+          "active": "true"
+        },
+        {
+          "employee_id": "E012",
+          "first_name": "Eva",
+          "last_name": "Novak",
+          "email": "eva.novak@example.com",
+          "department": "IT",
+          "country": "CZ",
+          "salary": "44000.30",
+          "hire_date": "2021-12-02",
+          "active": "false"
+        }
+      ]
+    },
+    {
+      "fileName": "07_missing_optional_nodes.xml",
+      "description": "XML senza namespace con campi mancanti o vuoti: serve a verificare che il parser produca stringa vuota/null senza fallire.",
+      "parameters": {
+        "xPathSelector": "/Employees/Employee",
+        "namespaceSupport": false,
+        "namespaceMap": {},
+        "columns": [
+          {
+            "columnName": "employee_id",
+            "attributeMapping": "id"
+          },
+          {
+            "columnName": "first_name",
+            "nodeMapping": "FirstName"
+          },
+          {
+            "columnName": "last_name",
+            "nodeMapping": "LastName"
+          },
+          {
+            "columnName": "email",
+            "nodeMapping": "Email"
+          },
+          {
+            "columnName": "department",
+            "nodeMapping": "Department"
+          },
+          {
+            "columnName": "country",
+            "nodeMapping": "Country"
+          },
+          {
+            "columnName": "salary",
+            "nodeMapping": "Compensation/Salary"
+          },
+          {
+            "columnName": "hire_date",
+            "nodeMapping": "HireDate"
+          },
+          {
+            "columnName": "active",
+            "attributeMapping": "active"
+          }
+        ],
+        "missingValueExpectation": "Se nodeMapping non trova il nodo o il nodo è vuoto, il valore atteso è stringa vuota o null coerentemente con la convenzione del parser. In expected CSV è rappresentato come cella vuota."
+      },
+      "expectedRecordCount": 2,
+      "expectedRecords": [
+        {
+          "employee_id": "E013",
+          "first_name": "Nina",
+          "last_name": "Kovač",
+          "email": "",
+          "department": "QA",
+          "country": "HR",
+          "salary": "39000.00",
+          "hire_date": "2023-10-10",
+          "active": "true"
+        },
+        {
+          "employee_id": "E014",
+          "first_name": "Omar",
+          "last_name": "Hassan",
+          "email": "",
+          "department": "Data",
+          "country": "",
+          "salary": "61000.00",
+          "hire_date": "2024-09-09",
+          "active": "true"
+        }
+      ]
+    }
+  ]
+}

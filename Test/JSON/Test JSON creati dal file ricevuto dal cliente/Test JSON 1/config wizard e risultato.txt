@@ -1,0 +1,26 @@
+CONFIGURAZIONE WIDZARD:
+{
+  "rootPath": "$.dipendenti",
+  "nodeSelector": "$[*]",
+  "arraySelector": null,
+  "propertyMapping": {
+    "Matricola": "$.matricola",
+    "TipoContratto": "$.contratto.tipo",
+    "Livello": "$.contratto.livello",
+    "OreMensili": "$.contratto.oreMensili",
+    "Retribuzione": "$.contratto.retribuzione"
+  }
+}
+
+
+
+OUTPUT:
+
+| Matricola | Nominativo     | TipoContratto | Livello | OreMensili | Retribuzione |
+| --------- | -------------- | ------------- | ------- | ---------: | -----------: |
+| EMP001    | Marco Rossi    | Indeterminato | 3A      |        168 |      2400.00 |
+| EMP002    | Laura Bianchi  | Determinato   | 2B      |        120 |      1600.00 |
+| EMP003    | Giovanni Verdi | Indeterminato | 4A      |        168 |      3100.00 |
+| EMP004    | Silvia Ferrari | Determinato   | 2A      |         80 |      1050.00 |
+| EMP005    | Luca Esposito  | Indeterminato | 5B      |        168 |      3800.00 |
+| EMP006    | Anna Ricci     | Determinato   | 3B      |         84 |      1320.00 |

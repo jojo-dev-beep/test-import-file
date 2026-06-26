@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Employees>
+  <Employee id="E001" active="true">
+    <FirstName>Mario</FirstName>
+    <LastName>Rossi</LastName>
+    <Email>mario.rossi@example.com</Email>
+    <Department>IT</Department>
+    <Country>IT</Country>
+    <Compensation>
+      <Salary>35000.50</Salary>
+    </Compensation>
+    <HireDate>2020-01-15</HireDate>
+  </Employee>
+  <Employee id="E002" active="false">
+    <FirstName>Laura</FirstName>
+    <LastName>Bianchi</LastName>
+    <Email>laura.bianchi@example.com</Email>
+    <Department>HR</Department>
+    <Country>IT</Country>
+    <Compensation>
+      <Salary>42000.00</Salary>
+    </Compensation>
+    <HireDate>2019-09-01</HireDate>
+  </Employee>
+</Employees>

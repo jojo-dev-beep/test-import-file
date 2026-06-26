@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Feed xmlns:hr="http://schemas.example.com/hr" xmlns:meta="http://schemas.example.com/meta">
+  <meta:GeneratedAt>2026-06-17T09:00:00Z</meta:GeneratedAt>
+  <hr:Employees>
+    <hr:Employee id="E009" active="true" department="Engineering" country="NL">
+      <hr:Name>
+        <hr:First>Noah</hr:First>
+        <hr:Last>de Vries</hr:Last>
+      </hr:Name>
+      <hr:Contacts>
+        <hr:Email>noah.devries@example.com</hr:Email>
+      </hr:Contacts>
+      <hr:Compensation>
+        <hr:Salary currency="EUR">72000.00</hr:Salary>
+      </hr:Compensation>
+      <meta:Audit>
+        <meta:HireDate>2017-05-12</meta:HireDate>
+      </meta:Audit>
+    </hr:Employee>
+    <hr:Employee id="E010" active="false" department="Engineering" country="SE">
+      <hr:Name>
+        <hr:First>Linnea</hr:First>
+        <hr:Last>Andersson</hr:Last>
+      </hr:Name>
+      <hr:Contacts>
+        <hr:Email>linnea.andersson@example.com</hr:Email>
+      </hr:Contacts>
+      <hr:Compensation>
+        <hr:Salary currency="EUR">69000.99</hr:Salary>
+      </hr:Compensation>
+      <meta:Audit>
+        <meta:HireDate>2016-08-25</meta:HireDate>
+      </meta:Audit>
+    </hr:Employee>
+  </hr:Employees>
+</Feed>

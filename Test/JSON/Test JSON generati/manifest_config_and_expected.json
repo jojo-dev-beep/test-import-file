@@ -1,0 +1,757 @@
+{
+  "packageName": "json_wizard_examples",
+  "purpose": "Test per wizard di configurazione tracciati JSON con JSONPath/path-driven extraction.",
+  "jsonPathDialectAssumption": "Sintassi tipo Jayway/Newtonsoft: $, dot notation, [*], predicati [?(@.field == value)]. Confermare/adattare se la libreria scelta usa varianti diverse.",
+  "expectedSemantics": {
+    "executionOrder": "rootPath -> nodeSelector -> arraySelector opzionale -> propertyMapping",
+    "rootPath": "Valutato sul documento JSON completo; definisce il contesto iniziale.",
+    "nodeSelector": "Valutato relativamente al risultato di rootPath; identifica i nodi/oggetti da considerare come record di primo livello. Tipicamente $[*], $, o un filtro.",
+    "arraySelector": "Opzionale. Se valorizzato, viene valutato dentro ciascun nodo selezionato da nodeSelector. Serve ad aprire un array annidato; ogni elemento dell’array diventa la riga finale. Se restituisce più array, il parser deve concatenarne/flattenarne gli elementi.",
+    "propertyMapping": "JSONPath relativo all’oggetto finale che diventa riga: il nodo selezionato da nodeSelector se arraySelector è assente, oppure l’elemento dell’array aperto da arraySelector.",
+    "missingOrNullProperty": "Atteso come valore vuoto/null normalizzato a stringa vuota nell’expected CSV."
+  },
+  "canonicalColumns": [
+    "employee_id",
+    "first_name",
+    "last_name",
+    "email",
+    "department",
+    "city",
+    "country",
+    "salary",
+    "hire_date",
+    "active",
+    "source_system"
+  ],
+  "totalExpectedRows": 15,
+  "files": [
+    {
+      "fileName": "01_data_array_simple.json",
+      "description": "Array diretto sotto $.data con mapping di proprietà semplici e annidate.",
+      "parsingParameters": {
+        "rootPath": "$.data",
+        "nodeSelector": "$[*]",
+        "arraySelector": null
+      },
+      "traceColumnDefinition": [
+        {
+          "columnName": "employee_id",
+          "propertyMapping": "$.id"
+        },
+        {
+          "columnName": "first_name",
+          "propertyMapping": "$.name.first"
+        },
+        {
+          "columnName": "last_name",
+          "propertyMapping": "$.name.last"
+        },
+        {
+          "columnName": "email",
+          "propertyMapping": "$.contact.email"
+        },
+        {
+          "columnName": "department",
+          "propertyMapping": "$.department"
+        },
+        {
+          "columnName": "city",
+          "propertyMapping": "$.address.city"
+        },
+        {
+          "columnName": "country",
+          "propertyMapping": "$.address.country"
+        },
+        {
+          "columnName": "salary",
+          "propertyMapping": "$.compensation.salary"
+        },
+        {
+          "columnName": "hire_date",
+          "propertyMapping": "$.hireDate"
+        },
+        {
+          "columnName": "active",
+          "propertyMapping": "$.active"
+        },
+        {
+          "columnName": "source_system",
+          "propertyMapping": "$.sourceSystem"
+        }
+      ],
+      "expected": {
+        "rowCount": 2,
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "department",
+          "city",
+          "country",
+          "salary",
+          "hire_date",
+          "active",
+          "source_system"
+        ],
+        "rows": [
+          {
+            "employee_id": "E001",
+            "first_name": "Mario",
+            "last_name": "Rossi",
+            "email": "mario.rossi@example.com",
+            "department": "Sales",
+            "city": "Milan",
+            "country": "IT",
+            "salary": "52000.50",
+            "hire_date": "2024-01-15",
+            "active": "true",
+            "source_system": "HRIS"
+          },
+          {
+            "employee_id": "E002",
+            "first_name": "Laura",
+            "last_name": "Bianchi",
+            "email": "laura.bianchi@example.com",
+            "department": "Finance",
+            "city": "Rome",
+            "country": "IT",
+            "salary": "48000.00",
+            "hire_date": "2023-09-10",
+            "active": "false",
+            "source_system": "HRIS"
+          }
+        ]
+      },
+      "notes": [
+        "rootPath restituisce direttamente un array; nodeSelector itera gli elementi."
+      ]
+    },
+    {
+      "fileName": "02_response_items_nested_rootpath.json",
+      "description": "Array dentro $.response.items; testa rootPath annidato.",
+      "parsingParameters": {
+        "rootPath": "$.response.items",
+        "nodeSelector": "$[*]",
+        "arraySelector": null
+      },
+      "traceColumnDefinition": [
+        {
+          "columnName": "employee_id",
+          "propertyMapping": "$.id"
+        },
+        {
+          "columnName": "first_name",
+          "propertyMapping": "$.name.first"
+        },
+        {
+          "columnName": "last_name",
+          "propertyMapping": "$.name.last"
+        },
+        {
+          "columnName": "email",
+          "propertyMapping": "$.contact.email"
+        },
+        {
+          "columnName": "department",
+          "propertyMapping": "$.department"
+        },
+        {
+          "columnName": "city",
+          "propertyMapping": "$.address.city"
+        },
+        {
+          "columnName": "country",
+          "propertyMapping": "$.address.country"
+        },
+        {
+          "columnName": "salary",
+          "propertyMapping": "$.compensation.salary"
+        },
+        {
+          "columnName": "hire_date",
+          "propertyMapping": "$.hireDate"
+        },
+        {
+          "columnName": "active",
+          "propertyMapping": "$.active"
+        },
+        {
+          "columnName": "source_system",
+          "propertyMapping": "$.sourceSystem"
+        }
+      ],
+      "expected": {
+        "rowCount": 2,
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "department",
+          "city",
+          "country",
+          "salary",
+          "hire_date",
+          "active",
+          "source_system"
+        ],
+        "rows": [
+          {
+            "employee_id": "E003",
+            "first_name": "Ana",
+            "last_name": "García",
+            "email": "ana.garcia@example.com",
+            "department": "HR",
+            "city": "Madrid",
+            "country": "ES",
+            "salary": "45000.00",
+            "hire_date": "2024-03-01",
+            "active": "true",
+            "source_system": "HRIS"
+          },
+          {
+            "employee_id": "E004",
+            "first_name": "John",
+            "last_name": "O'Connor",
+            "email": "john.oconnor@example.com",
+            "department": "IT",
+            "city": "London",
+            "country": "UK",
+            "salary": "52000.75",
+            "hire_date": "2022-12-20",
+            "active": "false",
+            "source_system": "HRIS"
+          }
+        ]
+      },
+      "notes": [
+        "Utile per verificare che il wizard permetta rootPath non limitato a $.data."
+      ]
+    },
+    {
+      "fileName": "03_payload_with_arrayselector.json",
+      "description": "Oggetto wrapper payload; nodeSelector seleziona il payload e arraySelector apre l’array employees al suo interno.",
+      "parsingParameters": {
+        "rootPath": "$.payload",
+        "nodeSelector": "$",
+        "arraySelector": "$.employees"
+      },
+      "traceColumnDefinition": [
+        {
+          "columnName": "employee_id",
+          "propertyMapping": "$.id"
+        },
+        {
+          "columnName": "first_name",
+          "propertyMapping": "$.name.first"
+        },
+        {
+          "columnName": "last_name",
+          "propertyMapping": "$.name.last"
+        },
+        {
+          "columnName": "email",
+          "propertyMapping": "$.contact.email"
+        },
+        {
+          "columnName": "department",
+          "propertyMapping": "$.department"
+        },
+        {
+          "columnName": "city",
+          "propertyMapping": "$.address.city"
+        },
+        {
+          "columnName": "country",
+          "propertyMapping": "$.address.country"
+        },
+        {
+          "columnName": "salary",
+          "propertyMapping": "$.compensation.salary"
+        },
+        {
+          "columnName": "hire_date",
+          "propertyMapping": "$.hireDate"
+        },
+        {
+          "columnName": "active",
+          "propertyMapping": "$.active"
+        },
+        {
+          "columnName": "source_system",
+          "propertyMapping": "$.sourceSystem"
+        }
+      ],
+      "expected": {
+        "rowCount": 2,
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "department",
+          "city",
+          "country",
+          "salary",
+          "hire_date",
+          "active",
+          "source_system"
+        ],
+        "rows": [
+          {
+            "employee_id": "E005",
+            "first_name": "Claire",
+            "last_name": "Dubois",
+            "email": "claire.dubois@example.com",
+            "department": "Marketing",
+            "city": "Paris",
+            "country": "FR",
+            "salary": "61000.10",
+            "hire_date": "2021-06-05",
+            "active": "true",
+            "source_system": "SAP"
+          },
+          {
+            "employee_id": "E006",
+            "first_name": "Hans",
+            "last_name": "Müller",
+            "email": "hans.mueller@example.com",
+            "department": "Operations",
+            "city": "Berlin",
+            "country": "DE",
+            "salary": "58000.00",
+            "hire_date": "2020-02-28",
+            "active": "true",
+            "source_system": "SAP"
+          }
+        ]
+      },
+      "notes": [
+        "Semantica: rootPath=$.payload, nodeSelector=$ seleziona l’oggetto payload, arraySelector=$.employees apre l’array di dipendenti; propertyMapping è relativo a ciascun employee."
+      ]
+    },
+    {
+      "fileName": "04_departments_nested_arrays.json",
+      "description": "Array di reparti; nodeSelector itera i reparti e arraySelector apre l’array employees dentro ciascun reparto.",
+      "parsingParameters": {
+        "rootPath": "$.departments",
+        "nodeSelector": "$[*]",
+        "arraySelector": "$.employees"
+      },
+      "traceColumnDefinition": [
+        {
+          "columnName": "employee_id",
+          "propertyMapping": "$.id"
+        },
+        {
+          "columnName": "first_name",
+          "propertyMapping": "$.name.first"
+        },
+        {
+          "columnName": "last_name",
+          "propertyMapping": "$.name.last"
+        },
+        {
+          "columnName": "email",
+          "propertyMapping": "$.contact.email"
+        },
+        {
+          "columnName": "department",
+          "propertyMapping": "$.department"
+        },
+        {
+          "columnName": "city",
+          "propertyMapping": "$.address.city"
+        },
+        {
+          "columnName": "country",
+          "propertyMapping": "$.address.country"
+        },
+        {
+          "columnName": "salary",
+          "propertyMapping": "$.compensation.salary"
+        },
+        {
+          "columnName": "hire_date",
+          "propertyMapping": "$.hireDate"
+        },
+        {
+          "columnName": "active",
+          "propertyMapping": "$.active"
+        },
+        {
+          "columnName": "source_system",
+          "propertyMapping": "$.sourceSystem"
+        }
+      ],
+      "expected": {
+        "rowCount": 3,
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "department",
+          "city",
+          "country",
+          "salary",
+          "hire_date",
+          "active",
+          "source_system"
+        ],
+        "rows": [
+          {
+            "employee_id": "E007",
+            "first_name": "Sofia",
+            "last_name": "Verdi",
+            "email": "sofia.verdi@example.com",
+            "department": "IT",
+            "city": "Milan",
+            "country": "IT",
+            "salary": "47000.00",
+            "hire_date": "2024-05-01",
+            "active": "true",
+            "source_system": "LEGACY"
+          },
+          {
+            "employee_id": "E008",
+            "first_name": "Luca",
+            "last_name": "Conti",
+            "email": "luca.conti@example.com",
+            "department": "IT",
+            "city": "Rome",
+            "country": "IT",
+            "salary": "43000.25",
+            "hire_date": "2023-08-18",
+            "active": "false",
+            "source_system": "LEGACY"
+          },
+          {
+            "employee_id": "E009",
+            "first_name": "Emma",
+            "last_name": "Stone",
+            "email": "emma.stone@example.com",
+            "department": "Finance",
+            "city": "Boston",
+            "country": "US",
+            "salary": "72000.00",
+            "hire_date": "2019-04-12",
+            "active": "true",
+            "source_system": "LEGACY"
+          }
+        ]
+      },
+      "notes": [
+        "Semantica: rootPath=$.departments, nodeSelector=$[*] itera i reparti, arraySelector=$.employees apre l’array employees di ogni reparto; propertyMapping è relativo a ciascun employee.",
+        "Il risultato atteso è il flatten/concatenamento degli employees di tutti i reparti."
+      ]
+    },
+    {
+      "fileName": "05_node_selector_filter_active.json",
+      "description": "nodeSelector con predicato JSONPath per estrarre solo dipendenti attivi.",
+      "parsingParameters": {
+        "rootPath": "$.employees",
+        "nodeSelector": "$[?(@.active == true)]",
+        "arraySelector": null
+      },
+      "traceColumnDefinition": [
+        {
+          "columnName": "employee_id",
+          "propertyMapping": "$.id"
+        },
+        {
+          "columnName": "first_name",
+          "propertyMapping": "$.name.first"
+        },
+        {
+          "columnName": "last_name",
+          "propertyMapping": "$.name.last"
+        },
+        {
+          "columnName": "email",
+          "propertyMapping": "$.contact.email"
+        },
+        {
+          "columnName": "department",
+          "propertyMapping": "$.department"
+        },
+        {
+          "columnName": "city",
+          "propertyMapping": "$.address.city"
+        },
+        {
+          "columnName": "country",
+          "propertyMapping": "$.address.country"
+        },
+        {
+          "columnName": "salary",
+          "propertyMapping": "$.compensation.salary"
+        },
+        {
+          "columnName": "hire_date",
+          "propertyMapping": "$.hireDate"
+        },
+        {
+          "columnName": "active",
+          "propertyMapping": "$.active"
+        },
+        {
+          "columnName": "source_system",
+          "propertyMapping": "$.sourceSystem"
+        }
+      ],
+      "expected": {
+        "rowCount": 2,
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "department",
+          "city",
+          "country",
+          "salary",
+          "hire_date",
+          "active",
+          "source_system"
+        ],
+        "rows": [
+          {
+            "employee_id": "E010",
+            "first_name": "Pablo",
+            "last_name": "Ruiz",
+            "email": "pablo.ruiz@example.com",
+            "department": "Support",
+            "city": "Barcelona",
+            "country": "ES",
+            "salary": "39000.00",
+            "hire_date": "2025-01-10",
+            "active": "true",
+            "source_system": "CRM"
+          },
+          {
+            "employee_id": "E011",
+            "first_name": "Marie",
+            "last_name": "Curie",
+            "email": "marie.curie@example.com",
+            "department": "Research",
+            "city": "Warsaw",
+            "country": "PL",
+            "salary": "65000.50",
+            "hire_date": "2022-07-14",
+            "active": "true",
+            "source_system": "CRM"
+          }
+        ]
+      },
+      "notes": [
+        "Il record IGNORED001 non deve comparire nell’output."
+      ]
+    },
+    {
+      "fileName": "06_missing_null_optional_properties.json",
+      "description": "Proprietà mancanti, stringhe vuote e valori null.",
+      "parsingParameters": {
+        "rootPath": "$.data",
+        "nodeSelector": "$[*]",
+        "arraySelector": null
+      },
+      "traceColumnDefinition": [
+        {
+          "columnName": "employee_id",
+          "propertyMapping": "$.id"
+        },
+        {
+          "columnName": "first_name",
+          "propertyMapping": "$.name.first"
+        },
+        {
+          "columnName": "last_name",
+          "propertyMapping": "$.name.last"
+        },
+        {
+          "columnName": "email",
+          "propertyMapping": "$.contact.email"
+        },
+        {
+          "columnName": "department",
+          "propertyMapping": "$.department"
+        },
+        {
+          "columnName": "city",
+          "propertyMapping": "$.address.city"
+        },
+        {
+          "columnName": "country",
+          "propertyMapping": "$.address.country"
+        },
+        {
+          "columnName": "salary",
+          "propertyMapping": "$.compensation.salary"
+        },
+        {
+          "columnName": "hire_date",
+          "propertyMapping": "$.hireDate"
+        },
+        {
+          "columnName": "active",
+          "propertyMapping": "$.active"
+        },
+        {
+          "columnName": "source_system",
+          "propertyMapping": "$.sourceSystem"
+        }
+      ],
+      "expected": {
+        "rowCount": 2,
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "department",
+          "city",
+          "country",
+          "salary",
+          "hire_date",
+          "active",
+          "source_system"
+        ],
+        "rows": [
+          {
+            "employee_id": "E012",
+            "first_name": "Niko",
+            "last_name": "Novak",
+            "email": "",
+            "department": "Operations",
+            "city": "Zagreb",
+            "country": "HR",
+            "salary": "",
+            "hire_date": "",
+            "active": "true",
+            "source_system": "IMPORT"
+          },
+          {
+            "employee_id": "E013",
+            "first_name": "Sara",
+            "last_name": "Empty",
+            "email": "",
+            "department": "Operations",
+            "city": "",
+            "country": "IT",
+            "salary": "",
+            "hire_date": "2024-10-30",
+            "active": "false",
+            "source_system": "IMPORT"
+          }
+        ]
+      },
+      "notes": [
+        "Proprietà mancanti/null attese come stringa vuota o null normalizzato a vuoto, senza errore wizard."
+      ]
+    },
+    {
+      "fileName": "07_root_selector_nonstandard_property_names.json",
+      "description": "rootPath=$ e nodeSelector annidato; mapping proprietà non standard verso colonne canoniche.",
+      "parsingParameters": {
+        "rootPath": "$",
+        "nodeSelector": "$.result.records[*]",
+        "arraySelector": null
+      },
+      "traceColumnDefinition": [
+        {
+          "columnName": "employee_id",
+          "propertyMapping": "$.emp.id"
+        },
+        {
+          "columnName": "first_name",
+          "propertyMapping": "$.emp.personal.first"
+        },
+        {
+          "columnName": "last_name",
+          "propertyMapping": "$.emp.personal.last"
+        },
+        {
+          "columnName": "email",
+          "propertyMapping": "$.primaryEmail"
+        },
+        {
+          "columnName": "department",
+          "propertyMapping": "$.org.dept"
+        },
+        {
+          "columnName": "city",
+          "propertyMapping": "$.location.city"
+        },
+        {
+          "columnName": "country",
+          "propertyMapping": "$.location.country"
+        },
+        {
+          "columnName": "salary",
+          "propertyMapping": "$.pay.salary"
+        },
+        {
+          "columnName": "hire_date",
+          "propertyMapping": "$.dates.hire"
+        },
+        {
+          "columnName": "active",
+          "propertyMapping": "$.flags.active"
+        },
+        {
+          "columnName": "source_system",
+          "propertyMapping": "$.metadata.source"
+        }
+      ],
+      "expected": {
+        "rowCount": 2,
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "department",
+          "city",
+          "country",
+          "salary",
+          "hire_date",
+          "active",
+          "source_system"
+        ],
+        "rows": [
+          {
+            "employee_id": "E014",
+            "first_name": "Akira",
+            "last_name": "Tanaka",
+            "email": "akira.tanaka@example.com",
+            "department": "R&D",
+            "city": "Tokyo",
+            "country": "JP",
+            "salary": "80000.00",
+            "hire_date": "2018-11-20",
+            "active": "true",
+            "source_system": "API"
+          },
+          {
+            "employee_id": "E015",
+            "first_name": "Noah",
+            "last_name": "Smith",
+            "email": "noah.smith@example.com",
+            "department": "Legal",
+            "city": "New York",
+            "country": "US",
+            "salary": "90500.75",
+            "hire_date": "2017-03-09",
+            "active": "false",
+            "source_system": "API"
+          }
+        ]
+      },
+      "notes": [
+        "Serve a verificare che propertyMapping possa rimappare strutture JSON diverse sulle stesse colonne del tracciato."
+      ]
+    }
+  ]
+}

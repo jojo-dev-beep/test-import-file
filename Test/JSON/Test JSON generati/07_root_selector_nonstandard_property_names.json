@@ -1,0 +1,65 @@
+{
+  "result": {
+    "records": [
+      {
+        "emp": {
+          "id": "E014",
+          "personal": {
+            "first": "Akira",
+            "last": "Tanaka"
+          }
+        },
+        "primaryEmail": "akira.tanaka@example.com",
+        "org": {
+          "dept": "R&D"
+        },
+        "location": {
+          "city": "Tokyo",
+          "country": "JP"
+        },
+        "pay": {
+          "salary": 80000
+        },
+        "dates": {
+          "hire": "2018-11-20"
+        },
+        "flags": {
+          "active": true
+        },
+        "metadata": {
+          "source": "API"
+        }
+      },
+      {
+        "emp": {
+          "id": "E015",
+          "personal": {
+            "first": "Noah",
+            "last": "Smith"
+          }
+        },
+        "primaryEmail": "noah.smith@example.com",
+        "org": {
+          "dept": "Legal"
+        },
+        "location": {
+          "city": "New York",
+          "country": "US"
+        },
+        "pay": {
+          "salary": 90500.75
+        },
+        "dates": {
+          "hire": "2017-03-09"
+        },
+        "flags": {
+          "active": false
+        },
+        "metadata": {
+          "source": "API"
+        }
+      }
+    ]
+  },
+  "status": "ok"
+}

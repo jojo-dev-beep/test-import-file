@@ -1,0 +1,13 @@
+customer_id,first_name,last_name,email,country,amount,note
+1,Mario,Rossi,mario.rossi@example.com,IT,1234.56,"cliente standard, priorità bassa"
+2,Anna,Bianchi,anna.bianchi@example.com,IT,987.00,"indirizzo: Via Roma, 10"
+3,Giulia,Verdi,giulia.verdi@example.com,IT,"1200,50",conto € premium; verifica manuale
+4,Luca,Neri,luca.neri@example.com,IT,"75,00","note con accenti: città, caffè"
+5,Paolo,Gialli,paolo.gialli@example.com,IT,42.10,nessun qualifier testo
+6,Sara,Blu,sara.blu@example.com,FR,100.00,utf16 con caratteri: ångström
+7,Carla,Rossi,carla.rossi@example.com,IT,300.00,nota con pipe | dentro al testo
+8,Hans,Müller,hans.mueller@example.com,DE,450.25,città: Zürich
+9,Elena,Ferri,elena.ferri@example.com,IT,19.99,custom delimiter caret senza qualifier
+10,Omid,Karimi,omid.karimi@example.com,IR,88.00,ordine colonne non standard
+11,Marco,Bruni,marco.bruni@example.com,IT,10.50,test manuale; nota con ;
+12,Eva,López,eva.lopez@example.com,ES,22.00,cliente estero; España

@@ -1,0 +1,10 @@
+source_file,rowNumber,customer_id,first_name,last_name,amount,signup_at,active,account_code,region_code,note
+01_utf8_lf_char_offsets.txt,1,101,Zoë,Müller,1200.50,2025-01-15,1,0000A123,IT,cliente VIP 🟢
+01_utf8_lf_char_offsets.txt,2,102,José,Rossi,75.00,2025-02-20,0,00000B77,ES,accenti: èéà
+01_utf8_lf_char_offsets.txt,3,103,Anaïs,López,9999.99,2025-03-05,1,000000X9,FR,utf8 char test
+02_latin1_crlf_accents.txt,1,201,François,Bianchi,10.25,2024-12-01,1,000000L1,CH,caffè e città
+02_latin1_crlf_accents.txt,2,202,André,García,300.00,2024-12-31,0,000000L2,PT,façade déjà vu
+03_windows1252_crlf_euro_quotes.txt,1,301,Giulia,Neri,50.00,2025-04-10,1,000000W1,IT,pagato 50€ - ok
+03_windows1252_crlf_euro_quotes.txt,2,302,Marco,D’Amico,875.40,2025-04-11,1,00000W22,IT,note “smart”
+04_utf8_crlf_padding_trim.txt,1,401,Luca,Verdi,.00,2025-05-01,0,00000PAD,NA,amount zero
+04_utf8_crlf_padding_trim.txt,2,402,Marta,Blu,1.20,2025-05-02,1,00000RAW,TO,trim test

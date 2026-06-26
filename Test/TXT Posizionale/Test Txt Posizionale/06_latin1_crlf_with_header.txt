@@ -1,0 +1,3 @@
+CLIENTNOME        COGNOME        IMPORTO   DATA_ISCR FCONTO   AREA DESCRIZIONE              
+000601Beyoncé     Martin         0000089.102025-07-1010000L601   FRtest latin1 éèà          
+000602João        Nuñez          0000123.452025-07-1100000L602   PTSão Paulo                

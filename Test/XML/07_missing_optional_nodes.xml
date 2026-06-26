@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Employees>
+  <Employee id="E013" active="true">
+    <FirstName>Nina</FirstName>
+    <LastName>Kovač</LastName>
+    <Email />
+    <Department>QA</Department>
+    <Country>HR</Country>
+    <Compensation>
+      <Salary>39000.00</Salary>
+    </Compensation>
+    <HireDate>2023-10-10</HireDate>
+  </Employee>
+  <Employee id="E014" active="true">
+    <FirstName>Omar</FirstName>
+    <LastName>Hassan</LastName>
+    <Department>Data</Department>
+    <Country />
+    <Compensation>
+      <Salary>61000.00</Salary>
+    </Compensation>
+    <HireDate>2024-09-09</HireDate>
+  </Employee>
+</Employees>

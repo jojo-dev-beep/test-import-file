@@ -1,0 +1,3 @@
+employee_id,first_name,last_name,email,department,country,salary,hire_date,active
+E003,Giulia,Verdi,giulia.verdi@example.com,Finance,IT,51000.75,2021-03-10,1
+E004,Carlos,García,carlos.garcia@example.com,Sales,ES,38750.20,2022-07-22,0

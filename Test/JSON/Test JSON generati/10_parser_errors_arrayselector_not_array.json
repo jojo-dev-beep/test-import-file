@@ -1,0 +1,29 @@
+{
+  "departments": [
+    {
+      "name": "IT",
+      "employees": [
+        {
+          "id": "E905",
+          "name": {
+            "first": "Valid",
+            "last": "Nested"
+          },
+          "contact": {
+            "email": "valid.nested@example.com"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Finance",
+      "employees": {
+        "id": "NOT_ARRAY",
+        "name": "This should trigger arraySelector type error"
+      }
+    },
+    {
+      "name": "HR"
+    }
+  ]
+}

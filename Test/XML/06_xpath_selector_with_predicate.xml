@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Organization>
+  <Department code="SALES">
+    <Employee id="IGNORED001" active="true">
+      <FirstName>Should</FirstName>
+      <LastName>NotAppear</LastName>
+      <Email>ignored@example.com</Email>
+      <Country>IT</Country>
+      <Compensation><Salary>1.00</Salary></Compensation>
+      <HireDate>2000-01-01</HireDate>
+    </Employee>
+  </Department>
+  <Department code="IT">
+    <Employee id="E011" active="true">
+      <FirstName>Paolo</FirstName>
+      <LastName>Ferrari</LastName>
+      <Email>paolo.ferrari@example.com</Email>
+      <Department>IT</Department>
+      <Country>IT</Country>
+      <Compensation><Salary>47500.00</Salary></Compensation>
+      <HireDate>2022-01-20</HireDate>
+    </Employee>
+    <Employee id="E012" active="false">
+      <FirstName>Eva</FirstName>
+      <LastName>Novak</LastName>
+      <Email>eva.novak@example.com</Email>
+      <Department>IT</Department>
+      <Country>CZ</Country>
+      <Compensation><Salary>44000.30</Salary></Compensation>
+      <HireDate>2021-12-02</HireDate>
+    </Employee>
+  </Department>
+</Organization>

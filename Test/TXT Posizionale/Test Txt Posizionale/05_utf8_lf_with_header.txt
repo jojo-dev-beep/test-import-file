@@ -1,0 +1,3 @@
+CUSTIDFIRST_NAME  LAST_NAME      AMOUNT    SIGNUP_DT AACCTCODEREG  NOTE                     
+000501Renée       Fontana        0000015.752025-06-0110000H501   ITheader UTF-8 🧪           
+000502Nino        Kovač          0002500.002025-06-0200000H502   HRaccento su c             

@@ -1,0 +1,446 @@
+{
+  "description": "Casi negativi per parser CSV pipeline. Le righe sono 1-based e includono l'header. fieldName usa il nome della colonna quando individuabile, altrimenti __row, __file o __extraColumns.",
+  "canonicalColumns": [
+    "customer_id",
+    "first_name",
+    "last_name",
+    "email",
+    "country",
+    "amount",
+    "note"
+  ],
+  "negativeCases": [
+    {
+      "caseId": "CSV_NEG_001_COLUMN_COUNT_MISMATCH",
+      "file": "07_error_column_count_mismatch_utf8_header_doublequote.csv",
+      "parsingParameters": {
+        "type": "CSV",
+        "delimiter": ",",
+        "textQualifier": "\"",
+        "encoding": "UTF-8",
+        "headerPresence": true
+      },
+      "traceColumnDefinitions": [
+        {
+          "fieldName": "customer_id",
+          "source": {
+            "headerName": "customer_id"
+          }
+        },
+        {
+          "fieldName": "first_name",
+          "source": {
+            "headerName": "first_name"
+          }
+        },
+        {
+          "fieldName": "last_name",
+          "source": {
+            "headerName": "last_name"
+          }
+        },
+        {
+          "fieldName": "email",
+          "source": {
+            "headerName": "email"
+          }
+        },
+        {
+          "fieldName": "country",
+          "source": {
+            "headerName": "country"
+          }
+        },
+        {
+          "fieldName": "amount",
+          "source": {
+            "headerName": "amount"
+          }
+        },
+        {
+          "fieldName": "note",
+          "source": {
+            "headerName": "note"
+          }
+        }
+      ],
+      "expected": {
+        "rows": [
+          {
+            "customer_id": "13",
+            "first_name": "Valid",
+            "last_name": "Row",
+            "email": "valid.row@example.com",
+            "country": "IT",
+            "amount": "12.00",
+            "note": "ok"
+          }
+        ],
+        "parseErrors": [
+          {
+            "row": 3,
+            "fieldName": "note",
+            "errorCode": "MissingField",
+            "message": "La riga contiene 6 campi invece dei 7 attesi; manca il valore per note."
+          },
+          {
+            "row": 4,
+            "fieldName": "__extraColumns",
+            "errorCode": "TooManyFields",
+            "message": "La riga contiene 8 campi invece dei 7 attesi."
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "CSV_NEG_002_UNCLOSED_QUOTE",
+      "file": "08_error_unclosed_quote_utf8_header_doublequote.csv",
+      "parsingParameters": {
+        "type": "CSV",
+        "delimiter": ",",
+        "textQualifier": "\"",
+        "encoding": "UTF-8",
+        "headerPresence": true
+      },
+      "traceColumnDefinitions": [
+        {
+          "fieldName": "customer_id",
+          "source": {
+            "headerName": "customer_id"
+          }
+        },
+        {
+          "fieldName": "first_name",
+          "source": {
+            "headerName": "first_name"
+          }
+        },
+        {
+          "fieldName": "last_name",
+          "source": {
+            "headerName": "last_name"
+          }
+        },
+        {
+          "fieldName": "email",
+          "source": {
+            "headerName": "email"
+          }
+        },
+        {
+          "fieldName": "country",
+          "source": {
+            "headerName": "country"
+          }
+        },
+        {
+          "fieldName": "amount",
+          "source": {
+            "headerName": "amount"
+          }
+        },
+        {
+          "fieldName": "note",
+          "source": {
+            "headerName": "note"
+          }
+        }
+      ],
+      "expected": {
+        "rows": [],
+        "parseErrors": [
+          {
+            "row": 2,
+            "fieldName": "note",
+            "errorCode": "MalformedQuotedField",
+            "message": "Text qualifier aperto e non chiuso prima della fine file."
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "CSV_NEG_003_HEADER_COLUMN_NOT_FOUND",
+      "file": "09_error_missing_header_column_utf8.csv",
+      "parsingParameters": {
+        "type": "CSV",
+        "delimiter": ",",
+        "textQualifier": "\"",
+        "encoding": "UTF-8",
+        "headerPresence": true
+      },
+      "traceColumnDefinitions": [
+        {
+          "fieldName": "customer_id",
+          "source": {
+            "headerName": "customer_id"
+          }
+        },
+        {
+          "fieldName": "first_name",
+          "source": {
+            "headerName": "first_name"
+          }
+        },
+        {
+          "fieldName": "last_name",
+          "source": {
+            "headerName": "last_name"
+          }
+        },
+        {
+          "fieldName": "email",
+          "source": {
+            "headerName": "email"
+          }
+        },
+        {
+          "fieldName": "country",
+          "source": {
+            "headerName": "country"
+          }
+        },
+        {
+          "fieldName": "amount",
+          "source": {
+            "headerName": "amount"
+          }
+        },
+        {
+          "fieldName": "note",
+          "source": {
+            "headerName": "note"
+          }
+        }
+      ],
+      "expected": {
+        "rows": [],
+        "parseErrors": [
+          {
+            "row": 1,
+            "fieldName": "email",
+            "errorCode": "HeaderColumnNotFound",
+            "message": "La colonna email richiesta da TraceColumnDefinition non esiste nell'header."
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "CSV_NEG_004_EMPTY_ROW",
+      "file": "10_error_empty_row_utf8_header_doublequote.csv",
+      "parsingParameters": {
+        "type": "CSV",
+        "delimiter": ",",
+        "textQualifier": "\"",
+        "encoding": "UTF-8",
+        "headerPresence": true
+      },
+      "traceColumnDefinitions": [
+        {
+          "fieldName": "customer_id",
+          "source": {
+            "headerName": "customer_id"
+          }
+        },
+        {
+          "fieldName": "first_name",
+          "source": {
+            "headerName": "first_name"
+          }
+        },
+        {
+          "fieldName": "last_name",
+          "source": {
+            "headerName": "last_name"
+          }
+        },
+        {
+          "fieldName": "email",
+          "source": {
+            "headerName": "email"
+          }
+        },
+        {
+          "fieldName": "country",
+          "source": {
+            "headerName": "country"
+          }
+        },
+        {
+          "fieldName": "amount",
+          "source": {
+            "headerName": "amount"
+          }
+        },
+        {
+          "fieldName": "note",
+          "source": {
+            "headerName": "note"
+          }
+        }
+      ],
+      "expected": {
+        "rows": [
+          {
+            "customer_id": "18",
+            "first_name": "Empty",
+            "last_name": "Before",
+            "email": "empty.before@example.com",
+            "country": "IT",
+            "amount": "60.00",
+            "note": "valid before blank row"
+          },
+          {
+            "customer_id": "19",
+            "first_name": "Empty",
+            "last_name": "After",
+            "email": "empty.after@example.com",
+            "country": "IT",
+            "amount": "70.00",
+            "note": "valid after blank row"
+          }
+        ],
+        "parseErrors": [
+          {
+            "row": 3,
+            "fieldName": "__row",
+            "errorCode": "EmptyRow",
+            "message": "Riga vuota incontrata nel file."
+          }
+        ]
+      }
+    },
+    {
+      "caseId": "CSV_NEG_005_DECODING_ERROR_WRONG_ENCODING",
+      "file": "11_error_wrong_encoding_win1252_configured_as_utf8.csv",
+      "parsingParameters": {
+        "type": "CSV",
+        "delimiter": ";",
+        "textQualifier": "'",
+        "encoding": "UTF-8",
+        "headerPresence": true
+      },
+      "traceColumnDefinitions": [
+        {
+          "fieldName": "customer_id",
+          "source": {
+            "headerName": "customer_id"
+          }
+        },
+        {
+          "fieldName": "first_name",
+          "source": {
+            "headerName": "first_name"
+          }
+        },
+        {
+          "fieldName": "last_name",
+          "source": {
+            "headerName": "last_name"
+          }
+        },
+        {
+          "fieldName": "email",
+          "source": {
+            "headerName": "email"
+          }
+        },
+        {
+          "fieldName": "country",
+          "source": {
+            "headerName": "country"
+          }
+        },
+        {
+          "fieldName": "amount",
+          "source": {
+            "headerName": "amount"
+          }
+        },
+        {
+          "fieldName": "note",
+          "source": {
+            "headerName": "note"
+          }
+        }
+      ],
+      "expected": {
+        "rows": [],
+        "parseErrors": [
+          {
+            "row": 1,
+            "fieldName": "__file",
+            "errorCode": "DecodingError",
+            "message": "Il file contiene byte Windows-1252 non validi per UTF-8."
+          }
+        ]
+      },
+      "notes": "Lo stesso file è intenzionalmente codificato Windows-1252 ma la configurazione indica UTF-8."
+    },
+    {
+      "caseId": "CSV_NEG_006_NO_QUALIFIER_DELIMITER_IN_FIELD",
+      "file": "12_error_noqualifier_delimiter_inside_field_utf8_noheader.csv",
+      "parsingParameters": {
+        "type": "CSV",
+        "delimiter": ";",
+        "textQualifier": null,
+        "encoding": "UTF-8",
+        "headerPresence": false
+      },
+      "traceColumnDefinitions": [
+        {
+          "fieldName": "customer_id",
+          "source": {
+            "position": 0
+          }
+        },
+        {
+          "fieldName": "first_name",
+          "source": {
+            "position": 1
+          }
+        },
+        {
+          "fieldName": "last_name",
+          "source": {
+            "position": 2
+          }
+        },
+        {
+          "fieldName": "email",
+          "source": {
+            "position": 3
+          }
+        },
+        {
+          "fieldName": "country",
+          "source": {
+            "position": 4
+          }
+        },
+        {
+          "fieldName": "amount",
+          "source": {
+            "position": 5
+          }
+        },
+        {
+          "fieldName": "note",
+          "source": {
+            "position": 6
+          }
+        }
+      ],
+      "expected": {
+        "rows": [],
+        "parseErrors": [
+          {
+            "row": 1,
+            "fieldName": "__extraColumns",
+            "errorCode": "TooManyFields",
+            "message": "Con textQualifier assente, il punto e virgola dentro note genera una colonna extra."
+          }
+        ]
+      }
+    }
+  ]
+}

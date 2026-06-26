@@ -1,0 +1,16 @@
+source_file,customer_id,first_name,last_name,amount,signup_at,active,account_code,region_code,note
+01_utf8_lf_char_offsets.txt,101,Zoë,Müller,1200.50,2025-01-15,true,0000A123,IT,cliente VIP 🟢
+01_utf8_lf_char_offsets.txt,102,José,Rossi,75.00,2025-02-20,false,00000B77,ES,accenti: èéà
+01_utf8_lf_char_offsets.txt,103,Anaïs,López,9999.99,2025-03-05,true,000000X9,FR,utf8 char test
+02_latin1_crlf_accents.txt,201,François,Bianchi,10.25,2024-12-01,true,000000L1,CH,caffè e città
+02_latin1_crlf_accents.txt,202,André,García,300.00,2024-12-31,false,000000L2,PT,façade déjà vu
+03_windows1252_crlf_euro_quotes.txt,301,Giulia,Neri,50.00,2025-04-10,true,000000W1,IT,pagato 50€ - ok
+03_windows1252_crlf_euro_quotes.txt,302,Marco,D’Amico,875.40,2025-04-11,true,00000W22,IT,note “smart”
+04_utf8_crlf_padding_trim.txt,401,Luca,Verdi,0.00,2025-05-01,false,00000PAD,NA,amount zero
+04_utf8_crlf_padding_trim.txt,402,Marta,Blu,1.20,2025-05-02,true,00000RAW,TO,trim test
+05_utf8_lf_with_header.txt,501,Renée,Fontana,15.75,2025-06-01,true,0000H501,IT,header UTF-8 🧪
+05_utf8_lf_with_header.txt,502,Nino,Kovač,2500.00,2025-06-02,false,0000H502,HR,accento su c
+06_latin1_crlf_with_header.txt,601,Beyoncé,Martin,89.10,2025-07-10,true,0000L601,FR,test latin1 éèà
+06_latin1_crlf_with_header.txt,602,João,Nuñez,123.45,2025-07-11,false,0000L602,PT,São Paulo
+07_windows1252_crlf_with_header.txt,701,Elena,D’Angelo,20.00,2025-08-20,true,0000W701,IT,saldo 20€ ok
+07_windows1252_crlf_with_header.txt,702,Paolo,Riva,300.99,2025-08-21,true,0000W702,IT,nota “header”

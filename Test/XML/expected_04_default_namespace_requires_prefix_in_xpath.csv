@@ -1,0 +1,3 @@
+employee_id,first_name,last_name,email,department,country,salary,hire_date,active
+E007,Sofia,Russo,sofia.russo@example.com,Marketing,IT,45500.00,2023-02-01,true
+E008,João,Silva,joao.silva@example.com,Support,PT,33000.10,2024-04-18,true

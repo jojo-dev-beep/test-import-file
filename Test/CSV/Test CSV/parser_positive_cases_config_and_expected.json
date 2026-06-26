@@ -1,0 +1,743 @@
+{
+  "description": "Casi positivi per parser CSV pipeline. Output rawValue: nessuna conversione datatype.",
+  "canonicalColumns": [
+    "customer_id",
+    "first_name",
+    "last_name",
+    "email",
+    "country",
+    "amount",
+    "note"
+  ],
+  "positiveCases": [
+    {
+      "file": "01_comma_utf8_header_doublequote.csv",
+      "parsingParameters": {
+        "type": "CSV",
+        "delimiter": ",",
+        "textQualifier": "doppi apici (\")",
+        "encoding": "UTF-8",
+        "headerPresence": true
+      },
+      "traceColumnDefinitions": [
+        {
+          "fieldName": "customer_id",
+          "source": {
+            "headerName": "customer_id"
+          }
+        },
+        {
+          "fieldName": "first_name",
+          "source": {
+            "headerName": "first_name"
+          }
+        },
+        {
+          "fieldName": "last_name",
+          "source": {
+            "headerName": "last_name"
+          }
+        },
+        {
+          "fieldName": "email",
+          "source": {
+            "headerName": "email"
+          }
+        },
+        {
+          "fieldName": "country",
+          "source": {
+            "headerName": "country"
+          }
+        },
+        {
+          "fieldName": "amount",
+          "source": {
+            "headerName": "amount"
+          }
+        },
+        {
+          "fieldName": "note",
+          "source": {
+            "headerName": "note"
+          }
+        }
+      ],
+      "expected": {
+        "rows": [
+          {
+            "customer_id": "1",
+            "first_name": "Mario",
+            "last_name": "Rossi",
+            "email": "mario.rossi@example.com",
+            "country": "IT",
+            "amount": "1234.56",
+            "note": "cliente standard, priorità bassa"
+          },
+          {
+            "customer_id": "2",
+            "first_name": "Anna",
+            "last_name": "Bianchi",
+            "email": "anna.bianchi@example.com",
+            "country": "IT",
+            "amount": "987.00",
+            "note": "indirizzo: Via Roma, 10"
+          }
+        ],
+        "parseErrors": []
+      }
+    },
+    {
+      "file": "02_semicolon_win1252_header_singlequote.csv",
+      "parsingParameters": {
+        "type": "CSV",
+        "delimiter": ";",
+        "textQualifier": "apice singolo (')",
+        "encoding": "Windows-1252",
+        "headerPresence": true
+      },
+      "traceColumnDefinitions": [
+        {
+          "fieldName": "customer_id",
+          "source": {
+            "headerName": "customer_id"
+          }
+        },
+        {
+          "fieldName": "first_name",
+          "source": {
+            "headerName": "first_name"
+          }
+        },
+        {
+          "fieldName": "last_name",
+          "source": {
+            "headerName": "last_name"
+          }
+        },
+        {
+          "fieldName": "email",
+          "source": {
+            "headerName": "email"
+          }
+        },
+        {
+          "fieldName": "country",
+          "source": {
+            "headerName": "country"
+          }
+        },
+        {
+          "fieldName": "amount",
+          "source": {
+            "headerName": "amount"
+          }
+        },
+        {
+          "fieldName": "note",
+          "source": {
+            "headerName": "note"
+          }
+        }
+      ],
+      "expected": {
+        "rows": [
+          {
+            "customer_id": "3",
+            "first_name": "Giulia",
+            "last_name": "Verdi",
+            "email": "giulia.verdi@example.com",
+            "country": "IT",
+            "amount": "1200,50",
+            "note": "conto € premium; verifica manuale"
+          },
+          {
+            "customer_id": "4",
+            "first_name": "Luca",
+            "last_name": "Neri",
+            "email": "luca.neri@example.com",
+            "country": "IT",
+            "amount": "75,00",
+            "note": "note con accenti: città, caffè"
+          }
+        ],
+        "parseErrors": []
+      }
+    },
+    {
+      "file": "03_tab_utf16_header_noqualifier.csv",
+      "parsingParameters": {
+        "type": "CSV",
+        "delimiter": "\\t",
+        "textQualifier": "nessuno",
+        "encoding": "UTF-16",
+        "headerPresence": true
+      },
+      "traceColumnDefinitions": [
+        {
+          "fieldName": "customer_id",
+          "source": {
+            "headerName": "customer_id"
+          }
+        },
+        {
+          "fieldName": "first_name",
+          "source": {
+            "headerName": "first_name"
+          }
+        },
+        {
+          "fieldName": "last_name",
+          "source": {
+            "headerName": "last_name"
+          }
+        },
+        {
+          "fieldName": "email",
+          "source": {
+            "headerName": "email"
+          }
+        },
+        {
+          "fieldName": "country",
+          "source": {
+            "headerName": "country"
+          }
+        },
+        {
+          "fieldName": "amount",
+          "source": {
+            "headerName": "amount"
+          }
+        },
+        {
+          "fieldName": "note",
+          "source": {
+            "headerName": "note"
+          }
+        }
+      ],
+      "expected": {
+        "rows": [
+          {
+            "customer_id": "5",
+            "first_name": "Paolo",
+            "last_name": "Gialli",
+            "email": "paolo.gialli@example.com",
+            "country": "IT",
+            "amount": "42.10",
+            "note": "nessun qualifier testo"
+          },
+          {
+            "customer_id": "6",
+            "first_name": "Sara",
+            "last_name": "Blu",
+            "email": "sara.blu@example.com",
+            "country": "FR",
+            "amount": "100.00",
+            "note": "utf16 con caratteri: ångström"
+          }
+        ],
+        "parseErrors": []
+      }
+    },
+    {
+      "file": "04_pipe_latin1_noheader_doublequote.csv",
+      "parsingParameters": {
+        "type": "CSV",
+        "delimiter": "|",
+        "textQualifier": "doppi apici (\")",
+        "encoding": "Latin1 / ISO-8859-1",
+        "headerPresence": false
+      },
+      "traceColumnDefinitions": [
+        {
+          "fieldName": "customer_id",
+          "source": {
+            "position": 0,
+            "columnOrder": [
+              "customer_id",
+              "last_name",
+              "first_name",
+              "email",
+              "country",
+              "amount",
+              "note"
+            ]
+          }
+        },
+        {
+          "fieldName": "last_name",
+          "source": {
+            "position": 1,
+            "columnOrder": [
+              "customer_id",
+              "last_name",
+              "first_name",
+              "email",
+              "country",
+              "amount",
+              "note"
+            ]
+          }
+        },
+        {
+          "fieldName": "first_name",
+          "source": {
+            "position": 2,
+            "columnOrder": [
+              "customer_id",
+              "last_name",
+              "first_name",
+              "email",
+              "country",
+              "amount",
+              "note"
+            ]
+          }
+        },
+        {
+          "fieldName": "email",
+          "source": {
+            "position": 3,
+            "columnOrder": [
+              "customer_id",
+              "last_name",
+              "first_name",
+              "email",
+              "country",
+              "amount",
+              "note"
+            ]
+          }
+        },
+        {
+          "fieldName": "country",
+          "source": {
+            "position": 4,
+            "columnOrder": [
+              "customer_id",
+              "last_name",
+              "first_name",
+              "email",
+              "country",
+              "amount",
+              "note"
+            ]
+          }
+        },
+        {
+          "fieldName": "amount",
+          "source": {
+            "position": 5,
+            "columnOrder": [
+              "customer_id",
+              "last_name",
+              "first_name",
+              "email",
+              "country",
+              "amount",
+              "note"
+            ]
+          }
+        },
+        {
+          "fieldName": "note",
+          "source": {
+            "position": 6,
+            "columnOrder": [
+              "customer_id",
+              "last_name",
+              "first_name",
+              "email",
+              "country",
+              "amount",
+              "note"
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "rows": [
+          {
+            "customer_id": "7",
+            "first_name": "Carla",
+            "last_name": "Rossi",
+            "email": "carla.rossi@example.com",
+            "country": "IT",
+            "amount": "300.00",
+            "note": "nota con pipe | dentro al testo"
+          },
+          {
+            "customer_id": "8",
+            "first_name": "Hans",
+            "last_name": "Müller",
+            "email": "hans.mueller@example.com",
+            "country": "DE",
+            "amount": "450.25",
+            "note": "città: Zürich"
+          }
+        ],
+        "parseErrors": []
+      }
+    },
+    {
+      "file": "05_custom_caret_utf8_noheader_noqualifier.csv",
+      "parsingParameters": {
+        "type": "CSV",
+        "delimiter": "^",
+        "textQualifier": "nessuno",
+        "encoding": "UTF-8",
+        "headerPresence": false
+      },
+      "traceColumnDefinitions": [
+        {
+          "fieldName": "email",
+          "source": {
+            "position": 0,
+            "columnOrder": [
+              "email",
+              "customer_id",
+              "first_name",
+              "last_name",
+              "country",
+              "amount",
+              "note"
+            ]
+          }
+        },
+        {
+          "fieldName": "customer_id",
+          "source": {
+            "position": 1,
+            "columnOrder": [
+              "email",
+              "customer_id",
+              "first_name",
+              "last_name",
+              "country",
+              "amount",
+              "note"
+            ]
+          }
+        },
+        {
+          "fieldName": "first_name",
+          "source": {
+            "position": 2,
+            "columnOrder": [
+              "email",
+              "customer_id",
+              "first_name",
+              "last_name",
+              "country",
+              "amount",
+              "note"
+            ]
+          }
+        },
+        {
+          "fieldName": "last_name",
+          "source": {
+            "position": 3,
+            "columnOrder": [
+              "email",
+              "customer_id",
+              "first_name",
+              "last_name",
+              "country",
+              "amount",
+              "note"
+            ]
+          }
+        },
+        {
+          "fieldName": "country",
+          "source": {
+            "position": 4,
+            "columnOrder": [
+              "email",
+              "customer_id",
+              "first_name",
+              "last_name",
+              "country",
+              "amount",
+              "note"
+            ]
+          }
+        },
+        {
+          "fieldName": "amount",
+          "source": {
+            "position": 5,
+            "columnOrder": [
+              "email",
+              "customer_id",
+              "first_name",
+              "last_name",
+              "country",
+              "amount",
+              "note"
+            ]
+          }
+        },
+        {
+          "fieldName": "note",
+          "source": {
+            "position": 6,
+            "columnOrder": [
+              "email",
+              "customer_id",
+              "first_name",
+              "last_name",
+              "country",
+              "amount",
+              "note"
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "rows": [
+          {
+            "customer_id": "9",
+            "first_name": "Elena",
+            "last_name": "Ferri",
+            "email": "elena.ferri@example.com",
+            "country": "IT",
+            "amount": "19.99",
+            "note": "custom delimiter caret senza qualifier"
+          },
+          {
+            "customer_id": "10",
+            "first_name": "Omid",
+            "last_name": "Karimi",
+            "email": "omid.karimi@example.com",
+            "country": "IR",
+            "amount": "88.00",
+            "note": "ordine colonne non standard"
+          }
+        ],
+        "parseErrors": []
+      }
+    },
+    {
+      "file": "06_semicolon_utf8_noheader_singlequote.csv",
+      "parsingParameters": {
+        "type": "CSV",
+        "delimiter": ";",
+        "textQualifier": "apice singolo (')",
+        "encoding": "UTF-8",
+        "headerPresence": false
+      },
+      "traceColumnDefinitions": [
+        {
+          "fieldName": "customer_id",
+          "source": {
+            "position": 0,
+            "columnOrder": [
+              "customer_id",
+              "email",
+              "note",
+              "amount",
+              "country",
+              "first_name",
+              "last_name"
+            ]
+          }
+        },
+        {
+          "fieldName": "email",
+          "source": {
+            "position": 1,
+            "columnOrder": [
+              "customer_id",
+              "email",
+              "note",
+              "amount",
+              "country",
+              "first_name",
+              "last_name"
+            ]
+          }
+        },
+        {
+          "fieldName": "note",
+          "source": {
+            "position": 2,
+            "columnOrder": [
+              "customer_id",
+              "email",
+              "note",
+              "amount",
+              "country",
+              "first_name",
+              "last_name"
+            ]
+          }
+        },
+        {
+          "fieldName": "amount",
+          "source": {
+            "position": 3,
+            "columnOrder": [
+              "customer_id",
+              "email",
+              "note",
+              "amount",
+              "country",
+              "first_name",
+              "last_name"
+            ]
+          }
+        },
+        {
+          "fieldName": "country",
+          "source": {
+            "position": 4,
+            "columnOrder": [
+              "customer_id",
+              "email",
+              "note",
+              "amount",
+              "country",
+              "first_name",
+              "last_name"
+            ]
+          }
+        },
+        {
+          "fieldName": "first_name",
+          "source": {
+            "position": 5,
+            "columnOrder": [
+              "customer_id",
+              "email",
+              "note",
+              "amount",
+              "country",
+              "first_name",
+              "last_name"
+            ]
+          }
+        },
+        {
+          "fieldName": "last_name",
+          "source": {
+            "position": 6,
+            "columnOrder": [
+              "customer_id",
+              "email",
+              "note",
+              "amount",
+              "country",
+              "first_name",
+              "last_name"
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "rows": [
+          {
+            "customer_id": "11",
+            "first_name": "Marco",
+            "last_name": "Bruni",
+            "email": "marco.bruni@example.com",
+            "country": "IT",
+            "amount": "10.50",
+            "note": "test manuale; nota con ;"
+          },
+          {
+            "customer_id": "12",
+            "first_name": "Eva",
+            "last_name": "López",
+            "email": "eva.lopez@example.com",
+            "country": "ES",
+            "amount": "22.00",
+            "note": "cliente estero; España"
+          }
+        ],
+        "parseErrors": []
+      }
+    },
+    {
+      "file": "13_positive_escaped_quotes_and_multiline_utf8_header_doublequote.csv",
+      "parsingParameters": {
+        "type": "CSV",
+        "delimiter": ",",
+        "textQualifier": "\"",
+        "encoding": "UTF-8",
+        "headerPresence": true
+      },
+      "traceColumnDefinitions": [
+        {
+          "fieldName": "customer_id",
+          "source": {
+            "headerName": "customer_id"
+          }
+        },
+        {
+          "fieldName": "first_name",
+          "source": {
+            "headerName": "first_name"
+          }
+        },
+        {
+          "fieldName": "last_name",
+          "source": {
+            "headerName": "last_name"
+          }
+        },
+        {
+          "fieldName": "email",
+          "source": {
+            "headerName": "email"
+          }
+        },
+        {
+          "fieldName": "country",
+          "source": {
+            "headerName": "country"
+          }
+        },
+        {
+          "fieldName": "amount",
+          "source": {
+            "headerName": "amount"
+          }
+        },
+        {
+          "fieldName": "note",
+          "source": {
+            "headerName": "note"
+          }
+        }
+      ],
+      "expected": {
+        "rows": [
+          {
+            "customer_id": "22",
+            "first_name": "Quote",
+            "last_name": "Escaped",
+            "email": "quote.escaped@example.com",
+            "country": "IT",
+            "amount": "100.00",
+            "note": "cliente \"VIP\" confermato"
+          },
+          {
+            "customer_id": "23",
+            "first_name": "Multi",
+            "last_name": "Line",
+            "email": "multi.line@example.com",
+            "country": "IT",
+            "amount": "110.00",
+            "note": "nota su due righe\nseconda riga della nota"
+          }
+        ],
+        "parseErrors": []
+      },
+      "notes": "Verifica escape del textQualifier con doppio apice raddoppiato e campo multilinea quotato."
+    }
+  ]
+}

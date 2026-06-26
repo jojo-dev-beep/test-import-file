@@ -1,0 +1,10 @@
+Fixed-width header sample: recordLengthInCharacters = 92
+La riga header usa le stesse posizioni delle righe dati, ma NON va convertita nei datatype.
+
+Tens: 00000000001111111111222222222233333333334444444444555555555566666666667777777777888888888899
+Ones: 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
+Head: CUSTIDFIRST_NAME  LAST_NAME      AMOUNT    SIGNUP_DT AACCTCODEREG  NOTE                     
+
+Configurazione consigliata per i file *_with_header.txt:
+headerPresence=true oppure skipRows=1
+Poi applicare lo schema colonne standard alle righe successive.

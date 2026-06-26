@@ -1,0 +1,311 @@
+{
+  "01_no_namespace_elements_and_attributes.xml": {
+    "xPathSelector": "/Employees/Employee",
+    "namespaceSupport": false,
+    "namespaceMap": {},
+    "columns": [
+      {
+        "columnName": "employee_id",
+        "attributeMapping": "id"
+      },
+      {
+        "columnName": "first_name",
+        "nodeMapping": "FirstName"
+      },
+      {
+        "columnName": "last_name",
+        "nodeMapping": "LastName"
+      },
+      {
+        "columnName": "email",
+        "nodeMapping": "Email"
+      },
+      {
+        "columnName": "department",
+        "nodeMapping": "Department"
+      },
+      {
+        "columnName": "country",
+        "nodeMapping": "Country"
+      },
+      {
+        "columnName": "salary",
+        "nodeMapping": "Compensation/Salary"
+      },
+      {
+        "columnName": "hire_date",
+        "nodeMapping": "HireDate"
+      },
+      {
+        "columnName": "active",
+        "attributeMapping": "active"
+      }
+    ]
+  },
+  "02_nested_relative_xpath_and_attributes.xml": {
+    "xPathSelector": "//Company/Employees/Employee",
+    "namespaceSupport": false,
+    "namespaceMap": {},
+    "columns": [
+      {
+        "columnName": "employee_id",
+        "attributeMapping": "id"
+      },
+      {
+        "columnName": "first_name",
+        "nodeMapping": "Name/First"
+      },
+      {
+        "columnName": "last_name",
+        "nodeMapping": "Name/Last"
+      },
+      {
+        "columnName": "email",
+        "nodeMapping": "Contact/Email"
+      },
+      {
+        "columnName": "department",
+        "attributeMapping": "department"
+      },
+      {
+        "columnName": "country",
+        "attributeMapping": "country"
+      },
+      {
+        "columnName": "salary",
+        "nodeMapping": "Payroll/GrossSalary"
+      },
+      {
+        "columnName": "hire_date",
+        "nodeMapping": "Dates/HireDate"
+      },
+      {
+        "columnName": "active",
+        "attributeMapping": "active"
+      }
+    ]
+  },
+  "03_prefixed_namespace.xml": {
+    "xPathSelector": "//hr:Employees/hr:Employee",
+    "namespaceSupport": true,
+    "namespaceMap": {
+      "hr": "http://schemas.example.com/hr"
+    },
+    "columns": [
+      {
+        "columnName": "employee_id",
+        "attributeMapping": "id"
+      },
+      {
+        "columnName": "first_name",
+        "nodeMapping": "hr:FirstName"
+      },
+      {
+        "columnName": "last_name",
+        "nodeMapping": "hr:LastName"
+      },
+      {
+        "columnName": "email",
+        "nodeMapping": "hr:Email"
+      },
+      {
+        "columnName": "department",
+        "attributeMapping": "department"
+      },
+      {
+        "columnName": "country",
+        "attributeMapping": "country"
+      },
+      {
+        "columnName": "salary",
+        "nodeMapping": "hr:Compensation/hr:Salary"
+      },
+      {
+        "columnName": "hire_date",
+        "nodeMapping": "hr:HireDate"
+      },
+      {
+        "columnName": "active",
+        "attributeMapping": "active"
+      }
+    ]
+  },
+  "04_default_namespace_requires_prefix_in_xpath.xml": {
+    "xPathSelector": "//emp:Employees/emp:Employee",
+    "namespaceSupport": true,
+    "namespaceMap": {
+      "emp": "http://schemas.example.com/employees"
+    },
+    "columns": [
+      {
+        "columnName": "employee_id",
+        "attributeMapping": "id"
+      },
+      {
+        "columnName": "first_name",
+        "nodeMapping": "emp:FirstName"
+      },
+      {
+        "columnName": "last_name",
+        "nodeMapping": "emp:LastName"
+      },
+      {
+        "columnName": "email",
+        "nodeMapping": "emp:Email"
+      },
+      {
+        "columnName": "department",
+        "attributeMapping": "department"
+      },
+      {
+        "columnName": "country",
+        "attributeMapping": "country"
+      },
+      {
+        "columnName": "salary",
+        "nodeMapping": "emp:Compensation/emp:Salary"
+      },
+      {
+        "columnName": "hire_date",
+        "nodeMapping": "emp:HireDate"
+      },
+      {
+        "columnName": "active",
+        "attributeMapping": "active"
+      }
+    ]
+  },
+  "05_multiple_namespaces.xml": {
+    "xPathSelector": "//hr:Employee",
+    "namespaceSupport": true,
+    "namespaceMap": {
+      "hr": "http://schemas.example.com/hr",
+      "meta": "http://schemas.example.com/meta"
+    },
+    "columns": [
+      {
+        "columnName": "employee_id",
+        "attributeMapping": "id"
+      },
+      {
+        "columnName": "first_name",
+        "nodeMapping": "hr:Name/hr:First"
+      },
+      {
+        "columnName": "last_name",
+        "nodeMapping": "hr:Name/hr:Last"
+      },
+      {
+        "columnName": "email",
+        "nodeMapping": "hr:Contacts/hr:Email"
+      },
+      {
+        "columnName": "department",
+        "attributeMapping": "department"
+      },
+      {
+        "columnName": "country",
+        "attributeMapping": "country"
+      },
+      {
+        "columnName": "salary",
+        "nodeMapping": "hr:Compensation/hr:Salary"
+      },
+      {
+        "columnName": "hire_date",
+        "nodeMapping": "meta:Audit/meta:HireDate"
+      },
+      {
+        "columnName": "active",
+        "attributeMapping": "active"
+      }
+    ]
+  },
+  "06_xpath_selector_with_predicate.xml": {
+    "xPathSelector": "//Department[@code=\"IT\"]/Employee",
+    "namespaceSupport": false,
+    "namespaceMap": {},
+    "columns": [
+      {
+        "columnName": "employee_id",
+        "attributeMapping": "id"
+      },
+      {
+        "columnName": "first_name",
+        "nodeMapping": "FirstName"
+      },
+      {
+        "columnName": "last_name",
+        "nodeMapping": "LastName"
+      },
+      {
+        "columnName": "email",
+        "nodeMapping": "Email"
+      },
+      {
+        "columnName": "department",
+        "nodeMapping": "Department"
+      },
+      {
+        "columnName": "country",
+        "nodeMapping": "Country"
+      },
+      {
+        "columnName": "salary",
+        "nodeMapping": "Compensation/Salary"
+      },
+      {
+        "columnName": "hire_date",
+        "nodeMapping": "HireDate"
+      },
+      {
+        "columnName": "active",
+        "attributeMapping": "active"
+      }
+    ]
+  },
+  "07_missing_optional_nodes.xml": {
+    "xPathSelector": "/Employees/Employee",
+    "namespaceSupport": false,
+    "namespaceMap": {},
+    "columns": [
+      {
+        "columnName": "employee_id",
+        "attributeMapping": "id"
+      },
+      {
+        "columnName": "first_name",
+        "nodeMapping": "FirstName"
+      },
+      {
+        "columnName": "last_name",
+        "nodeMapping": "LastName"
+      },
+      {
+        "columnName": "email",
+        "nodeMapping": "Email"
+      },
+      {
+        "columnName": "department",
+        "nodeMapping": "Department"
+      },
+      {
+        "columnName": "country",
+        "nodeMapping": "Country"
+      },
+      {
+        "columnName": "salary",
+        "nodeMapping": "Compensation/Salary"
+      },
+      {
+        "columnName": "hire_date",
+        "nodeMapping": "HireDate"
+      },
+      {
+        "columnName": "active",
+        "attributeMapping": "active"
+      }
+    ],
+    "missingValueExpectation": "Se nodeMapping non trova il nodo o il nodo è vuoto, il valore atteso è stringa vuota o null coerentemente con la convenzione del parser. In expected CSV è rappresentato come cella vuota."
+  }
+}

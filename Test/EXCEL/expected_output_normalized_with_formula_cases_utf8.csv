@@ -1,0 +1,17 @@
+test_case,source_file,customer_id,first_name,last_name,email,country,amount,signup_date,active
+01_range_a1_header,01_range_a1_header.xlsx,201,Alice,Verdi,alice.verdi@example.com,IT,1200.50,2026-01-15,true
+01_range_a1_header,01_range_a1_header.xlsx,202,Bruno,Neri,bruno.neri@example.com,IT,99.90,2026-01-16,false
+02_range_startrow_header,02_range_startrow_header.xlsx,203,Clara,Bianchi,clara.bianchi@example.com,FR,45.00,2026-02-01,true
+02_range_startrow_header,02_range_startrow_header.xlsx,204,Diego,Rossi,diego.rossi@example.com,ES,300.75,2026-02-02,false
+03_range_startrow_noheader_manual,03_range_startrow_noheader_manual.xlsx,205,Elena,Gialli,elena.gialli@example.com,DE,10.25,2026-03-10,true
+03_range_startrow_noheader_manual,03_range_startrow_noheader_manual.xlsx,206,Fabio,Blu,fabio.blu@example.com,IT,500.00,2026-03-11,false
+04_listobject_header_with_noise,04_listobject_header_with_noise.xlsx,207,Giulia,Fontana,giulia.fontana@example.com,IT,88.80,2026-04-05,true
+04_listobject_header_with_noise,04_listobject_header_with_noise.xlsx,208,Hans,Müller,hans.mueller@example.com,DE,175.30,2026-04-06,true
+05_listobject_manual_mapping_generic_headers,05_listobject_manual_mapping_generic_headers.xlsx,209,Irene,Moretti,irene.moretti@example.com,IT,42.42,2026-05-09,true
+05_listobject_manual_mapping_generic_headers,05_listobject_manual_mapping_generic_headers.xlsx,210,John,Doe,john.doe@example.com,US,1000.01,2026-05-10,false
+06_listobject_two_tables_pick_specific,06_listobject_two_tables_pick_specific.xlsx,211,Karen,Smith,karen.smith@example.com,UK,250.00,2026-06-01,true
+06_listobject_two_tables_pick_specific,06_listobject_two_tables_pick_specific.xlsx,212,Luca,Romano,luca.romano@example.com,IT,75.50,2026-06-02,false
+F01_formula_range_cells_resolved,09_formula_cells_resolved.xlsx,501,Formula,RangeOne,formula.rangeone@example.com,IT,125.50,2026-09-01,true
+F01_formula_range_cells_resolved,09_formula_cells_resolved.xlsx,502,Formula,RangeTwo,formula.rangetwo@example.com,FR,2.50,2026-09-02,false
+F02_formula_listobject_cells_resolved,09_formula_cells_resolved.xlsx,503,Sofia,FormulaList,sofia.formulalist@example.com,ES,300.00,2026-09-03,true
+F02_formula_listobject_cells_resolved,09_formula_cells_resolved.xlsx,504,Theo,FormulaList,theo.formulalist@example.com,DE,125.25,2026-09-04,false

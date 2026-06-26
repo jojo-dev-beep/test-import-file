@@ -1,0 +1,4 @@
+customer_id,first_name,last_name,email,country,amount,note
+13,Valid,Row,valid.row@example.com,IT,12.00,ok
+18,Empty,Before,empty.before@example.com,IT,60.00,valid before blank row
+19,Empty,After,empty.after@example.com,IT,70.00,valid after blank row

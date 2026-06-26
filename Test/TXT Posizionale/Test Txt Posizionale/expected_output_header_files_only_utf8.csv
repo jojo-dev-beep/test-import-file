@@ -1,0 +1,7 @@
+source_file,customer_id,first_name,last_name,amount,signup_at,active,account_code,region_code,note
+05_utf8_lf_with_header.txt,501,Renée,Fontana,15.75,2025-06-01,true,0000H501,IT,header UTF-8 🧪
+05_utf8_lf_with_header.txt,502,Nino,Kovač,2500.00,2025-06-02,false,0000H502,HR,accento su c
+06_latin1_crlf_with_header.txt,601,Beyoncé,Martin,89.10,2025-07-10,true,0000L601,FR,test latin1 éèà
+06_latin1_crlf_with_header.txt,602,João,Nuñez,123.45,2025-07-11,false,0000L602,PT,São Paulo
+07_windows1252_crlf_with_header.txt,701,Elena,D’Angelo,20.00,2025-08-20,true,0000W701,IT,saldo 20€ ok
+07_windows1252_crlf_with_header.txt,702,Paolo,Riva,300.99,2025-08-21,true,0000W702,IT,nota “header”

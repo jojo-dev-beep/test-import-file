@@ -1,0 +1,301 @@
+{
+  "canonicalColumns": [
+    "customer_id",
+    "first_name",
+    "last_name",
+    "email",
+    "country",
+    "amount",
+    "note"
+  ],
+  "files": [
+    {
+      "file": "01_comma_utf8_header_doublequote.csv",
+      "delimiter": {
+        "label": "virgola",
+        "char": ","
+      },
+      "textQualifier": "doppi apici (\")",
+      "encoding": "UTF-8",
+      "headerPresence": true,
+      "columnOrder": null,
+      "expectedResult": {
+        "rowCount": 2,
+        "columns": [
+          "customer_id",
+          "first_name",
+          "last_name",
+          "email",
+          "country",
+          "amount",
+          "note"
+        ],
+        "rows": [
+          {
+            "customer_id": "1",
+            "first_name": "Mario",
+            "last_name": "Rossi",
+            "email": "mario.rossi@example.com",
+            "country": "IT",
+            "amount": "1234.56",
+            "note": "cliente standard, priorità bassa"
+          },
+          {
+            "customer_id": "2",
+            "first_name": "Anna",
+            "last_name": "Bianchi",
+            "email": "anna.bianchi@example.com",
+            "country": "IT",
+            "amount": "987.00",
+            "note": "indirizzo: Via Roma, 10"
+          }
+        ]
+      },
+      "notes": "Mapping automatico dai nomi header; i campi note contengono virgole protette da doppi apici."
+    },
+    {
+      "file": "02_semicolon_win1252_header_singlequote.csv",
+      "delimiter": {
+        "label": "punto e virgola",
+        "char": ";"
+      },
+      "textQualifier": "apice singolo (')",
+      "encoding": "Windows-1252",
+      "headerPresence": true,
+      "columnOrder": null,
+      "expectedResult": {
+        "rowCount": 2,
+        "columns": [
+          "customer_id",
+          "first_name",
+          "last_name",
+          "email",
+          "country",
+          "amount",
+          "note"
+        ],
+        "rows": [
+          {
+            "customer_id": "3",
+            "first_name": "Giulia",
+            "last_name": "Verdi",
+            "email": "giulia.verdi@example.com",
+            "country": "IT",
+            "amount": "1200,50",
+            "note": "conto € premium; verifica manuale"
+          },
+          {
+            "customer_id": "4",
+            "first_name": "Luca",
+            "last_name": "Neri",
+            "email": "luca.neri@example.com",
+            "country": "IT",
+            "amount": "75,00",
+            "note": "note con accenti: città, caffè"
+          }
+        ]
+      },
+      "notes": "Include simbolo € e accenti Windows-1252; il campo note contiene ; protetto da apici singoli."
+    },
+    {
+      "file": "03_tab_utf16_header_noqualifier.csv",
+      "delimiter": {
+        "label": "tab",
+        "char": "\\t"
+      },
+      "textQualifier": "nessuno",
+      "encoding": "UTF-16",
+      "headerPresence": true,
+      "columnOrder": null,
+      "expectedResult": {
+        "rowCount": 2,
+        "columns": [
+          "customer_id",
+          "first_name",
+          "last_name",
+          "email",
+          "country",
+          "amount",
+          "note"
+        ],
+        "rows": [
+          {
+            "customer_id": "5",
+            "first_name": "Paolo",
+            "last_name": "Gialli",
+            "email": "paolo.gialli@example.com",
+            "country": "IT",
+            "amount": "42.10",
+            "note": "nessun qualifier testo"
+          },
+          {
+            "customer_id": "6",
+            "first_name": "Sara",
+            "last_name": "Blu",
+            "email": "sara.blu@example.com",
+            "country": "FR",
+            "amount": "100.00",
+            "note": "utf16 con caratteri: ångström"
+          }
+        ]
+      },
+      "notes": "File UTF-16 con BOM; nessun campo contiene tab/newline/qualifier."
+    },
+    {
+      "file": "04_pipe_latin1_noheader_doublequote.csv",
+      "delimiter": {
+        "label": "pipe",
+        "char": "|"
+      },
+      "textQualifier": "doppi apici (\")",
+      "encoding": "Latin1 / ISO-8859-1",
+      "headerPresence": false,
+      "columnOrder": [
+        "customer_id",
+        "last_name",
+        "first_name",
+        "email",
+        "country",
+        "amount",
+        "note"
+      ],
+      "expectedResult": {
+        "rowCount": 2,
+        "columns": [
+          "customer_id",
+          "first_name",
+          "last_name",
+          "email",
+          "country",
+          "amount",
+          "note"
+        ],
+        "rows": [
+          {
+            "customer_id": "7",
+            "first_name": "Carla",
+            "last_name": "Rossi",
+            "email": "carla.rossi@example.com",
+            "country": "IT",
+            "amount": "300.00",
+            "note": "nota con pipe | dentro al testo"
+          },
+          {
+            "customer_id": "8",
+            "first_name": "Hans",
+            "last_name": "Müller",
+            "email": "hans.mueller@example.com",
+            "country": "DE",
+            "amount": "450.25",
+            "note": "città: Zürich"
+          }
+        ]
+      },
+      "notes": "Mapping manuale: first_name e last_name sono invertiti rispetto alle colonne canoniche; note può contenere pipe se quotata."
+    },
+    {
+      "file": "05_custom_caret_utf8_noheader_noqualifier.csv",
+      "delimiter": {
+        "label": "custom",
+        "char": "^"
+      },
+      "textQualifier": "nessuno",
+      "encoding": "UTF-8",
+      "headerPresence": false,
+      "columnOrder": [
+        "email",
+        "customer_id",
+        "first_name",
+        "last_name",
+        "country",
+        "amount",
+        "note"
+      ],
+      "expectedResult": {
+        "rowCount": 2,
+        "columns": [
+          "customer_id",
+          "first_name",
+          "last_name",
+          "email",
+          "country",
+          "amount",
+          "note"
+        ],
+        "rows": [
+          {
+            "customer_id": "9",
+            "first_name": "Elena",
+            "last_name": "Ferri",
+            "email": "elena.ferri@example.com",
+            "country": "IT",
+            "amount": "19.99",
+            "note": "custom delimiter caret senza qualifier"
+          },
+          {
+            "customer_id": "10",
+            "first_name": "Omid",
+            "last_name": "Karimi",
+            "email": "omid.karimi@example.com",
+            "country": "IR",
+            "amount": "88.00",
+            "note": "ordine colonne non standard"
+          }
+        ]
+      },
+      "notes": "Serve a verificare il delimiter custom e il mapping manuale con ordine colonne non standard."
+    },
+    {
+      "file": "06_semicolon_utf8_noheader_singlequote.csv",
+      "delimiter": {
+        "label": "punto e virgola",
+        "char": ";"
+      },
+      "textQualifier": "apice singolo (')",
+      "encoding": "UTF-8",
+      "headerPresence": false,
+      "columnOrder": [
+        "customer_id",
+        "email",
+        "note",
+        "amount",
+        "country",
+        "first_name",
+        "last_name"
+      ],
+      "expectedResult": {
+        "rowCount": 2,
+        "columns": [
+          "customer_id",
+          "first_name",
+          "last_name",
+          "email",
+          "country",
+          "amount",
+          "note"
+        ],
+        "rows": [
+          {
+            "customer_id": "11",
+            "first_name": "Marco",
+            "last_name": "Bruni",
+            "email": "marco.bruni@example.com",
+            "country": "IT",
+            "amount": "10.50",
+            "note": "test manuale; nota con ;"
+          },
+          {
+            "customer_id": "12",
+            "first_name": "Eva",
+            "last_name": "López",
+            "email": "eva.lopez@example.com",
+            "country": "ES",
+            "amount": "22.00",
+            "note": "cliente estero; España"
+          }
+        ]
+      },
+      "notes": "Testa mapping manuale senza header e qualifier singolo per campi che contengono ;."
+    }
+  ]
+}

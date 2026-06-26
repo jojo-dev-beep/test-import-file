@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Company>
+  <Employees>
+    <Employee id="E003" active="1" department="Finance" country="IT">
+      <Name>
+        <First>Giulia</First>
+        <Last>Verdi</Last>
+      </Name>
+      <Contact>
+        <Email>giulia.verdi@example.com</Email>
+      </Contact>
+      <Payroll>
+        <GrossSalary>51000.75</GrossSalary>
+      </Payroll>
+      <Dates>
+        <HireDate>2021-03-10</HireDate>
+      </Dates>
+    </Employee>
+    <Employee id="E004" active="0" department="Sales" country="ES">
+      <Name>
+        <First>Carlos</First>
+        <Last>García</Last>
+      </Name>
+      <Contact>
+        <Email>carlos.garcia@example.com</Email>
+      </Contact>
+      <Payroll>
+        <GrossSalary>38750.20</GrossSalary>
+      </Payroll>
+      <Dates>
+        <HireDate>2022-07-22</HireDate>
+      </Dates>
+    </Employee>
+  </Employees>
+</Company>

@@ -1,0 +1,16 @@
+employee_id,first_name,last_name,email,department,city,country,salary,hire_date,active,source_system
+E001,Mario,Rossi,mario.rossi@example.com,Sales,Milan,IT,52000.50,2024-01-15,true,HRIS
+E002,Laura,Bianchi,laura.bianchi@example.com,Finance,Rome,IT,48000.00,2023-09-10,false,HRIS
+E003,Ana,García,ana.garcia@example.com,HR,Madrid,ES,45000.00,2024-03-01,true,HRIS
+E004,John,O'Connor,john.oconnor@example.com,IT,London,UK,52000.75,2022-12-20,false,HRIS
+E005,Claire,Dubois,claire.dubois@example.com,Marketing,Paris,FR,61000.10,2021-06-05,true,SAP
+E006,Hans,Müller,hans.mueller@example.com,Operations,Berlin,DE,58000.00,2020-02-28,true,SAP
+E007,Sofia,Verdi,sofia.verdi@example.com,IT,Milan,IT,47000.00,2024-05-01,true,LEGACY
+E008,Luca,Conti,luca.conti@example.com,IT,Rome,IT,43000.25,2023-08-18,false,LEGACY
+E009,Emma,Stone,emma.stone@example.com,Finance,Boston,US,72000.00,2019-04-12,true,LEGACY
+E010,Pablo,Ruiz,pablo.ruiz@example.com,Support,Barcelona,ES,39000.00,2025-01-10,true,CRM
+E011,Marie,Curie,marie.curie@example.com,Research,Warsaw,PL,65000.50,2022-07-14,true,CRM
+E012,Niko,Novak,,Operations,Zagreb,HR,,,true,IMPORT
+E013,Sara,Empty,,Operations,,IT,,2024-10-30,false,IMPORT
+E014,Akira,Tanaka,akira.tanaka@example.com,R&D,Tokyo,JP,80000.00,2018-11-20,true,API
+E015,Noah,Smith,noah.smith@example.com,Legal,New York,US,90500.75,2017-03-09,false,API

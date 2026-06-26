@@ -1,0 +1,32 @@
+{
+  "response": {
+    "customers": [
+      {
+        "id": 1,
+        "name": "Mario Rossi",
+        "orders": [
+          {
+            "orderId": "A1",
+            "amount": 100
+          },
+          {
+            "orderId": "A2",
+            "amount": 50
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Luigi Bianchi",
+        "orders": [
+          {
+            "orderId": "B1",
+            "amount": 200
+          }
+        ]
+      }
+    ]
+  }
+}
+
+ 

@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "id": "E012",
+      "name": {
+        "first": "Niko",
+        "last": "Novak"
+      },
+      "department": "Operations",
+      "address": {
+        "city": "Zagreb",
+        "country": "HR"
+      },
+      "compensation": {
+        "salary": null
+      },
+      "hireDate": "",
+      "active": true,
+      "sourceSystem": "IMPORT"
+    },
+    {
+      "id": "E013",
+      "name": {
+        "first": "Sara",
+        "last": "Empty"
+      },
+      "contact": {
+        "email": ""
+      },
+      "department": "Operations",
+      "address": {
+        "country": "IT"
+      },
+      "hireDate": "2024-10-30",
+      "active": false,
+      "sourceSystem": "IMPORT"
+    }
+  ]
+}

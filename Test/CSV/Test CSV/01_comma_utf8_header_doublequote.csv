@@ -1,0 +1,3 @@
+customer_id,first_name,last_name,email,country,amount,note
+1,Mario,Rossi,mario.rossi@example.com,IT,1234.56,"cliente standard, priorità bassa"
+2,Anna,Bianchi,anna.bianchi@example.com,IT,987.00,"indirizzo: Via Roma, 10"

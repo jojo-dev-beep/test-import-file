@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hr:Employees xmlns:hr="http://schemas.example.com/hr">
+  <hr:Employee id="E005" active="true" department="Operations" country="DE">
+    <hr:FirstName>Anna</hr:FirstName>
+    <hr:LastName>Müller</hr:LastName>
+    <hr:Email>anna.mueller@example.com</hr:Email>
+    <hr:Compensation>
+      <hr:Salary>60000.00</hr:Salary>
+    </hr:Compensation>
+    <hr:HireDate>2018-11-05</hr:HireDate>
+  </hr:Employee>
+  <hr:Employee id="E006" active="false" department="Legal" country="FR">
+    <hr:FirstName>Élodie</hr:FirstName>
+    <hr:LastName>Martin</hr:LastName>
+    <hr:Email>elodie.martin@example.com</hr:Email>
+    <hr:Compensation>
+      <hr:Salary>58000.40</hr:Salary>
+    </hr:Compensation>
+    <hr:HireDate>2020-06-30</hr:HireDate>
+  </hr:Employee>
+</hr:Employees>

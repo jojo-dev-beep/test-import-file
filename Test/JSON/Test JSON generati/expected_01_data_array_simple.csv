@@ -1,0 +1,3 @@
+employee_id,first_name,last_name,email,department,city,country,salary,hire_date,active,source_system
+E001,Mario,Rossi,mario.rossi@example.com,Sales,Milan,IT,52000.50,2024-01-15,true,HRIS
+E002,Laura,Bianchi,laura.bianchi@example.com,Finance,Rome,IT,48000.00,2023-09-10,false,HRIS

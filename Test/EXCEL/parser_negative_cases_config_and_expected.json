@@ -1,0 +1,242 @@
+{
+  "purpose": "Casi negativi aggiuntivi per testare il parser Excel della pipeline di import e ParseError[].",
+  "notes": [
+    "Questi casi completano il pacchetto wizard, che copre soprattutto flussi positivi.",
+    "Le righe valide eventualmente presenti nei file negativi possono essere estratte, ma il parser deve restituire anche ParseError[] per le anomalie.",
+    "La conversione celle non convertibili presuppone che TraceColumnDefinition contenga datatype o una logica equivalente di conversione/validazione. Se il parser restituisce solo stringhe senza datatype, questi casi vanno reinterpretati come validazioni di pipeline a valle."
+  ],
+  "canonicalOutputColumns": [
+    "customer_id",
+    "first_name",
+    "last_name",
+    "email",
+    "country",
+    "amount",
+    "signup_date",
+    "active"
+  ],
+  "negativeTestCases": [
+    {
+      "id": "N01_sheet_not_found",
+      "fileName": "01_range_a1_header.xlsx",
+      "config": {
+        "sheetName": "MissingSheet",
+        "listObjectName": null,
+        "headerPresence": true,
+        "startRow": null
+      },
+      "traceColumns": [
+        {
+          "columnName": "customer_id",
+          "sourceColumn": "customer_id",
+          "datatype": "Int"
+        },
+        {
+          "columnName": "amount",
+          "sourceColumn": "amount",
+          "datatype": "Decimal"
+        }
+      ],
+      "expectedRows": [],
+      "expectedErrors": [
+        {
+          "type": "SheetNotFound",
+          "messageContains": "MissingSheet"
+        }
+      ]
+    },
+    {
+      "id": "N02_range_empty_row_and_bad_conversions",
+      "fileName": "07_parser_errors_bad_cells_empty_rows.xlsx",
+      "config": {
+        "sheetName": "ParserErrors",
+        "listObjectName": null,
+        "headerPresence": true,
+        "startRow": null
+      },
+      "traceColumns": [
+        {
+          "columnName": "customer_id",
+          "sourceColumn": "customer_id",
+          "datatype": "Int"
+        },
+        {
+          "columnName": "first_name",
+          "sourceColumn": "first_name",
+          "datatype": "String"
+        },
+        {
+          "columnName": "last_name",
+          "sourceColumn": "last_name",
+          "datatype": "String"
+        },
+        {
+          "columnName": "email",
+          "sourceColumn": "email",
+          "datatype": "String"
+        },
+        {
+          "columnName": "country",
+          "sourceColumn": "country",
+          "datatype": "String"
+        },
+        {
+          "columnName": "amount",
+          "sourceColumn": "amount",
+          "datatype": "Decimal"
+        },
+        {
+          "columnName": "signup_date",
+          "sourceColumn": "signup_date",
+          "datatype": "DateTime"
+        },
+        {
+          "columnName": "active",
+          "sourceColumn": "active",
+          "datatype": "Boolean"
+        }
+      ],
+      "expectedExtractedValidRows": [
+        {
+          "customer_id": "301",
+          "first_name": "Valid",
+          "last_name": "Row",
+          "email": "valid.row@example.com",
+          "country": "IT",
+          "amount": "150.25",
+          "signup_date": "2026-07-01",
+          "active": "true"
+        }
+      ],
+      "expectedErrors": [
+        {
+          "type": "EmptyRow",
+          "rowNumber": 3
+        },
+        {
+          "type": "CellConversionError",
+          "rowNumber": 4,
+          "columnName": "customer_id",
+          "rawValue": "ABC",
+          "datatype": "Int"
+        },
+        {
+          "type": "CellConversionError",
+          "rowNumber": 4,
+          "columnName": "amount",
+          "rawValue": "not-a-decimal",
+          "datatype": "Decimal"
+        },
+        {
+          "type": "CellConversionError",
+          "rowNumber": 4,
+          "columnName": "signup_date",
+          "rawValue": "not-a-date",
+          "datatype": "DateTime"
+        },
+        {
+          "type": "CellConversionError",
+          "rowNumber": 4,
+          "columnName": "active",
+          "rawValue": "maybe",
+          "datatype": "Boolean"
+        }
+      ]
+    },
+    {
+      "id": "N03_listobject_empty_row_and_bad_conversion",
+      "fileName": "08_parser_errors_listobject_empty_and_bad_cells.xlsx",
+      "config": {
+        "sheetName": "ParserTables",
+        "listObjectName": "ErrorCustomersTable",
+        "headerPresence": true,
+        "startRow": null
+      },
+      "traceColumns": [
+        {
+          "columnName": "customer_id",
+          "sourceColumn": "customer_id",
+          "datatype": "Int"
+        },
+        {
+          "columnName": "first_name",
+          "sourceColumn": "first_name",
+          "datatype": "String"
+        },
+        {
+          "columnName": "last_name",
+          "sourceColumn": "last_name",
+          "datatype": "String"
+        },
+        {
+          "columnName": "email",
+          "sourceColumn": "email",
+          "datatype": "String"
+        },
+        {
+          "columnName": "country",
+          "sourceColumn": "country",
+          "datatype": "String"
+        },
+        {
+          "columnName": "amount",
+          "sourceColumn": "amount",
+          "datatype": "Decimal"
+        },
+        {
+          "columnName": "signup_date",
+          "sourceColumn": "signup_date",
+          "datatype": "DateTime"
+        },
+        {
+          "columnName": "active",
+          "sourceColumn": "active",
+          "datatype": "Boolean"
+        }
+      ],
+      "expectedExtractedValidRows": [
+        {
+          "customer_id": "401",
+          "first_name": "Good",
+          "last_name": "Table",
+          "email": "good.table@example.com",
+          "country": "DE",
+          "amount": "42.50",
+          "signup_date": "2026-08-01",
+          "active": "true"
+        }
+      ],
+      "expectedErrors": [
+        {
+          "type": "EmptyRow",
+          "rowNumber": 5,
+          "note": "Riga fisica Excel dentro il listObject, non indice relativo."
+        },
+        {
+          "type": "CellConversionError",
+          "rowNumber": 6,
+          "columnName": "amount",
+          "rawValue": "12x.55",
+          "datatype": "Decimal"
+        }
+      ]
+    },
+    {
+      "id": "N04_listobject_not_found_optional_but_recommended",
+      "fileName": "06_listobject_two_tables_pick_specific.xlsx",
+      "config": {
+        "sheetName": "MultipleTables",
+        "listObjectName": "MissingTable",
+        "headerPresence": true,
+        "startRow": null
+      },
+      "expectedRows": [],
+      "expectedErrors": [
+        {
+          "type": "ListObjectNotFound",
+          "messageContains": "MissingTable"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+employee_id,first_name,last_name,email,department,city,country,salary,hire_date,active,source_system
+E007,Sofia,Verdi,sofia.verdi@example.com,IT,Milan,IT,47000.00,2024-05-01,true,LEGACY
+E008,Luca,Conti,luca.conti@example.com,IT,Rome,IT,43000.25,2023-08-18,false,LEGACY
+E009,Emma,Stone,emma.stone@example.com,Finance,Boston,US,72000.00,2019-04-12,true,LEGACY
