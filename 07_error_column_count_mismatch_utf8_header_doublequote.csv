@@ -1,0 +1,4 @@
+customer_id,first_name,last_name,email,country,amount,note
+13,Valid,Row,valid.row@example.com,IT,12.00,"ok"
+14,No,Note,no.note@example.com,IT,20.00
+15,Extra,Field,extra.field@example.com,IT,30.00,"ok","unexpected extra"
